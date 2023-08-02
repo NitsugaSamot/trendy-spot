@@ -1,10 +1,29 @@
 const{ User} = require('../db')
 const {generateToken} = require('../helpers/generateToken')
+const { Op } = require("sequelize");
 
-const users = (req, res) => {
-    // console.log(req.body)     
-    res.json({ msg : 'desde users'})
+// Buscar por name 
+const getUserByName = async (req, res) => {
+    const { name } = req.query;
+    console.log(name)
+    try {
+        const userByName = await User.findAll({
+            where: {
+                name: { [Op.iLike]: `%${name}%`}
+            }
+        })
+        if(!userByName){
+            throw Error(`${name} no se encontro coicidencias`)
+        }else{
+            res.status(200).json(userByName)
+        }
+
+    } catch (error) {
+        res.status(500).json({error: error.message})
+        
+    }
 }
+
 
 const createUser = async (req, res) => {
 
@@ -59,4 +78,4 @@ const authenticateUser = async (req, res ) => {
 }
 
  
-module.exports = {users, createUser, authenticateUser }  
+module.exports = { createUser, authenticateUser, getUserByName }  

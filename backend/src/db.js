@@ -10,6 +10,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 });
+
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -36,6 +37,8 @@ const { User, Product } = sequelize.models;
 // Product.hasMany(Reviews);
 User.belongsToMany(Product, {through: 'product_user'})
 Product.belongsToMany(User, {through: 'product_user'})
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
