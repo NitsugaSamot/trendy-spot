@@ -2,10 +2,13 @@ const {Router}=require('express')
 
 const router = Router()
 
-const  {postProduct} = require('../controllers/productController')
+const  {postProduct, getAllProducts} = require('../controllers/productController')
+
+
+router.get('/', getAllProducts)
 
 //Creación de producto
-router.post('/', postProduct)
+router.post('/create', postProduct)
 
 
 module.exports = router
