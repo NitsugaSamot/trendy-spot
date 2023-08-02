@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { GET_ALL, ORDER_PRICE, SEARCH_NAME, POST_PRODUCT } from './action-types';
+import { GET_ALL, ORDER_PRICE, SEARCH_NAME } from './action-types';
 
 export const getAllClothes = ()=>{
     return async function(dispatch){
         try {
-            var all = axios('http://localhost:3001/')
+            const all = axios('http://localhost:3001/')
             return dispatch({
                 type: GET_ALL,
                 payload: all.data
@@ -14,21 +14,6 @@ export const getAllClothes = ()=>{
         }
     }
 }
-
-export const postProduct = (form) => {
-  return async function (dispatch) {
-    try {
-        var product = axios("http://localhost:3001/create", form);
-      return dispatch({
-        type: POST_PRODUCT,
-        payload: product.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
-
 
 export const orderPrice = (payload)=>{
     return {
