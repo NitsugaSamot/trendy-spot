@@ -38,8 +38,6 @@ const { User, Product } = sequelize.models;
 User.belongsToMany(Product, {through: 'product_user'})
 Product.belongsToMany(User, {through: 'product_user'})
 
-User.belongsToMany(Product,{through: "user-product"})
-Product.belongsToMany(User,{through: "user-product"})
 
 
 module.exports = {
