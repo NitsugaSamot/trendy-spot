@@ -1,9 +1,10 @@
 import Card from "../card/card";
 import prendas from "../../../../prendas.js";
+import styles from "./home.css?inline";
 
 const Home = () => {
   return (
-    <div>
+     <div className={styles.cards}>
       {prendas.map((prenda) => {
         return (
           <Card
