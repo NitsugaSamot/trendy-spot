@@ -1,0 +1,47 @@
+[
+  {
+  "name": "remera blanca",
+  "size": 34,
+  "price": 1500,
+  "image": "https://sublitextil.com.ar/wp-content/uploads/2019/01/Remera-sublimar-hombre-.jpg",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptas ad alias sed tempora quo asperiores provident temporibus praesentium deleniti aperiam iusto consequuntur aspernatur vitae facilis unde, ipsa itaque voluptate!",
+  "stock": 567,
+  "brand": "Adidas"
+  },
+  {
+  "name": "remera negra",
+  "size": 36,
+  "price": 1600,
+  "image": "https://sublitextil.com.ar/wp-content/uploads/2019/01/Remera-sublimar-hombre-.jpg",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptas ad alias sed tempora quo asperiores provident temporibus praesentium deleniti aperiam iusto consequuntur aspernatur vitae facilis unde, ipsa itaque voluptate!",
+  "stock": 700,
+  "brand": "Puma"
+  },
+  {
+  "name": "remera roja",
+  "size": 38,
+  "price": 1700,
+  "image": "https://sublitextil.com.ar/wp-content/uploads/2019/01/Remera-sublimar-hombre-.jpg",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptas ad alias sed tempora quo asperiores provident temporibus praesentium deleniti aperiam iusto consequuntur aspernatur vitae facilis unde, ipsa itaque voluptate!",
+  "stock": 400,
+  "brand": "Under Armour"
+  },
+  {
+  "name": "remera azul",
+  "size": 40,
+  "price": 1800,
+  "image": "https://sublitextil.com.ar/wp-content/uploads/2019/01/Remera-sublimar-hombre-.jpg",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptas ad alias sed tempora quo asperiores provident temporibus praesentium deleniti aperiam iusto consequuntur aspernatur vitae facilis unde, ipsa itaque voluptate!",
+  "stock": 300,
+  "brand": "Reebok"
+  },
+  {
+  "name": "remera verde",
+  "size": 42,
+  "price": 1900,
+  "image": "https://sublitextil.com.ar/wp-content/uploads/2019/01/Remera-sublimar-hombre-.jpg",
+  "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur voluptas ad alias sed tempora quo asperiores provident temporibus praesentium deleniti aperiam iusto consequuntur aspernatur vitae facilis unde, ipsa itaque voluptate!",
+  "stock": 100,
+  "brand": "New Balance"
+  }
+  ]

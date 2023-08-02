@@ -18,7 +18,7 @@ const getAllProducts = async(req, res) => {
 
 const postProduct = async (req, res) => {
         try {
-                const {name, size, price, image, description, stock} = req.body
+                const {name, size, price, image, description, stock, brand} = req.body
             
                 const product = await Product.create({
                     name,
@@ -26,7 +26,8 @@ const postProduct = async (req, res) => {
                     price,
                     image,
                     description,
-                    stock
+                    stock, 
+                    brand
                 })
             
                 res.status(200).json(product)
@@ -36,4 +37,19 @@ const postProduct = async (req, res) => {
         }
 }
 
-module.exports = {postProduct, getAllProducts}
+const getProductById = async(req, res) => {
+    const {id} = req.params 
+
+    try {
+        const productId = await Product.findOne({where: {id}})
+
+        return res.json(productId)
+
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+        console.log(error);
+    }
+
+}
+
+module.exports = {postProduct, getAllProducts, getProductById}
