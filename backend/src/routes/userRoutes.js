@@ -6,8 +6,7 @@ const  {users, createUser, authenticateUser, getUserByName} = require('../contro
 
 //Autenticacion , registro y confirmacion de usuarios
  
-router.get('/', users)
-router.get("/", getUserByName)
+router.get('/',getUserByName)
 
 router.post('/', createUser)
 router.post('/login', authenticateUser)
