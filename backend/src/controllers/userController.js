@@ -2,7 +2,6 @@ const{ User} = require('../db')
 const {generateToken} = require('../helpers/generateToken')
 
 const users = (req, res) => {
-    
     // console.log(req.body)     
     res.json({ msg : 'desde users'})
 }
