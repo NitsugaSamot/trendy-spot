@@ -1,5 +1,6 @@
 import Card from "../card/card";
 import prendas from "../../../../prendas.js";
+
 const Home = () => {
   return (
     <div>
