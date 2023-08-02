@@ -59,5 +59,28 @@ const authenticateUser = async (req, res ) => {
     //Comprobar su  password
 }
 
+// Buscar user por name 
+
+const getUserByName = async (req, res) => {
+    const {name} = req.query;
+
+    try {
+        const userByName = await User.findAll({
+            where: {
+                name: { [Op.iLike]: `%${name}%`}
+            }
+        })
+        if(!userByName){
+            throw Error(`${name} no se encontro coicidencias`)
+        }else{
+            res.status(200).json(userByName)
+        }
+
+    } catch (error) {
+        res.status(500).json({error: error.message})
+        
+    }
+}
+
  
-module.exports = {users, createUser, authenticateUser }  
+module.exports = {users, createUser, authenticateUser, getUserByName }  
