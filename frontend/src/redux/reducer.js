@@ -1,4 +1,4 @@
-import { GET_ALL, ORDER_PRICE } from "./action-types";
+import { GET_ALL, ORDER_PRICE} from "./action-types";
 
 const initialState = {
     allClothes1: [],
