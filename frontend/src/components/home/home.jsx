@@ -1,13 +1,14 @@
 import Card from "../card/card";
 import products from "../../../../prendas.js";
 // import { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllClothes } from "../../redux/actions";
 // import { allProducts, orderPrice } from "../../redux/actions";
 import "./home.css";
 
 const Home = () => {
-  // const dispatch = useDispatch();
-  // const allClothes1 = useSelector((state) => state.allClothes1);
+  const dispatch = useDispatch();
+  const allClothes1 = useSelector((state) => state.allClothes1);
   // const [order, setOrder] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
   // const productsPerPage = 12;
