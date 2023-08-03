@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     size: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
     },
     price: {
@@ -32,15 +32,16 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    brand: {
+    color: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    productbrand: {
       type: DataTypes.STRING,
       allowNull: false
     }
   },
-  {
-    timestamps: false
-  });
-
-
+  { timestamps: false }
+  );
 };
 
