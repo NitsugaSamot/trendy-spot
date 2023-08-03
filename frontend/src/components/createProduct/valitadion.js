@@ -21,5 +21,9 @@ const validation = (form) => {
     errors.color = "the stock must be between 3 and 20";
   if (!form.brand) errors.brand = "Write a brand";
   else if (form.brand < 3 || form.brand > 20)
-    errors.brand = "the brand name must have between 3 and 20";
+        errors.brand = "the brand name must have between 3 and 20";
+    
+    return errors;
 };
+
+export default validation;
