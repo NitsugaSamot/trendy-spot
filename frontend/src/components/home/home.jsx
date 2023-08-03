@@ -1,5 +1,8 @@
 import Card from "../card/card";
-import products from "../../../../prendas.js";
+import products from "../../../../prendas";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllClothes } from "../../redux/actions";
 // import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClothes } from "../../redux/actions";
@@ -9,13 +12,13 @@ import "./home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
-  // const [order, setOrder] = useState("");
+  //const [order, setOrder] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
   // const productsPerPage = 12;
 
-  // useEffect(() => {
-  //   dispatch(allPokemons());
-  // }, [dispatch]);
+  useEffect(() => {
+  dispatch(getAllClothes());
+  }, [dispatch]);
 
   // Calcular el índice inicial y final de los pokemons a mostrar en la página actual
 
@@ -37,6 +40,7 @@ const Home = () => {
   //   setCurrentPage(1)
   //   setOrder(`Ordenado ${event.target.value}`)
   //     }
+  console.log(allClothes1)
 
   return (
     <div>
@@ -68,7 +72,7 @@ const Home = () => {
         />
       ))}
       </div> */}
-      {products.map((product) => {
+      {allClothes1.map((product) => {
         return (
           <Card
             key={product.id}
