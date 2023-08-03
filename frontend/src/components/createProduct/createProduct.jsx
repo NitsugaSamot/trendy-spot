@@ -27,6 +27,7 @@ const CreateProduct = () => {
   const handleSize = (event) => {
     setForm({...form, size: event.target.value})
   }
+  
   const handleSubmit =async(event) => {
     event.preventDefault()
     const response = await axios.post('http://localhost:3004/products/create', form);
