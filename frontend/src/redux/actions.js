@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_ALL, ORDER_PRICE, SEARCH_NAME, POST_PRODUCT } from './action-types';
+import { GET_ALL, ORDER_PRICE, SEARCH_NAME } from './action-types';
 
 export const getAllClothes = ()=>{
     return async function(dispatch){
