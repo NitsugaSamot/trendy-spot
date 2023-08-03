@@ -1,12 +1,10 @@
+import "./home.css";
 import Card from "../card/card";
 import products from "../../../../prendas";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getAllClothes } from "../../redux/actions";
-// import { useState, useEffect } from "react";
-// import { useDispatch, useSelector } from "react-redux";
 // import { allProducts, orderPrice } from "../../redux/actions";
-import "./home.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -16,7 +14,7 @@ const Home = () => {
   // const productsPerPage = 12;
 
   useEffect(() => {
-  dispatch(getAllClothes());
+    dispatch(getAllClothes());
   }, [dispatch]);
 
   // Calcular el índice inicial y final de los pokemons a mostrar en la página actual
@@ -39,7 +37,7 @@ const Home = () => {
   //   setCurrentPage(1)
   //   setOrder(`Ordenado ${event.target.value}`)
   //     }
-  console.log(allClothes1)
+  console.log(allClothes1);
 
   return (
     <div>

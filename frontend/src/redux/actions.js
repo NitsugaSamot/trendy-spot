@@ -18,7 +18,7 @@ export const getAllClothes = ()=>{
 /* export const postProduct = (form) => {
   return async function (dispatch) {
     try {
-        var product = axios("http://localhost:3004/products/create", form);
+        var product = await axios("http://localhost:3004/products/create", form);
       return dispatch({
         type: POST_PRODUCT,
         payload: product.data,
