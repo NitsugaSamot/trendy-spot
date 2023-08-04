@@ -3,20 +3,15 @@ const router = Router()
 
 const newProductHandler = require('../handlers/product/createProductHandler')
 const { getAllOrByNameProducts, getProductById } = require('../handlers/product/getProductHandlers');
+
+const validation = require('../helpers/validation')
 // const  { postProduct, getAllProducts, getProductById } = require('../controllers/createProductController')
 
-// const validate = (req, res, next) => {
-//     const  {name, img, hp, attack, defense, types} = req.body;
-//     if(!name || !img || !hp || !attack || !defense || !types){
-//         res.status(400).json({error: "Missing data"});
-//     }
-//     next();
-// };
 
 router.get('/', getAllOrByNameProducts)
 router.get('/name?', getAllOrByNameProducts)
 router.get('/:id', getProductById)
 
-router.post('/create', newProductHandler)
+router.post('/create', validation, newProductHandler)
 
 module.exports = router

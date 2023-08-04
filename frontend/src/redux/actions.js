@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { GET_ALL, ORDER_PRICE, SEARCH_NAME, POST_PRODUCT } from './action-types';
+import { GET_ALL, ORDER_PRICE, SEARCH_NAME } from './action-types';
 
 export const getAllClothes = ()=>{
     return async function(dispatch){
         try {
-            const all = axios('http://localhost:3001/')
+            const all = await axios.get('http://localhost:3004/products')
             return dispatch({
                 type: GET_ALL,
                 payload: all.data
@@ -15,19 +15,18 @@ export const getAllClothes = ()=>{
     }
 }
 
-export const postProduct = (form) => {
-  return async function (dispatch) {
-    try {
-        var product = axios("http://localhost:3001/create", form);
-      return dispatch({
-        type: POST_PRODUCT,
-        payload: product.data,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-};
+// http://localhost:3004/products/name?name=pantalon
+
+export function getProductsByName(payload) {
+  return async function(dispatch) {
+    let dataProducts = await axios.get(`http://localhost:3004/products/name?name=${payload}`)
+    return dispatch({
+      type: SEARCH_NAME,
+      payload: dataProducts.data
+    })
+  }
+}
+
 
 export const orderPrice = (payload)=>{
     return {
