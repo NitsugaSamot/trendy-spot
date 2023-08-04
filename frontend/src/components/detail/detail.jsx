@@ -10,7 +10,7 @@ const Detail = () => {
   useEffect(()=>{
     const fetchData = async ()=>{
     try{
-      const response = await axios.get(`http://localhost:3001/${id}`);
+      const response = await axios.get(`http://localhost:3004/products/${id}`);
       const { data } = response;
       setGarment(data);
     } catch (error) {
@@ -22,9 +22,9 @@ const Detail = () => {
 
   return (
     <div>
-              <h1>{data.name}</h1>
-              <img src={prenda.image} alt={data.name} />
-              <h3>$ {data.price}</h3>
+              <h1>{garment.name}</h1>
+              <img src={garment.image} alt={garment.name} />
+              <h3>$ {garment.price}</h3>
     </div>
   );
 };
