@@ -25,27 +25,16 @@ const reducer = (state = initialState, { type, payload }) => {
       let sortedArr =
         payload === "1"
           ? state.allClothes1.sort(function (a, b) {
-              if (a.name > b.name) {
-                return 1;
-              }
-              if (b.name > a.name) {
-                return -1;
-              }
-              return 0;
+            if (a.name > b.name) return 1;
+            if (b.name > a.name) return -1;
+            return 0;
             })
           : state.allClothes1.sort(function (a, b) {
-              if (a.name > b.name) {
-                return -1;
-              }
-              if (b.name > a.name) {
-                return 1;
-              }
-              return 0;
+            if (a.name > b.name) return -1;
+            if (b.name > a.name) return 1;
+            return 0;
             });
-      return {
-        ...state,
-        allClothes1: sortedArr,
-      };
+      return { ...state, allClothes1: payload = sortedArr };
 
     case FILTER_BY_PRICE:
       const filteredByPrice = state.allClothes2.filter((product) => {

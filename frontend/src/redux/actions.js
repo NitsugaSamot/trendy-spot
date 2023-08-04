@@ -22,11 +22,13 @@ export const getAllClothes = () => {
   };
 };
 
-export const orderByName = (payload) => {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
-  };
+export function orderByName(order){
+    return function (dispatch){
+    return dispatch ({
+        type: ORDER_BY_NAME,
+        payload: order
+    });
+    };
 };
 
 export const filterByBrand = (payload) => {

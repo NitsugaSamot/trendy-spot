@@ -9,7 +9,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
+  const [order, setOrder] = useState('');
+  const productsPerPage = 12;
 
   useEffect(() => {
     dispatch(getAllClothes());
@@ -33,7 +34,7 @@ const Home = () => {
   }
   return (
     <div>
-      <Filter />
+      <Filter setOrder={setOrder}/>
       {currentProduct.map((product) => (
         <Card
           key={product.id}

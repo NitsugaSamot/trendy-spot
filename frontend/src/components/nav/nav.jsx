@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
 
 const Nav = () => {
-  const[name, setName] = useState('')
+  const [search, setSearch] = useState("");
+  const dispatch = useDispatch();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,11 +31,3 @@ const Nav = () => {
   );
 };
 export default Nav;
-
-  // const dispatch = useDispatch();
-
-  // // const handleSubmit = (e) => {
-  // //   e.preventDefault();
-  // //   dispatch(getRecipesByName(search));
-  // //   setSearch("");
-  // // };
