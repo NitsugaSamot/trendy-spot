@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import validation from "./valitadion";
+import validation from "./validation";
 import "./createProduct.css" 
 
 const CreateProduct = () => {
@@ -37,8 +37,8 @@ console.log(errors)
     const idSinView = idPrenda[1].split('/')
     const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
     postForm.image = idUltimo
-//-----------------------------------------------------------------------------------------------------------------------
-    const response = await axios.post('http://localhost:3004/products/create', postForm);
+
+    // const response = await axios.post('http://localhost:3004/products/create', postForm);
     alert("the product has been created");
   }
 

@@ -1,5 +1,6 @@
 import "./home.css";
 import Card from "../card/card";
+// import products from "../../../../prendas";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllClothes } from "../../redux/actions";
