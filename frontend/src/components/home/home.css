@@ -1,8 +1,33 @@
 .cards{
-    display: grid;
+    display: flex;
+    flex-wrap: wrap;
     /* align-items:center; */
     /* padding: 30px; */
     justify-content: center;
-    grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
-    gap: 20px;
+    /* grid-template-columns: 23.5% 23.5% 23.5% 23.5%; */
+    gap: 2rem;
+    background-color: white;
+    width: 100%;
+    margin-top: 1rem;
 }
+
+.divContainer{
+    width: 100%;
+    padding: 1rem;
+    margin-top: 3rem;
+
+}
+
+.paginado{
+    margin-top: 2rem;
+}
+
+.pagina{
+    width: 6rem;
+}
+/* 
+.containerHome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+} */

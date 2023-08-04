@@ -1,0 +1,29 @@
+.containerFilter{
+    display: flex;
+    /* background-color: aqua; */
+    align-items: center;
+    background-color: rgb(34, 34, 76);
+    color: antiquewhite;
+    margin: 0 auto;
+    gap: 1rem;
+    justify-content: center;
+    font-size: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.containerPrice{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    background-color: rgb(34, 34, 76);
+    padding: 0.4rem;
+}
+
+.containerBrand {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.containerOrder{
+    margin: 10px;
+}

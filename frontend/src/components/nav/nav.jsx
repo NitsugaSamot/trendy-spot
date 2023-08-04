@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
+import { NavLink } from "react-router-dom";
+import imageLogo from './trendy-spot-logo.png'
+import './nav.css'
 
 const Nav = () => {
   const [search, setSearch] = useState("");
@@ -17,16 +20,25 @@ const Nav = () => {
   };
 
   return (
-    <div>
+    <div className="containerNav">
+      <NavLink to="/">
+        <img src={imageLogo} alt="logo-home" className="logoHome" />
+      </NavLink>
       <form onSubmit={handleSubmit}>
         <input
+        className="search"
           type="text"
           placeholder="¿Qué quieres buscar?"
           value={search}
           onChange={handleInputName}
         />
-        <button type="submit">Buscar</button>
+        <button className="btnSearch" type="submit">Buscar</button>
+
       </form>
+
+      <NavLink  to="/create">
+        <button className='btnSearch'>create</button>
+      </NavLink>
     </div>
   );
 };

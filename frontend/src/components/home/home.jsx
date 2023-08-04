@@ -1,9 +1,8 @@
 import "./home.css";
 import Card from "../card/card";
-<<<<<<< HEAD
-=======
+
 import Filter from "../filter/filter";
->>>>>>> tomas-callenius
+
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { getAllClothes } from "../../redux/actions";
@@ -11,15 +10,14 @@ import { getAllClothes } from "../../redux/actions";
 const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
-<<<<<<< HEAD
+
   
   //const [order, setOrder] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
-  // const productsPerPage = 12;
-=======
+
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
->>>>>>> tomas-callenius
+  const productsPerPage = 12;
+
 
   useEffect(() => {
     dispatch(getAllClothes());
@@ -42,8 +40,9 @@ const Home = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div>
+    <div className="divContainer">
       <Filter />
+      <div className="cards">
       {currentProduct.map((product) => (
         <Card
           key={product.id}
@@ -53,15 +52,19 @@ const Home = () => {
           price={product.price}
         />
       ))}
-      {Array.from({ length: totalPages }, (_, index) => (
-        <button
-          key={index + 1}
-          onClick={() => setCurrentPage(index + 1)}
-          disabled={currentPage === index + 1}
-        >
-          {index + 1}
-        </button>
-      ))}
+      </div>
+      <div className="paginado">
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button className="pagina"
+              key={index + 1}
+              onClick={() => setCurrentPage(index + 1)}
+              disabled={currentPage === index + 1}
+            >
+              {index + 1}
+            </button>
+            
+          ))}
+      </div>
     </div>
   );
 };
