@@ -6,10 +6,10 @@ const validation = (form) => {
   if (!form.price) errors.price = "insert a price";
   else if (form.price < 100 || form.price > 100000)
     errors.price = "the price must be between 100 and 10000";
-  else if (isNaN(form.price)) errors.name = "Should be number";
-  if (!form.image) errors.image = "You must paste the image";
+  else if (isNaN(form.price)) errors.price = "Should be number";
+  if (!form.image) errors.image = "You must provide an image";
   if (!form.description) errors.description = "You must write a description";
-  else if (form.description < 10 || form.description > 200)
+  else if (form.description.lenght < 10 || form.description.lenght > 200)
     errors.description =
       "the description must have between 10 and 200 caracters";
   if (!form.stock) errors.stock = "You must insert the stock available";
@@ -17,13 +17,13 @@ const validation = (form) => {
   else if (form.stock < 1 || form.stock > 1000)
     errors.stock = "the stock must be between 1 and 1000";
   if (!form.color) errors.color = "Choose a color";
-  else if (form.color < 3 || form.color > 20)
-    errors.color = "the stock must be between 3 and 20";
+  else if (form.color.lenght < 3 || form.color.lenght > 20)
+    errors.color = "the color must be between 3 and 20 caracters";
   if (!form.brand) errors.brand = "Write a brand";
-  else if (form.brand < 3 || form.brand > 20)
-        errors.brand = "the brand name must have between 3 and 20";
-    
-    return errors;
+  else if (form.brand.lenght < 3 || form.brand.lenght > 20)
+    errors.brand = "the brand name must have between 3 and 20 caracters";
+
+  return errors;
 };
 
 export default validation;
