@@ -1,4 +1,4 @@
-import { GET_ALL, ORDER_PRICE, POST_PRODUCT } from "./action-types";
+import { GET_ALL, ORDER_PRICE, POST_PRODUCT,SEARCH_NAME } from "./action-types";
 
 const initialState = {
     allClothes1: [],
@@ -24,7 +24,14 @@ const reducer = (state = initialState, { type, payload })=>{
 
       default:
         return { ...state };
-    }
+        
+        case SEARCH_NAME:
+        return {
+          ...state,
+          recipes: action.payload,
+          allRecipes: action.payload,
+        };
+      }
 }
 
 export default reducer;

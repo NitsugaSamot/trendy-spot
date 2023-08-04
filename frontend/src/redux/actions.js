@@ -36,3 +36,14 @@ export const orderPrice = (payload)=>{
         payload
     }
 }
+
+export function getRecipesByName (name){
+    
+    return async function(dispatch){
+        const json = await axios.get(`http://localhost:3001/?name=${name}`);
+    return dispatch( {
+        type : SEARCH_NAME,
+        payload: json.data
+    })
+}
+}
