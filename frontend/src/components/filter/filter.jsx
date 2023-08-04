@@ -7,6 +7,7 @@ import {
   refresh,
   filterPrice,
 } from "../../redux/actions";
+import './filter.css'
 
 const Filter = () => {
   const [price, setPrice] = useState({
@@ -46,43 +47,39 @@ const Filter = () => {
   };
   return (
     <div className="containerFilter">
-      <h2>Filter by:</h2>
-      <div className="containerOrder">
-        <h2>Order</h2>
-        <select name="order" onChange={handleOrderSelect}>
-          <option value="1">Name A-Z</option>
-          <option value="2">Name Z-A</option>
-        </select>
-      </div>
-      <div className="containerBrand">
-        <h2>Brand</h2>
-        <select name="order" onChange={handleFilterBrandSelect}>
-          {filterBrands.map((brand) => (
-            <option key={brand} value={brand}>
-              {brand}
-            </option>
-          ))}
-          ;
-        </select>
-      </div>
+      {/* <h1>Filter by:</h1> */}
+      <h2>Order</h2>
+      <select name="order" onChange={handleOrderSelect}>
+        <option value="1">Name A-Z</option>
+        <option value="2">Name Z-A</option>
+      </select>
+      <h2>Brand</h2>
+      <select name="order" onChange={handleFilterBrandSelect}>
+        {filterBrands.map((brand) => (
+          <option key={brand} value={brand}>
+            {brand}
+          </option>
+        ))}
+        ;
+      </select>
+      <h2>Price</h2>
       <div className="containerPrice">
-        <h2>Price</h2>
-        <label>
-          <input
-            type="number"
-            name="minPrice"
-            value={price.minPrice}
-            onChange={handleFilterPrice}
-          />
-          <input
-            type="number"
-            name="maxPrice"
-            value={price.maxPrice}
-            onChange={handleFilterPrice}
-          />
-        </label>
-        <button onClick={handleClickPrice} className="buttonPrice">Search</button>
+          <label>
+            <input
+              type="number"
+              name="minPrice"
+              value={price.minPrice}
+              onChange={handleFilterPrice}
+            />
+            <input
+              type="number"
+              name="maxPrice"
+              value={price.maxPrice}
+              onChange={handleFilterPrice}
+            />
+          </label>
       </div>
+      <button className="btnPrice" onClick={handleClickPrice}>Price</button>
     </div>
   );
 };

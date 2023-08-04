@@ -1,9 +1,15 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
+<<<<<<< HEAD
 import imageLogo from "../../assets/trendy-spot-logo.png"
 import "./nav.css"
 import { NavLink } from "react-router-dom";
+=======
+import { NavLink } from "react-router-dom";
+import imageLogo from './trendy-spot-logo.png'
+import './nav.css'
+>>>>>>> rama-css
 
 const Nav = () => {
   const [search, setSearch] = useState("");
@@ -24,18 +30,21 @@ const Nav = () => {
       <NavLink to="/">
         <img src={imageLogo} alt="logo-home" className="logoHome" />
       </NavLink>
-      <NavLink to="/create">
-        <button>create</button>
-      </NavLink>
       <form onSubmit={handleSubmit}>
         <input
+        className="search"
           type="text"
           placeholder="¿Qué quieres buscar?"
           value={search}
           onChange={handleInputName}
         />
-        <button type="submit">Buscar</button>
+        <button className="btnSearch" type="submit">Buscar</button>
+
       </form>
+
+      <NavLink  to="/create">
+        <button className='btnSearch'>create</button>
+      </NavLink>
     </div>
   );
 };
