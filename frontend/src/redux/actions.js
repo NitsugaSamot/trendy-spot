@@ -43,6 +43,25 @@ export const filterPrice = (payload) => {
     payload,
   };
 };
+
+export const searchName = (payload) => {
+console.log(payload);
+  return async function (dispatch) {
+    try {
+      const productByName = await axios.get(
+        `http://localhost:3004/products/?name=${payload}`
+      );
+      return dispatch({
+        type: SEARCH_NAME,
+        payload: productByName.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
 export const refresh = () => {
   return {
     type: REFRESH,

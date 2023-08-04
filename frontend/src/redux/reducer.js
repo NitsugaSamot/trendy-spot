@@ -3,6 +3,7 @@ import {
   ORDER_BY_NAME,
   GET_ALL,
   FILTER_BY_PRICE,
+  SEARCH_NAME,
   REFRESH,
 } from "./action-types";
 
@@ -67,6 +68,12 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allClothes1: brand,
+      };
+    
+    case SEARCH_NAME:
+      return {
+        ...state,
+        allClothes1: payload,
       };
 
     case REFRESH:
