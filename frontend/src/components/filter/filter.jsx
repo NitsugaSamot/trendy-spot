@@ -44,9 +44,8 @@ const Filter = ({setOrder}) => {
   };
 
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 1000)
-    console.log(price);
-      dispatch(filterPrice(price));
+    if (price.minPrice >= 100 && price.maxPrice <= 1000) console.log(price);
+    dispatch(filterPrice(price));
     alert("hola");
   };
   return (

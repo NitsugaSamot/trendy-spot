@@ -18,7 +18,6 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
-
   useEffect(() => {
     dispatch(getAllClothes());
   }, [dispatch]);
