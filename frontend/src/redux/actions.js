@@ -15,6 +15,18 @@ export const getAllClothes = ()=>{
     }
 }
 
+// http://localhost:3004/products/name?name=pantalon
+
+export function getProductsByName(payload) {
+  return async function(dispatch) {
+    let dataProducts = await axios.get(`http://localhost:3004/products/name?name=${payload}`)
+    return dispatch({
+      type: SEARCH_NAME,
+      payload: dataProducts.data
+    })
+  }
+}
+
 /* export const postProduct = (form) => {
   return async function (dispatch) {
     try {

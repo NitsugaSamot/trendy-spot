@@ -1,35 +1,43 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-
+import  { useState } from "react";
+import { Link } from "react-router-dom";
+import './nav.css'
 const Nav = () => {
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+  const[name, setName] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(getRecipesByName(search));
-    setSearch("");
-  };
+  function handleInputName(e) {
+    e.preventDefault()
+    setName(e.target.value)
+  }
 
-  const handleInputName = (e) => {
-    setSearch(e.target.value);
-  };
+  function handleClick(e) {
+    setName('')
+  }
+
 
   return (
     <div>
-          <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              placeholder="¿Qué quieres buscar?"
-              value={search}
-              onChange={handleInputName}
-            />
-            <button type="submit">
-              Buscar
-            </button>
-          </form>
+    <div className='searchBar'>
+        <input 
+            className='inputSearch' 
+            type='text' 
+            value={name} 
+            onChange={e=>handleInputName(e)}
+            placeholder='Search'
+         ></input>
+        <Link  to={`/products/${name}`}>
+              <button className='btnNav' onClick={e => handleClick(e)}>Search</button>
+        </Link>
+ </div>
         </div>
 
   );
 };
 export default Nav;
+
+  // const dispatch = useDispatch();
+
+  // // const handleSubmit = (e) => {
+  // //   e.preventDefault();
+  // //   dispatch(getRecipesByName(search));
+  // //   setSearch("");
+  // // };

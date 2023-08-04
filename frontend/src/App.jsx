@@ -5,6 +5,7 @@ import Detail from "./components/detail/detail";
 import CreateProduct from "./components/createProduct/createProduct";
 import Footer from "./components/footer/footer";
 import { Routes, Route } from "react-router-dom";
+import ComponentName from "./components/componentName/ComponentName";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path='/products/:name' element={<ComponentName/>} />
         <Route path="detail/:id" element={<Detail />} />
         <Route path='/create' element={<CreateProduct/>} />
       </Routes>
