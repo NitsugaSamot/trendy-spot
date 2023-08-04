@@ -7,6 +7,7 @@ import {
   refresh,
   filterPrice,
 } from "../../redux/actions";
+import './filter.css'
 
 const Filter = ({setOrder}) => {
   const [price, setPrice] = useState({
@@ -49,8 +50,8 @@ const Filter = ({setOrder}) => {
     alert("hola");
   };
   return (
-    <div>
-      <h1>Filter by:</h1>
+    <div className="containerFilter">
+      {/* <h1>Filter by:</h1> */}
       <h2>Order</h2>
       <select name="order" onChange={handleOrderSelect}>
         <option value="1">Name A-Z</option>
@@ -66,21 +67,23 @@ const Filter = ({setOrder}) => {
         ;
       </select>
       <h2>Price</h2>
-      <label>
-        <input
-          type="number"
-          name="minPrice"
-          value={price.minPrice}
-          onChange={handleFilterPrice}
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          value={price.maxPrice}
-          onChange={handleFilterPrice}
-        />
-      </label>
-      <button onClick={handleClickPrice}></button>
+      <div className="containerPrice">
+          <label>
+            <input
+              type="number"
+              name="minPrice"
+              value={price.minPrice}
+              onChange={handleFilterPrice}
+            />
+            <input
+              type="number"
+              name="maxPrice"
+              value={price.maxPrice}
+              onChange={handleFilterPrice}
+            />
+          </label>
+      </div>
+      <button className="btnPrice" onClick={handleClickPrice}>Price</button>
     </div>
   );
 };
