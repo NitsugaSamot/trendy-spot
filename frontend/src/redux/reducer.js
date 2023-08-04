@@ -48,13 +48,10 @@ const reducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_BY_PRICE:
-      console.log(Number(payload.minPrice));
-      console.log(allClothes2);
       const filteredByPrice = state.allClothes2.filter((product) => {
         product.price >= Number(payload.minPrice) &&
           product.price <= Number(payload.maxPrice);
       });
-      console.log(filteredByPrice);
       return {
         ...state,
         allClothes1: filteredByPrice,

@@ -37,7 +37,6 @@ export const filterByBrand = (payload) => {
 };
 
 export const filterPrice = (payload) => {
-  console.log(payload);
   return {
     type: FILTER_BY_PRICE,
     payload,
@@ -45,7 +44,6 @@ export const filterPrice = (payload) => {
 };
 
 export const searchName = (payload) => {
-console.log(payload);
   return async function (dispatch) {
     try {
       const productByName = await axios.get(
@@ -56,11 +54,11 @@ console.log(payload);
         payload: productByName.data,
       });
     } catch (error) {
-      console.error(error);
+      console.log(error)
+      alert(error.response.data.error);
     }
   };
 };
-
 
 export const refresh = () => {
   return {
