@@ -7,9 +7,7 @@ import Cards from '../cards/Cards';
 const ComponentName = () => {
     const dispatch = useDispatch()
     const productsByName = useSelector(state => state.productsByName)
-
-    console.log(productsByName)
-
+      
     const {name} = useParams()
 
     useEffect(() => {
