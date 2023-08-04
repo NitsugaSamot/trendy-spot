@@ -1,0 +1,10 @@
+.containerNav{
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      background-color: rgb(228, 241, 254);
+      box-shadow: 0px 10px 15px 0px rgba(201, 218, 235, 0.75);
+}
+.logoHome{
+      width: 100px;
+}

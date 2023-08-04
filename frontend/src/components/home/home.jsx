@@ -9,7 +9,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 2;
+  const productsPerPage = 12;
 
   useEffect(() => {
     dispatch(getAllClothes());
@@ -32,26 +32,32 @@ const Home = () => {
     return <div>Loading...</div>;
   }
   return (
-    <div>
-      <Filter />
-      {currentProduct.map((product) => (
-        <Card
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-        />
-      ))}
-      {Array.from({ length: totalPages }, (_, index) => (
-        <button
-          key={index + 1}
-          onClick={() => setCurrentPage(index + 1)}
-          disabled={currentPage === index + 1}
-        >
-          {index + 1}
-        </button>
-      ))}
+    <div className="containerHome">
+      <div>
+        <Filter />
+      </div>
+      <div className="containerCard">
+        {currentProduct.map((product) => (
+          <Card
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            image={product.image}
+            price={product.price}
+          />
+        ))}
+      </div>
+      <div>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            onClick={() => setCurrentPage(index + 1)}
+            disabled={currentPage === index + 1}
+          >
+            {index + 1}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

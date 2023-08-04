@@ -40,44 +40,49 @@ const Filter = () => {
   };
 
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 1000)
-    console.log(price);
-      dispatch(filterPrice(price));
+    if (price.minPrice >= 100 && price.maxPrice <= 1000) console.log(price);
+    dispatch(filterPrice(price));
     alert("hola");
   };
   return (
-    <div>
-      <h1>Filter by:</h1>
-      <h2>Order</h2>
-      <select name="order" onChange={handleOrderSelect}>
-        <option value="1">Name A-Z</option>
-        <option value="2">Name Z-A</option>
-      </select>
-      <h2>Brand</h2>
-      <select name="order" onChange={handleFilterBrandSelect}>
-        {filterBrands.map((brand) => (
-          <option key={brand} value={brand}>
-            {brand}
-          </option>
-        ))}
-        ;
-      </select>
-      <h2>Price</h2>
-      <label>
-        <input
-          type="number"
-          name="minPrice"
-          value={price.minPrice}
-          onChange={handleFilterPrice}
-        />
-        <input
-          type="number"
-          name="maxPrice"
-          value={price.maxPrice}
-          onChange={handleFilterPrice}
-        />
-      </label>
-      <button onClick={handleClickPrice}></button>
+    <div className="containerFilter">
+      <h2>Filter by:</h2>
+      <div className="containerOrder">
+        <h2>Order</h2>
+        <select name="order" onChange={handleOrderSelect}>
+          <option value="1">Name A-Z</option>
+          <option value="2">Name Z-A</option>
+        </select>
+      </div>
+      <div className="containerBrand">
+        <h2>Brand</h2>
+        <select name="order" onChange={handleFilterBrandSelect}>
+          {filterBrands.map((brand) => (
+            <option key={brand} value={brand}>
+              {brand}
+            </option>
+          ))}
+          ;
+        </select>
+      </div>
+      <div className="containerPrice">
+        <h2>Price</h2>
+        <label>
+          <input
+            type="number"
+            name="minPrice"
+            value={price.minPrice}
+            onChange={handleFilterPrice}
+          />
+          <input
+            type="number"
+            name="maxPrice"
+            value={price.maxPrice}
+            onChange={handleFilterPrice}
+          />
+        </label>
+        <button onClick={handleClickPrice} className="buttonPrice">Search</button>
+      </div>
     </div>
   );
 };

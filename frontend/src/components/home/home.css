@@ -1,8 +1,11 @@
-.cards{
-    display: grid;
-    /* align-items:center; */
-    /* padding: 30px; */
+.containerHome{
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    grid-template-columns: 23.5% 23.5% 23.5% 23.5%;
-    gap: 20px;
+}
+
+.containerCard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }

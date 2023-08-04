@@ -1,0 +1,9 @@
+.containerCard{
+      background-color: rgb(113, 86, 86);
+      border-radius: 20px;
+      margin: 10px;
+}
+
+.navLinkCard{
+      text-decoration: none;
+}

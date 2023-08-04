@@ -1,0 +1,21 @@
+.containerFilter{
+      display: flex;
+      /* background-color: aqua; */
+      align-items: center;
+
+}
+
+.containerPrice{
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+}
+
+.containerBrand {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+}
+.containerOrder{
+      margin: 10px;
+}

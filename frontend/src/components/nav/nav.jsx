@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
+import imageLogo from "../../assets/trendy-spot-logo.png"
+import "./nav.css"
+import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   const [search, setSearch] = useState("");
@@ -17,7 +20,13 @@ const Nav = () => {
   };
 
   return (
-    <div>
+    <div className="containerNav">
+      <NavLink to="/">
+        <img src={imageLogo} alt="logo-home" className="logoHome" />
+      </NavLink>
+      <NavLink to="/create">
+        <button>create</button>
+      </NavLink>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
