@@ -36,12 +36,14 @@ export const filterByBrand = (payload) => {
   };
 };
 
-export const filterPrice = (payload) => {
-  return {
-    type: FILTER_BY_PRICE,
-    payload,
-  };
-};
+// export const filterPrice = (payload) => {
+//   return {
+//     type: FILTER_BY_PRICE,
+//     payload,
+//   };
+// };
+
+
 
 export const searchName = (payload) => {
   return async function (dispatch) {
@@ -60,9 +62,31 @@ export const searchName = (payload) => {
   };
 };
 
+
+
 export const refresh = () => {
   return {
     type: REFRESH,
     paylaod: "",
   };
 };
+
+export const filterPrice = (minPrice, maxPrice) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3004/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`
+      );
+      return dispatch({
+        type: FILTER_BY_PRICE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+
+
+

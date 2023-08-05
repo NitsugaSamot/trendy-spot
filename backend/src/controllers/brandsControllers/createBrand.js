@@ -12,4 +12,18 @@ const createBrand = async (brandName) => {
     return existing;   
 };
 
-module.exports = createBrand;
+
+module.exports ={ createBrand };
+
+
+
+//const getAllBrands = async (req, res) => {
+//     const brands = await Brand.findAll()
+
+//     if (brands.length > 0) {
+//         const allBrands = brands.map((brand) => brand.name);
+//         return res.status(200).json(allBrands);
+//       }
+
+//       return res.status(200).json(allBrands)
+// }

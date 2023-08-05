@@ -10,6 +10,7 @@ import {
 const initialState = {
   allClothes1: [],
   allClothes2: [],
+  productsByPrice: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -47,15 +48,21 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes1: sortedArr,
       };
 
-    case FILTER_BY_PRICE:
-      const filteredByPrice = state.allClothes2.filter((product) => {
-        product.price >= Number(payload.minPrice) &&
-          product.price <= Number(payload.maxPrice);
-      });
-      return {
-        ...state,
-        allClothes1: filteredByPrice,
-      };
+
+      case FILTER_BY_PRICE:
+        return {
+          ...state,
+          allClothes1: payload
+        }
+    // case FILTER_BY_PRICE:
+    //   const filteredByPrice = state.allClothes2.filter((product) => {
+    //     product.price >= Number(payload.minPrice) &&
+    //       product.price <= Number(payload.maxPrice);
+    //   });
+    //   return {
+    //     ...state,
+    //     allClothes1: filteredByPrice,
+    //   };
 
     case FILTER_BY_BRAND:
       const allBrands = state.allClothes2;
