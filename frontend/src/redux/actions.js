@@ -6,6 +6,7 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
+  GET_ALL_BRANDS
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -36,12 +37,6 @@ export const filterByBrand = (payload) => {
   };
 };
 
-// export const filterPrice = (payload) => {
-//   return {
-//     type: FILTER_BY_PRICE,
-//     payload,
-//   };
-// };
 
 
 
@@ -71,6 +66,22 @@ export const refresh = () => {
   };
 };
 
+/* NO ESTA IMPLEMENTADA EN EL FRONT */
+export function getAllBrands() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get('http://localhost:3004/products/brands')
+      const brands = response.data
+      dispatch({
+        type: GET_ALL_BRANDS,
+        paylaod: brands
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export const filterPrice = (minPrice, maxPrice) => {
   return async function (dispatch) {
     try {
@@ -87,6 +98,31 @@ export const filterPrice = (minPrice, maxPrice) => {
   };
 };
 
+/* NO LOGRE IMPLEMENTARLA AL FRONT */
+export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3004/products/filter?brandName=${brandName}&minPrice=${minPrice}&maxPrice=${maxPrice}`
+      );
+
+      if (response.status === 200 && response.data.length > 0) {
+        dispatch({
+          type: FILTER_BY_BRAND,
+          payload: response.data,
+        });
+      } else {
+
+        dispatch({
+          type: FILTER_BY_BRAND, 
+          payload: [],
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 
 

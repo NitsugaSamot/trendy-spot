@@ -5,12 +5,14 @@ import {
   FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
+  GET_ALL_BRANDS
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
-  productsByPrice: []
+  productsByPrice: [],
+  allBrands: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -64,6 +66,13 @@ const reducer = (state = initialState, { type, payload }) => {
     //     allClothes1: filteredByPrice,
     //   };
 
+    case GET_ALL_BRANDS:
+      return {
+        ...state,
+        allBrands: payload
+      }
+
+
     case FILTER_BY_BRAND:
       const allBrands = state.allClothes2;
       const brand = allBrands.filter(
@@ -86,6 +95,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         allClothes1: perrito,
       };
+      
 
     default:
       return { ...state };

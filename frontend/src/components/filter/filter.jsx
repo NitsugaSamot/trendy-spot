@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
-import { orderByName, filterByBrand, refresh,  filterPrice} from "../../redux/actions";
+import { orderByName, filterByBrand, refresh,  filterPrice, getAllBrands} from "../../redux/actions";
 import "./filter.css";
 
 const Filter = () => {
@@ -10,6 +10,7 @@ const Filter = () => {
     maxPrice: "",
   });
   const allClothes2 = useSelector((state) => state.allClothes2);
+  
   const dispatch = useDispatch();
   const [filterBrands, setFilterBrands] = useState([]);
 

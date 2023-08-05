@@ -50,6 +50,7 @@ const Home = () => {
           name={product.name}
           image={product.image}
           price={product.price}
+          productbrand={product.productbrand}
         />
       ))}
       </div>

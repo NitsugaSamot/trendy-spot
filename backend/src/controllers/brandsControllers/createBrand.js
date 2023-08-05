@@ -12,8 +12,20 @@ const createBrand = async (brandName) => {
     return existing;   
 };
 
+const getAllBrands = async (req, res) => {
+    const brands = await Brand.findAll();
+  
+    if (brands.length > 0) {
+      const uniqueBrandsSet = new Set(brands.map((brand) => brand.name));
+      const uniqueBrands = Array.from(uniqueBrandsSet);
+      return res.status(200).json(uniqueBrands);
+    }
+  
+    return res.status(200).json([]);
+  };
+  
 
-module.exports ={ createBrand };
+module.exports ={ createBrand, getAllBrands };
 
 
 

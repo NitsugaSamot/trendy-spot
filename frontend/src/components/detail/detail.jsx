@@ -25,6 +25,7 @@ const Detail = () => {
               <h1>{garment.name}</h1>
               <img src={garment.image} alt={garment.name} />
               <h3>$ {garment.price}</h3>
+              <h3>{garment.productbrand}</h3>
     </div>
   );
 };

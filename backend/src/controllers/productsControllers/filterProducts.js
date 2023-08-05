@@ -1,7 +1,20 @@
 const { Op } = require('sequelize');
 const {Product} = require('../../db');
+const {Brand } = require('../../db')
 
 // http://localhost:3004/products/search?minPrice=5800&maxPrice=8000
+
+const filterByBrands = async (req, res) => {
+    const brandName = req.params.brandName;
+    const products = await Product.findAll({ where: { productbrand: brandName } });
+  
+    if (products.length > 0) {
+      return res.status(200).json(products);
+    }
+  
+    return res.status(404).json({ message: "No se encontraron productos para esta marca." });
+  };
+  
 
 const filterProductsByPriceRange = async (req, res) => {
     const { minPrice, maxPrice } = req.query;
@@ -28,12 +41,59 @@ const filterProductsByPriceRange = async (req, res) => {
       return res.status(500).json({ error: 'Error al obtener los productos.' });
     }
   };
+
+
+  /* ESTE ES EL SUPER CONTROLLER QUE COMBINA FILTRADOS, QUEDA PENDIENTE LOGRAR IMPLEMENTARLO EN EL FRONT 
+  http://localhost:3004/products/filter?brandName=Nike&minPrice=7000&maxPrice=
+  
+  Lo pueden usar tanto con marca como sin marca y filtra igual
+  http://localhost:3004/products/filter?brandName=&minPrice=7000&maxPrice=9000
+  
+  */
+
+  const filterProducts = async (req, res) => {
+    const { brandName, minPrice, maxPrice } = req.query;
+  
+    let whereCondition = {};
+  
+    if (brandName) {
+      whereCondition = { ...whereCondition, productbrand: brandName };
+    }
+  
+    if (minPrice && maxPrice) {
+      whereCondition = {
+        ...whereCondition,
+        price: {
+          [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+        },
+      };
+    }
+  
+    try {
+      const products = await Product.findAll({ where: whereCondition });
+  
+      if (products.length > 0) {
+        return res.status(200).json(products);
+      } else {
+        return res.json([]);
+      }
+    } catch (error) {
+      return res.status(500).json({ error: 'Error al obtener los productos.' });
+    }
+  };
+  
+
   
 
 
 module.exports = {
   filterProductsByPriceRange,
+  filterByBrands,
+  filterProducts
 };
+
+// http://localhost:3004/products/filter?brandName=Nike&minPrice=6000&maxPrice=8000
+
 
 
 //   router.get('/', get
