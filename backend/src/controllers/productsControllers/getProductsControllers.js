@@ -8,7 +8,7 @@ const searchProductsByName = async (name) => {
     if(!dbProducts.length){
         return `No se encontró producto con el nombre: ${name}`
     }
-    return dbProducts
+    return dbProducts;
 };
 
 const getDBinfo = async () => {

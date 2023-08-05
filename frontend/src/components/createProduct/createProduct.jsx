@@ -32,14 +32,25 @@ console.log(errors)
   const handleSubmit = async (event) => {
     event.preventDefault()
     //---------------- corta URL se queda con lo q sirve y lo concatena con lo q necesita, y lo agrega al post---------------
-    const postForm = form
-    const idPrenda = postForm.image.split('/d/')
-    const idSinView = idPrenda[1].split('/')
-    const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
-    postForm.image = idUltimo
 
+    // const postForm = form
+    // const idPrenda = postForm.image.split('/d/')
+    // const idSinView = idPrenda[1].split('/')
+    // const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
+    // postForm.image = idUltimo
+//-----------------------------------------------------------------------------------------------------------------------
     // const response = await axios.post('http://localhost:3004/products/create', postForm);
-    alert("the product has been created");
+    // alert("the product has been created");
+
+    // const postForm = form;
+    // const idPrenda = postForm.image.split('/d/');
+    // const idSinView = idPrenda[1].split('/');
+    // const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`;
+    // postForm.image = idUltimo;
+    //-----------------------------------------------------------------------------------------------------------------------
+    // const response = await axios.post('http://localhost:3004/products/create', postForm);
+    // alert(response.data);
+
   }
 
   return (

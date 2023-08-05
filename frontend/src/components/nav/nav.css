@@ -1,15 +1,22 @@
-/* .searchBar{
-    background-color: rgb(64, 0, 255);
-    padding: 1rem;
-} */
+.containerNav{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(228, 241, 254);
+    box-shadow: 0px 10px 15px 0px rgba(201, 218, 235, 0.75);
+    height: 5rem;
+}
+.logoHome{
+    width: 100px;
+}
 
-.searchBar{
-    padding: 1rem;
-    width: 100%;
-    background-color: rgb(64, 0, 255);
+.search{
+    height: 2rem;
+    width: 30rem;
+}
+
+.btnSearch{
+    width: 5rem;
+    height: 2.5rem;
     gap: 1rem;
-    margin-top: 0.5rem;
-    text-decoration: none;
-    color: beige;
-    display: inline-flex;
 }

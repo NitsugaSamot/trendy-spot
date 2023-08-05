@@ -1,0 +1,23 @@
+.card{
+    gap: 1rem;
+    background-color: rgb(228, 241, 254);
+    width: 24rem;
+    height: 33rem;
+    /* margin-top: 2rem; */
+    transition: 0.5s;
+    border-radius: 0.5rem;
+    box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.75);
+    
+}
+
+
+.titleCard{
+    background-color: rgb(202, 215, 228);
+    font-size: 2rem;
+    gap: 0.4rem;
+    color: rgb(74, 74, 123);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
