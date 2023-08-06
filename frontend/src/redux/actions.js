@@ -12,6 +12,7 @@ export const getAllClothes = () => {
   return async function (dispatch) {
     try {
       const all = await axios.get("http://localhost:3004/products");
+      console.log(all.data);
       return dispatch({
         type: GET_ALL,
         payload: all.data,
@@ -22,11 +23,11 @@ export const getAllClothes = () => {
   };
 };
 
-export function orderByName(order){
+export function orderByName(payload){
     return function (dispatch){
     return dispatch ({
         type: ORDER_BY_NAME,
-        payload: order
+        payload
     });
     };
 };
@@ -39,6 +40,7 @@ export const filterByBrand = (payload) => {
 };
 
 export const filterPrice = (payload) => {
+  console.log(payload);
   return {
     type: FILTER_BY_PRICE,
     payload,
