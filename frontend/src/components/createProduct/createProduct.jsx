@@ -34,8 +34,8 @@ const CreateProduct = () => {
     //---------------- corta URL se queda con lo q sirve y lo concatena con lo q necesita, y lo agrega al post---------------
 
     const postForm = form
-    const idPrenda = postForm.image.split('/d/')
-    const idSinView = idPrenda[1].split('/')
+    const idPrenda = postForm.image.split('/d/');
+    const idSinView = idPrenda[1].split('/');
     const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
     postForm.image = idUltimo
 //-----------------------------------------------------------------------------------------------------------------------

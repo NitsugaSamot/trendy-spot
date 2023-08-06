@@ -37,7 +37,7 @@ console.log(allClothes1)
   }
   return (
     <div className="divContainer">
-      <Filter setOrder={setOrder}/>
+      <Filter />
       <div className="cards">
       {currentProduct.map((product) => (
         <Card
