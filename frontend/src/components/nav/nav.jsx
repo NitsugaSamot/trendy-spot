@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
 import { NavLink } from "react-router-dom";

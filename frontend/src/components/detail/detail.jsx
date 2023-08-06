@@ -22,14 +22,9 @@ const Detail = () => {
 
   return (
     <div>
-      <h1>{garment.name}</h1>
-      <img src={garment.image} alt={garment.name} />
-      <h3>$ {garment.price}</h3>
-      <span>{garment.description}</span>
-      <br />
-      <span>Stock available: {garment.stock}</span>
-      <br />
-      <span>Color: {garment.color}</span>
+              <h1>{garment.name}</h1>
+              <img src={garment.image} alt={garment.name} />
+              <h3>$ {garment.price}</h3>
     </div>
   );
 };

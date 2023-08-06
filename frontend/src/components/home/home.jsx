@@ -36,17 +36,21 @@ console.log(allClothes1)
     return <div>Loading...</div>;
   }
   return (
-    <div className="divContainer">
+    <div className="container py-3">
       <Filter />
-      <div className="cards">
-      {currentProduct.map((product) => (
-        <Card
+      <div className="row">
+       
+      {currentProduct.map((product, index) => (
+         <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
+        <Card 
           key={product.id}
           id={product.id}
           name={product.name}
           image={product.image}
           price={product.price}
+          productbrand={product.productbrand}
         />
+        </div>
       ))}
       </div>
       <div className="paginado">
