@@ -12,7 +12,7 @@ const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
 
   
-  //const [order, setOrder] = useState("");
+  const [order, setOrder] = useState("");
   // const [currentPage, setCurrentPage] = useState(1);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ const Home = () => {
   }
   return (
     <div className="divContainer">
-      <Filter />
+      <Filter setOrder={setOrder}/>
       <div className="cards">
       {currentProduct.map((product) => (
         <Card
