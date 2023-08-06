@@ -1,10 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
-import { orderByName, filterByBrand, refresh,  filterPrice, } from "../../redux/actions";
-import "./filter.css";
-
-// getAllBrands
+import {
+  orderByName,
+  filterByBrand,
+  // refresh,
+  filterPrice,
+} from "../../redux/actions";
+import './filter.css';
 
 const Filter = () => {
   const [price, setPrice] = useState({
@@ -12,31 +15,23 @@ const Filter = () => {
     maxPrice: "",
   });
   const allClothes2 = useSelector((state) => state.allClothes2);
-  
   const dispatch = useDispatch();
-  const [filterBrands, setFilterBrands] = useState([]);
+  
 
   const handleOrderSelect = (event) => {
     dispatch(orderByName(event.target.value));
   };
 
-  useEffect(() => {
-    const delay = setTimeout(() => {
-      const uniqueBrands = allClothes2.reduce((acc, product) => {
-        if (!acc.includes(product.productbrand)) {
-          acc.push(product.productbrand);
-        }
-        return acc;
-      }, []);
-      setFilterBrands(uniqueBrands);
-    }, 3000); // 3 seconds delay
+  const filterBrands = [];
 
-    // Clear the timeout if the component is unmounted before the delay completes
-    return () => clearTimeout(delay);
-  }, [allClothes2]);
+  const brands = allClothes2.filter((product) => {
+    if (!filterBrands.includes(product.productbrand)) {
+      filterBrands.push(product.productbrand);
+    }
+  });
 
   const handleFilterBrandSelect = (event) => {
-    dispatch(refresh());
+    // dispatch(refresh());
     dispatch(filterByBrand(event.target.value));
   };
 
@@ -52,10 +47,10 @@ const Filter = () => {
   //   alert("hola");
   // };
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 1000)
-    console.log(price);
-      dispatch(filterPrice(price));
+    if (price.minPrice >= 100 && price.maxPrice <= 10000)
+    dispatch(filterPrice(price));
     alert("hola");
+
   };
 
   return (
@@ -67,8 +62,8 @@ const Filter = () => {
       </select>
       <h2>Brand</h2>
       <select name="order" onChange={handleFilterBrandSelect}>
-        {filterBrands.map((brand) => (
-          <option key={brand} value={brand}>
+        { filterBrands.map((brand, index) => ( 
+          <option key={index} value={brand}>
             {brand}
           </option>
         ))}
