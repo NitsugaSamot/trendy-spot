@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
@@ -28,11 +28,11 @@ const Nav = () => {
         <input
         className="search"
           type="text"
-          placeholder="¿Qué quieres buscar?"
+          placeholder="Search your clothes"
           value={search}
           onChange={handleInputName}
         />
-        <button className="btnSearch" type="submit">Buscar</button>
+        <button className="btnSearch" type="submit">Search</button>
 
       </form>
 
