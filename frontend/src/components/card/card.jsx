@@ -5,10 +5,11 @@ const Card = ({ image, id, name, price , productbrand}) => {
   return (
     <div className="card">
       <NavLink to={`/detail/${id}`}>
-        <h1 className="titleCard">{name}</h1>
-        <img src={image} alt={name} width={"300px"} />
-        <h2>$ {price}</h2>
-        <h3>{productbrand}</h3>
+        <img className="" src={image} alt={name} width={"300px"} />
+        <h4 className="h5">{name}</h4>
+        <h3 className="h5">{productbrand}</h3>
+        <br />
+        <h2 className="h5">$ {price}</h2>
       </NavLink>
     </div>
   );

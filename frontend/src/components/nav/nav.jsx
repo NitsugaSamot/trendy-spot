@@ -26,7 +26,7 @@ const Nav = () => {
       </NavLink>
       <form onSubmit={handleSubmit}>
         <input
-        className="search"
+         className="search"
           type="text"
           placeholder="¿Qué quieres buscar?"
           value={search}

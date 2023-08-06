@@ -1,6 +1,6 @@
 import "./home.css";
 import Card from "../card/card";
-
+import banner from "../../assets/Home.png";
 import Filter from "../filter/filter";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -36,12 +36,13 @@ console.log(allClothes1)
     return <div>Loading...</div>;
   }
   return (
+  <div>
+    <img src={banner} className="background-image" />
     <div className="container py-3">
       <Filter />
       <div className="row">
-       
       {currentProduct.map((product, index) => (
-         <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
+         <div className="col-md-4 h-25 cardsHome" key={index}>
         <Card 
           key={product.id}
           id={product.id}
@@ -53,6 +54,8 @@ console.log(allClothes1)
         </div>
       ))}
       </div>
+  </div>
+
       <div className="paginado">
           {Array.from({ length: totalPages }, (_, index) => (
             <button className="pagina"

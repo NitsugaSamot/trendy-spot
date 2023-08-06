@@ -1,16 +1,6 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    /* align-items:center; */
-    /* padding: 30px; */
-    justify-content: center;
-    /* grid-template-columns: 23.5% 23.5% 23.5% 23.5%; */
-    gap: 2rem;
-    background-color: white;
-    width: 100%;
-    margin-top: 1rem;
+.background-image{
+    margin-top: 100px;
 }
-
 .divContainer{
     width: 100%;
     padding: 1rem;
@@ -25,9 +15,4 @@
 .pagina{
     width: 6rem;
 }
-/* 
-.containerHome{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
+
