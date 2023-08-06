@@ -73,7 +73,7 @@ const Filter = () => {
       </select >
       <h2>Price</h2>
       <div className="containerPrice">
-        <label >
+        <label>
           <input
             type="number"
             name="minPrice"
@@ -91,7 +91,7 @@ const Filter = () => {
         </label>
       </div>
       <button className="btnPrice" onClick={handleClickPrice}>
-        Price
+        Search 
       </button>
     </div>
   );

@@ -27,3 +27,9 @@
 .containerOrder{
     margin: 10px;
 }
+
+.btnPrice {
+    width: 7rem;
+    height: 2rem;
+    gap: 1rem;
+}

@@ -39,6 +39,7 @@ const CreateProduct = () => {
     const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
     postForm.image = idUltimo
 //-----------------------------------------------------------------------------------------------------------------------
+
     const response = await axios.post('http://localhost:3004/products/create', postForm);
     alert("the product has been created");
   }

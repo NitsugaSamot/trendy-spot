@@ -1,16 +1,13 @@
+import { useState, useEffect } from 'react';
 import "./home.css";
 import Card from "../card/card";
-
 import Filter from "../filter/filter";
-
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
 import { getAllClothes } from "../../redux/actions";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
-console.log(allClothes1)
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
@@ -19,7 +16,10 @@ console.log(allClothes1)
     dispatch(getAllClothes());
   }, [dispatch]);
 
-  // Calcular el índice inicial y final de los pokemons a mostrar en la página actual
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0); // Scroll hacia arriba
+  };
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -28,42 +28,53 @@ console.log(allClothes1)
     indexOfLastProduct
   );
 
-  // Calcular la cantidad total de páginas
-
   const totalPages = Math.ceil(allClothes1.length / productsPerPage);
 
   if (allClothes1.length === 0) {
     return <div>Loading...</div>;
   }
+
   return (
     <div className="container py-3">
       <Filter />
       <div className="row">
-       
-      {currentProduct.map((product, index) => (
-         <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
-        <Card 
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          image={product.image}
-          price={product.price}
-          productbrand={product.productbrand}
-        />
-        </div>
-      ))}
+        {currentProduct.map((product, index) => (
+          <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
+            <Card 
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              image={product.image}
+              price={product.price}
+              productbrand={product.productbrand}
+            />
+          </div>
+        ))}
       </div>
-      <div className="paginado">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button className="pagina"
-              key={index + 1}
-              onClick={() => setCurrentPage(index + 1)}
-              disabled={currentPage === index + 1}
-            >
-              {index + 1}
-            </button>
-            
-          ))}
+      <div className="d-flex justify-content-center align-items-center py-3">
+        <button
+          className="btn btn-primary me-2"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          &larr; Anterior
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            className={`btn btn-outline-primary ${currentPage === index + 1 ? 'active' : ''} me-2`}
+            key={index + 1}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          className="btn btn-primary"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Siguiente &rarr;
+        </button>
       </div>
     </div>
   );
