@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./card.css";
 
 const Card = ({ image, id, name, price, brand }) => {
   return (
-    <div className="divAllCard">
-      <Link to={`/detail/${id}`} className="navLinkCard">
-        <div>
-          <img src={image} alt={name} width={"200px"} className="imgCard" />
-        </div>
-        <h3 className="titleCard">{name}</h3>
-        <p>{brand}</p>
-        <p>$ {price}</p>
-      </Link>
+    <div className="card">
+      <NavLink to={`/detail/${id}`}>
+        <img className="" src={image} alt={name} width={"300px"} />
+        <hr/>
+        <h4 className="h5">{name}</h4>
+        <h3 className="h5">{productbrand}</h3>
+        <hr />
+        <h2 className="h5">$ {price}</h2>
+        <hr />
+      </NavLink>
     </div>
   );
 };

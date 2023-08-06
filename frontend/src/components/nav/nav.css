@@ -1,16 +1,16 @@
 .containerNav{
-    width: 100%;
+    background-color: rgba(255, 255, 255, 0.869);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgba(255, 255, 255, 0.896);
-    box-shadow: 0px 12px 12px 1px rgba(0, 0, 0, 0.20);    height: 5rem;
-    z-index: 2;
+    height: 5rem;
     position: fixed;
+    width: 100%;
+    z-index: 3;
 }
 .logoHome{
-    transition: .3s;
-    width: 100px;
+    width: 80px;
+    height: 80px;
 }
 .logoHome:active {
     transform: scale(.8);
@@ -22,8 +22,10 @@
 }
 
 .btnSearch{
+    margin-left: 10px;
     width: 5rem;
-    height: 35px;
+    height: 2.5rem;
+    gap: 1rem;
 }
 
 .logoNav{

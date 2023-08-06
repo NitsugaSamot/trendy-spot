@@ -10,7 +10,7 @@ const validation = (req, res, next) => {
 
   if (!size) return res.status(400).json({ error: "Insert a size" });
 
-  if (!price) return res.status(400).json({ error: "Insert a price" });
+  if (!price || isNaN(price)) return res.status(400).json({ error: "Insert a price" });
   else if (price < 100 || price > 100000)
     return res
       .status(400)

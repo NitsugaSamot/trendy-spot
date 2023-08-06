@@ -1,26 +1,2 @@
-.divAllHome {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
 
-.divCardHome {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-}
 
-.paginado{
-    margin-top: 2rem;
-}
-
-.pagina{
-    width: 6rem;
-}
-
-.bannerHome{
-    margin-top: 85px;
-}
-
-.divFilter{
-}
