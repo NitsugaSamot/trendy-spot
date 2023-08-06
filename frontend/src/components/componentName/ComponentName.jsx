@@ -1,6 +1,6 @@
 import  { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductsByName } from '../../redux/actions'
+import { searchName } from '../../redux/actions'
 import { useParams } from 'react-router-dom';
 import Cards from '../cards/Cards';
 
@@ -13,7 +13,7 @@ const ComponentName = () => {
     const {name} = useParams()
 
     useEffect(() => {
-        dispatch(getProductsByName(name))
+        dispatch(searchName(name))
       }, [dispatch, name])
 
   return (

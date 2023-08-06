@@ -4,3 +4,5 @@ export const SEARCH_NAME = 'SEARCH_NAME';
 export const ORDER_BY_NAME = "FILTER_BY_NAME"; 
 export const FILTER_BY_BRAND = "FILTER_BY_BRAND";
 export const REFRESH = "REFRESH";
+export const FILTER = "FILTER"
+export const GET_ALL_BRANDS = "GET_ALL_BRANDS"
