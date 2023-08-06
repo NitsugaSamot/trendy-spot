@@ -1,5 +1,5 @@
 const { Product } = require("../../db");
-const createBrand = require("../brandsControllers/createBrand");
+const {createBrand} = require("../brandsControllers/createBrand");
 
 // http://localhost:3004/products/create
 const createProduct = async (

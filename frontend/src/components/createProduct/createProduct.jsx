@@ -44,7 +44,7 @@ const CreateProduct = () => {
   }
 
   return (
-    <div>
+    <div className="back">
       <h1>ingresar prenda</h1>
       <form>
         <label>
