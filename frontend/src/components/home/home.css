@@ -1,21 +1,13 @@
-.cards{
+.divAllHome {
     display: flex;
-    flex-wrap: wrap;
-    /* align-items:center; */
-    /* padding: 30px; */
-    justify-content: center;
-    /* grid-template-columns: 23.5% 23.5% 23.5% 23.5%; */
-    gap: 2rem;
-    background-color: white;
-    width: 100%;
-    margin-top: 1rem;
+    flex-direction: column;
+    height: 100%;
 }
 
-.divContainer{
-    width: 100%;
-    padding: 1rem;
-    margin-top: 3rem;
-
+.divCardHome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .paginado{
@@ -25,9 +17,10 @@
 .pagina{
     width: 6rem;
 }
-/* 
-.containerHome{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-} */
+
+.bannerHome{
+    margin-top: 85px;
+}
+
+.divFilter{
+}

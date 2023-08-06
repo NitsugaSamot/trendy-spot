@@ -40,7 +40,6 @@ export const filterByBrand = (payload) => {
 };
 
 export const filterPrice = (payload) => {
-  console.log(payload);
   return {
     type: FILTER_BY_PRICE,
     payload,

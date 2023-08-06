@@ -40,7 +40,7 @@ const Filter = () => {
   };
 
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 10000) console.log(price);
+    if (price.minPrice >= 100 && price.maxPrice <= 10000);
     dispatch(filterPrice(price));
     alert("hola");
 

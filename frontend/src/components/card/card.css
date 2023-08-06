@@ -1,23 +1,31 @@
-.card{
-    gap: 1rem;
-    background-color: rgb(228, 241, 254);
-    width: 24rem;
-    height: 33rem;
-    /* margin-top: 2rem; */
-    transition: 0.5s;
-    border-radius: 0.5rem;
-    box-shadow: 0px 10px 15px 0px rgba(0,0,0,0.75);
-    
+.divAllCard {
+    padding: 0%;
+    color: #020202;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2% 0% 2% 0%;
+    border-radius: 20px;
+    background-color: #ffffff;
+    width: 22%;
+    text-align: center;
+    transition: .3s;
 }
 
+.divAllCard:hover {
+    transform: translatey(-14px);
+    box-shadow: 0px 8px 15px -7px rgba(0, 0, 0, 0.57);}
 
-.titleCard{
-    background-color: rgb(202, 215, 228);
-    font-size: 2rem;
-    gap: 0.4rem;
-    color: rgb(74, 74, 123);
+.divAllCard:active {
+    transform: none;
+    box-shadow: none;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.navLinkCard{
+    text-decoration: none;
+}
+
+.imgCard{
+    margin-top: 10px;
+    align-self: center;
 }
