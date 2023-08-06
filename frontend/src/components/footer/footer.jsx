@@ -1,7 +1,9 @@
+import "./footer.css"
+
 const Footer = () => {
   return (
-    <div>
-      <h1>este es el footer</h1>
+    <div className="containerFooter">
+      <h2>Pf in progress</h2>
     </div>
   );
 };

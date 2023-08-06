@@ -52,10 +52,10 @@ const Filter = () => {
   //   alert("hola");
   // };
   const handleClickPrice = () => {
-
-      dispatch(filterPrice(price.minPrice, price.maxPrice));
-      
-
+    if (price.minPrice >= 100 && price.maxPrice <= 1000)
+    console.log(price);
+      dispatch(filterPrice(price));
+    alert("hola");
   };
 
   return (
