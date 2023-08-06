@@ -9,7 +9,7 @@ import {
 } from "../../redux/actions";
 import './filter.css'
 
-const Filter = () => {
+const Filter = ({setOrder}) => {
   const [price, setPrice] = useState({
     minPrice: "",
     maxPrice: "",
@@ -21,10 +21,13 @@ const Filter = () => {
   const dispatch = useDispatch();
 
   const handleOrderSelect = (event) => {
-    dispatch(orderByName(event.target.value));
+    const order = event.target.value
+    dispatch(orderByName(order))
+    setOrder(`Ordenado ${order}`);
   };
 
   const filterBrands = [];
+
   const brands = allClothes2.filter((product) => {
     if (!filterBrands.includes(product.productbrand)) {
       filterBrands.push(product.productbrand);
@@ -55,8 +58,8 @@ const Filter = () => {
       </select>
       <h2>Brand</h2>
       <select name="order" onChange={handleFilterBrandSelect}>
-        {filterBrands.map((brand) => (
-          <option key={brand} value={brand}>
+        { filterBrands.map((brand, index) => ( 
+          <option key={index} value={brand}>
             {brand}
           </option>
         ))}

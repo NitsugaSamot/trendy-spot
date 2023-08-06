@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import validation from "./valitadion";
+import validation from "./validation";
 import "./createProduct.css" 
 
 const CreateProduct = () => {
