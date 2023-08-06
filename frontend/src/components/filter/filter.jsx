@@ -4,26 +4,22 @@ import "./filter.css";
 import {
   orderByName,
   filterByBrand,
-  refresh,
+  // refresh,
   filterPrice,
 } from "../../redux/actions";
-import './filter.css'
+import './filter.css';
 
-const Filter = ({setOrder}) => {
+const Filter = () => {
   const [price, setPrice] = useState({
     minPrice: "",
     maxPrice: "",
   });
   // const allClothes1 = useSelector((state) => state.allClothes1);
   const allClothes2 = useSelector((state) => state.allClothes2);
-
-  // console.log(allClothes1);
   const dispatch = useDispatch();
 
   const handleOrderSelect = (event) => {
-    const order = event.target.value
-    dispatch(orderByName(order))
-    setOrder(`Ordenado ${order}`);
+    dispatch(orderByName(event.target.value));
   };
 
   const filterBrands = [];
@@ -35,7 +31,7 @@ const Filter = ({setOrder}) => {
   });
 
   const handleFilterBrandSelect = (event) => {
-    dispatch(refresh());
+    // dispatch(refresh());
     dispatch(filterByBrand(event.target.value));
   };
 
@@ -44,13 +40,13 @@ const Filter = ({setOrder}) => {
   };
 
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 1000) console.log(price);
+    if (price.minPrice >= 100 && price.maxPrice <= 10000) console.log(price);
     dispatch(filterPrice(price));
     alert("hola");
+
   };
   return (
     <div className="containerFilter">
-      {/* <h1>Filter by:</h1> */}
       <h2>Order</h2>
       <select name="order" onChange={handleOrderSelect}>
         <option value="1">Name A-Z</option>

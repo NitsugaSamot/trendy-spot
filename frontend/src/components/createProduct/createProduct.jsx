@@ -24,7 +24,7 @@ const CreateProduct = () => {
     setForm({...form, [event.target.name]: event.target.value});
     setErrors(validation({...form, [event.target.name]: event.target.value}))
   };
-console.log(errors)
+
   const handleSize = (event) => {
     setForm({...form, size: event.target.value})
   }
@@ -33,24 +33,14 @@ console.log(errors)
     event.preventDefault()
     //---------------- corta URL se queda con lo q sirve y lo concatena con lo q necesita, y lo agrega al post---------------
 
-    // const postForm = form
-    // const idPrenda = postForm.image.split('/d/')
-    // const idSinView = idPrenda[1].split('/')
-    // const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
-    // postForm.image = idUltimo
+    const postForm = form
+    const idPrenda = postForm.image.split('/d/')
+    const idSinView = idPrenda[1].split('/')
+    const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`
+    postForm.image = idUltimo
 //-----------------------------------------------------------------------------------------------------------------------
-    // const response = await axios.post('http://localhost:3004/products/create', postForm);
-    // alert("the product has been created");
-
-    // const postForm = form;
-    // const idPrenda = postForm.image.split('/d/');
-    // const idSinView = idPrenda[1].split('/');
-    // const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`;
-    // postForm.image = idUltimo;
-    //-----------------------------------------------------------------------------------------------------------------------
-    // const response = await axios.post('http://localhost:3004/products/create', postForm);
-    // alert(response.data);
-
+    const response = await axios.post('http://localhost:3004/products/create', postForm);
+    alert("the product has been created");
   }
 
   return (

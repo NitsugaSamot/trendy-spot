@@ -21,26 +21,40 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes2: payload,
       };
 
-    case ORDER_BY_NAME:
-      let sortedArr =
+    case ORDER_BY_NAME: {
+      const sortedArr =
         payload === "1"
-          ? state.allClothes1.sort(function (a, b) {
-            if (a.name > b.name) return 1;
-            if (b.name > a.name) return -1;
-            return 0;
+          ? state.allClothes1.slice().sort(function (a, b) {
+              if (a.name > b.name) {
+                return 1;
+              }
+              if (b.name > a.name) {
+                return -1;
+              }
+              return 0;
             })
-          : state.allClothes1.sort(function (a, b) {
-            if (a.name > b.name) return -1;
-            if (b.name > a.name) return 1;
-            return 0;
+          : state.allClothes1.slice().sort(function (a, b) {
+              if (a.name > b.name) {
+                return -1;
+              }
+              if (b.name > a.name) {
+                return 1;
+              }
+              return 0;
             });
-      return { ...state, allClothes1: payload = sortedArr };
+      return {
+        ...state,
+        allClothes1: sortedArr,
+      };
+    }
 
     case FILTER_BY_PRICE:
-      const filteredByPrice = state.allClothes2.filter((product) => {
+
+      const filteredByPrice = state.allClothes2.filter((product) => (
+        
         product.price >= Number(payload.minPrice) &&
-          product.price <= Number(payload.maxPrice);
-      });
+          product.price <= Number(payload.maxPrice)
+      ));
       return {
         ...state,
         allClothes1: filteredByPrice,
@@ -55,7 +69,7 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         allClothes1: brand,
       };
-    
+
     case SEARCH_NAME:
       return {
         ...state,

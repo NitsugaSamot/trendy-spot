@@ -10,10 +10,7 @@ import { getAllClothes } from "../../redux/actions";
 const Home = () => {
   const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
-
-  
-  const [order, setOrder] = useState("");
-  // const [currentPage, setCurrentPage] = useState(1);
+console.log(allClothes1)
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
