@@ -30,7 +30,7 @@ export function orderByName(payload){
         payload
     });
     };
-};
+}
 
 export const filterByBrand = (payload) => {
   return {
