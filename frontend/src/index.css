@@ -23,7 +23,6 @@ a {
 body {
   margin: 0;
   padding: 0;
-  display: flex;
   max-height: 100vh;
   /* place-items: center; */
 }

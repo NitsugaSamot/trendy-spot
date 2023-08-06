@@ -1,10 +1,7 @@
 import { useState, useEffect } from 'react';
 import "./home.css";
 import Card from "../card/card";
-<<<<<<< HEAD
 import banner from "../../assets/Home.jpeg";
-=======
->>>>>>> rober
 import Filter from "../filter/filter";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllClothes } from "../../redux/actions";
@@ -40,6 +37,7 @@ const Home = () => {
 
   return (
     <div className="container py-3">
+      <img src={banner} alt="" />
       <Filter />
       <div className="row">
         {currentProduct.map((product, index) => (

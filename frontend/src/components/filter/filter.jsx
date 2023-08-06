@@ -47,11 +47,7 @@ const Filter = () => {
   //   alert("hola");
   // };
   const handleClickPrice = () => {
-<<<<<<< HEAD
     if (price.minPrice >= 100 && price.maxPrice <= 10000);
-=======
-    if (price.minPrice >= 100 && price.maxPrice <= 10000)
->>>>>>> rober
     dispatch(filterPrice(price));
     alert("hola");
 
