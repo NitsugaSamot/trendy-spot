@@ -56,32 +56,37 @@ const Filter = () => {
   return (
     <div className="containerFilter">
       <h2>Order</h2>
-      <select name="order" onChange={handleOrderSelect}>
+      <select className="form-select"   name="order" onChange={handleOrderSelect}>
+      <option value="" disabled selected>Order by Name</option>
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
       <h2>Brand</h2>
-      <select name="order" onChange={handleFilterBrandSelect}>
+      <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
+        <option value="" disabled selected>Order by Brand</option>
         { filterBrands.map((brand, index) => ( 
+          
           <option key={index} value={brand}>
             {brand}
           </option>
         ))}
-      </select>
+      </select >
       <h2>Price</h2>
       <div className="containerPrice">
-        <label>
+        <label >
           <input
             type="number"
             name="minPrice"
             value={price.minPrice}
             onChange={handleFilterPrice}
+            placeholder="Price Min"
           />
           <input
             type="number"
             name="maxPrice"
             value={price.maxPrice}
             onChange={handleFilterPrice}
+            placeholder="Price Max"
           />
         </label>
       </div>
