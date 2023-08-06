@@ -1,16 +1,17 @@
 const {Router}=require('express')
-
 const router = Router()
 
-const  {postProduct, getAllProducts, getProductById} = require('../controllers/productController')
+const newProductHandler = require('../handlers/product/createProductHandler')
+const { getAllOrByNameProducts, getProductById } = require('../handlers/product/getProductHandlers');
+
+const validation = require('../helpers/validation')
+// const  { postProduct, getAllProducts, getProductById } = require('../controllers/createProductController')
 
 
-router.get('/', getAllProducts)
-
+router.get('/', getAllOrByNameProducts)
+router.get('/name?', getAllOrByNameProducts)
 router.get('/:id', getProductById)
 
-//Creación de producto
-router.post('/create', postProduct)
-
+router.post('/create', validation, newProductHandler)
 
 module.exports = router

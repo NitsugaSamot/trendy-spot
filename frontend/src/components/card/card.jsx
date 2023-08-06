@@ -5,7 +5,7 @@ const Card = ({ image, id, name, price }) => {
     <div>
       <NavLink to={`/detail/${id}`}>
         <h1>{name}</h1>
-        <img src={image} alt={name} width={"200px"} />
+        <img src={image} alt={name} width={"300px"} />
         <h2>$ {price}</h2>
       </NavLink>
     </div>
