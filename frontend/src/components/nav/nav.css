@@ -4,7 +4,9 @@
     align-items: center;
     justify-content: space-around;
     height: 5rem;
+    position: fixed;
     width: 100%;
+    z-index: 3;
 }
 .logoHome{
     width: 80px;
@@ -17,7 +19,8 @@
 }
 
 .btnSearch{
-    width: 6rem;
+    margin-left: 10px;
+    width: 5rem;
     height: 2.5rem;
     gap: 1rem;
 }
