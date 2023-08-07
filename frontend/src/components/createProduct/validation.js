@@ -8,10 +8,11 @@ const validation = (form) => {
     errors.price = "the price must be between 100 and 10000";
   else if (isNaN(form.price)) errors.price = "Should be number";
   if (!form.image) errors.image = "You must provide an image";
-  if (!form.description) errors.description = "You must write a description";
-  else if (form.description.lenght < 10 || form.description.lenght > 200)
-    errors.description =
-      "the description must have between 10 and 200 caracters";
+  else if (!form.image.includes("usp=drive_link")) errors.image = "Remember to copy the image from your drive copy button";
+    if (!form.description) errors.description = "You must write a description";
+    else if (form.description.lenght < 10 || form.description.lenght > 200)
+      errors.description =
+        "the description must have between 10 and 200 caracters";
   if (!form.stock) errors.stock = "You must insert the stock available";
   else if (isNaN(form.stock)) errors.stock = "Should be number";
   else if (form.stock < 1 || form.stock > 1000)

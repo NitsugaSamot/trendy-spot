@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchName } from "../../redux/actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
 
 const Nav = () => {
+  const {pathname} = useNavigate()
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
 
@@ -24,7 +25,23 @@ const Nav = () => {
       <NavLink to="/">
         <img src={imageLogo} alt="logo-home" className="logoHome" />
       </NavLink>
-      <form onSubmit={handleSubmit}>
+      {pathname !== "/create" ? (
+        <div>
+          <form onSubmit={handleSubmit}>
+            <input
+              className="search"
+              type="text"
+              placeholder="Search your clothes"
+              value={search}
+              onChange={handleInputName}
+            />
+            <button className="btnSearch" type="submit">
+              Search
+            </button>
+          </form>
+        </div>
+      ) : null}
+      {/* <form onSubmit={handleSubmit}>
         <input
          className="search"
           type="text"
@@ -34,10 +51,10 @@ const Nav = () => {
         />
         <button className="btnSearch" type="submit">Search</button>
 
-      </form>
+      </form> */}
 
-      <NavLink  to="/create">
-        <button className='btnSearch'>create</button>
+      <NavLink to="/create">
+        <button className="btnSearch">create</button>
       </NavLink>
     </div>
   );

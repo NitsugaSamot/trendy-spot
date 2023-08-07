@@ -25,11 +25,12 @@ const CreateProduct = () => {
   };
 
   const handleSize = (event) => {
-    setForm({ ...form, size: event.target.value });
+  event.target.value !== "" && setForm({ ...form, size: event.target.value });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const postForm = form;
     const idPrenda = postForm.image.split("/d/");
     const idSinView = idPrenda[1].split("/");
@@ -40,7 +41,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 divAllForm">
       <h1 className="mb-4">Ingresar Prenda</h1>
       <form>
         <div className="mb-3">

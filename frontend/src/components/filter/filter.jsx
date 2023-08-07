@@ -39,13 +39,6 @@ const Filter = () => {
     setPrice({ ...price, [event.target.name]: event.target.value });
   };
 
-  // const handleClickPrice = () => {
-  //   if (price.minPrice >= 100 && price.maxPrice <= 1000) {
-  //     console.log(price);
-  //     dispatch(filterPrice(price));
-  //   }
-  //   alert("hola");
-  // };
   const handleClickPrice = () => {
     if (price.minPrice >= 100 && price.maxPrice <= 10000);
     dispatch(filterPrice(price));

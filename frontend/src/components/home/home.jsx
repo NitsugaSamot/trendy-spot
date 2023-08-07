@@ -19,7 +19,7 @@ const Home = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo(0, 0); // Scroll hacia arriba
+    window.scrollTo(0, 500); // Scroll hacia arriba
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -39,7 +39,6 @@ const Home = () => {
   <div>
     <img src={banner} className="background-image" />
     <div className="container py-3">
-      <img src={banner} alt="" />
       <Filter />
       <div className="row">
         {currentProduct.map((product, index) => (
