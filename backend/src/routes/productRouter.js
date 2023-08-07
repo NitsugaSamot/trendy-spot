@@ -19,7 +19,7 @@ router.get('/brands', getAllBrands);
 router.get('/filter?', filterProducts);
 
 router.get('/:id', getProductById)
-// router.get('/brands', getAllBrands)
+router.get('/brands', getAllBrands)
 
 router.get('/brands/:brandName', filterByBrands);
 
