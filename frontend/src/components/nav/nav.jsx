@@ -1,19 +1,26 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { searchName } from "../../redux/actions";
+import { getAllClothes, searchName } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
 import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Nav = () => {
   const location = useLocation();
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleRefresh = () => {
+    dispatch(getAllClothes());
+    window.scrollTo(0, 500);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(searchName(search));
+    navigate("/")
     setSearch("");
   };
 
@@ -37,7 +44,8 @@ const Nav = () => {
       />
       <button className="btnSearch" type="submit">Search</button>
       </form>}
-
+      
+      {location.pathname === '/'  && <button className='btnRefresh' onClick={handleRefresh}>Refresh</button>}
       <NavLink  to="/create">
         <button className='btnSearch'>create</button>
       </NavLink>

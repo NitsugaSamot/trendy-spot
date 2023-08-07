@@ -36,8 +36,10 @@ const Detail = () => {
           <div className="details">
             <h2>{garment.name}</h2>
             <br />
-            <h5 className="sizeprop">{garment.size}</h5>
-            <h5 className="colorprop">color: {garment.color}</h5>
+            <h5 className="sizeprop">Talle: {garment.size}</h5>
+            <h5 className="colorprop">Color: {garment.color}</h5>
+            <hr />
+            <h5 className="colorprop">{garment.productbrand}</h5>
             <hr />
             <h3>{garment.description}</h3>
             <hr />

@@ -15,19 +15,29 @@ const filterByBrands = async (req, res) => {
     return res.status(404).json({ message: "No se encontraron productos para esta marca." });
   };
   
-
-const filterProductsByPriceRange = async (req, res) => {
+  const filterProductsByPriceRange = async (req, res) => {
     const { minPrice, maxPrice } = req.query;
   
     if (!minPrice || !maxPrice) {
       return res.status(400).json({ error: 'Debe proporcionar valores para minPrice y maxPrice.' });
     }
   
+    const parsedMinPrice = parseInt(minPrice);
+    const parsedMaxPrice = parseInt(maxPrice);
+  
+    if (isNaN(parsedMinPrice) || isNaN(parsedMaxPrice)) {
+      return res.status(400).json({ error: 'Los valores proporcionados para minPrice y maxPrice deben ser números válidos.' });
+    }
+  
+    if (parsedMinPrice >= parsedMaxPrice) {
+      return res.status(400).json({ error: 'El precio mínimo debe ser mayor al precio máximo.' });
+    }
+  
     try {
       const dbProducts = await Product.findAll({
         where: {
           price: {
-            [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+            [Op.between]: [parsedMinPrice, parsedMaxPrice],
           },
         },
       });
@@ -38,9 +48,35 @@ const filterProductsByPriceRange = async (req, res) => {
   
       return res.json(dbProducts);
     } catch (error) {
-      return res.status(500).json({ error: 'Error al obtener los productos.' });
+      return res.status(400).json({ error: 'Error al obtener los productos.' });
     }
   };
+
+// const filterProductsByPriceRange = async (req, res) => {
+//     const { minPrice, maxPrice } = req.query;
+  
+//     if (!minPrice || !maxPrice) {
+//       return res.status(400).json({ error: 'Debe proporcionar valores para minPrice y maxPrice.' });
+//     }
+  
+//     try {
+//       const dbProducts = await Product.findAll({
+//         where: {
+//           price: {
+//             [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+//           },
+//         },
+//       });
+  
+//       if (!dbProducts.length) {
+//         return res.json([]);
+//       }
+  
+//       return res.json(dbProducts);
+//     } catch (error) {
+//       return res.status(500).json({ error: 'Error al obtener los productos.' });
+//     }
+//   };
 
 
   /* ESTE ES EL SUPER CONTROLLER QUE COMBINA FILTRADOS, QUEDA PENDIENTE LOGRAR IMPLEMENTARLO EN EL FRONT 
