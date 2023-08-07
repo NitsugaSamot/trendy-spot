@@ -21,24 +21,26 @@ const Nav = () => {
 
   return (
     <div className="containerNav">
+
       <NavLink to="/">
         <img src={imageLogo} alt="logo-home" className="logoHome" />
       </NavLink>
+
       <form onSubmit={handleSubmit}>
         <input
          className="search"
           type="text"
-          placeholder="Search your clothes"
+          placeholder="Search more products"
           value={search}
           onChange={handleInputName}
         />
-        <button className="btnSearch" type="submit">Search</button>
-
+        <button className="btnSearch" type="submit"> Search </button>
       </form>
 
       <NavLink  to="/create">
-        <button className='btnSearch'>create</button>
+        <button className='btnSearch'>VENDER</button>
       </NavLink>
+
     </div>
   );
 };

@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import './detail.css'
 import Nav from "../nav/nav";
 import price from "../detail/price.png"
+
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
@@ -28,8 +29,8 @@ const Detail = () => {
         <img className="detailImage" src={garment.image} alt={garment.name} />
         
         <div>
-        <img className="blueTag" src={price}/>
-        <h4 className="priceTag">${garment.price}</h4>
+          <img className="blueTag" src={price}/>
+          <h4 className="priceTag">${garment.price}</h4>
         </div>
 
         <div>
@@ -41,9 +42,14 @@ const Detail = () => {
             <h3 className="description">DESCRIPCIÓN: <br />{garment.description}</h3>
             
             <hr />
-          </div>
-        </div>
 
+            <Link to="/cashout">
+              <button className="btnCashout">Añadir al carrito</button>
+            </Link>
+
+          </div>
+
+        </div>
       </div>
     </div>
   );

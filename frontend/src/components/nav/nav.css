@@ -1,5 +1,5 @@
 .containerNav {
-    background-color: rgba(255, 255, 255, 0.869);
+    background-color: rgba(247, 246, 246, 0.869);
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -30,6 +30,12 @@
     width: 5rem;
     height: 2.5rem;
     gap: 1rem;
-    background-color: rgb(17, 76, 95);
+    background-color: rgb(57, 128, 172);
+    border: solid 1.5px #1f1f1f;
+    transition: background-color 0.3s ease;
+  }
+
+  .btnSearch:hover {
+    background-color: rgb(71, 160, 215);
   }
   
