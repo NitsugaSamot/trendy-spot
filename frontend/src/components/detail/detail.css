@@ -1,0 +1,76 @@
+.contImageprops {
+    display: flex;
+    margin: 80px;
+    background-color: rgb(245, 246, 247);
+    border-radius: 25px;
+    position: relative;
+  }
+  
+  .detailImage {
+    height: 100%; 
+    max-width: 50%; 
+  }
+  
+  .backprice {
+    background-image: url('./price.png');
+    background-size: contain;
+    width: 150px;
+    background-repeat: no-repeat;
+    align-items: center;
+    position: absolute;
+    left: 32%;
+    top: 20%;
+  }
+  
+  .detailPriceh3 {
+    transform: rotate(26deg);
+    color: rgb(238, 241, 244);
+    position: absolute;
+    top: 22%;
+    left: 38.5%;
+    z-index: 1;
+  }
+  
+  .details {
+    margin-top: 5%;
+    margin-left: 20%; 
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+    color: #1f1f1f;
+  }
+  
+  .detailPrice {
+    position: absolute;
+    background-position: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+    
+  .name {
+    font-size: 25px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: lighter;
+    margin-left: 15%;
+  }
+
+  .exDetail {
+    font-size: 15px;
+    margin-left: 80%;
+    text-align: left;
+    text-transform: capitalize;
+    font-weight: lighter;
+    white-space: nowrap;
+  }
+
+  .description {
+    font-size: 18px;
+    margin-top: 10%;
+    margin-left: 15%;
+    font-weight: lighter;
+  }

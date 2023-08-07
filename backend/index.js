@@ -1,7 +1,10 @@
-const express = require('express')
+const server = require('./src/app.js');
+const { conn } = require('./src/db.js');
+const PORT = process.env.PORT || 3004
 
-const app = express()
-
-app.listen(3008, () => {
-    console.log('servidor corriendo')
-})
+// Syncing all the models at once.
+conn.sync({ async: true }).then(() => {
+  server.listen(PORT, () => {
+    console.log(`listening at ${PORT}`); // eslint-disable-line no-console
+  });
+});
