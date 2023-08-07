@@ -55,13 +55,13 @@ const Filter = () => {
 
   return (
     <div className="containerFilter">
-      <h2>Order</h2>
+      <h4>Order</h4>
       <select className="form-select"   name="order" onChange={handleOrderSelect}>
       <option value="" disabled selected>Order by Name</option>
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
-      <h2>Brand</h2>
+      <h4>Brand</h4>
       <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
         <option value="" disabled selected>Order by Brand</option>
         { filterBrands.map((brand, index) => ( 
@@ -71,7 +71,7 @@ const Filter = () => {
           </option>
         ))}
       </select >
-      <h2>Price</h2>
+      <h4>Price</h4>
       <div className="containerPrice">
         <label>
           <input

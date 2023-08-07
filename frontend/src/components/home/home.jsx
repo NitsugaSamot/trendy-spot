@@ -19,7 +19,7 @@ const Home = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo(0, 0); // Scroll hacia arriba
+    window.scrollTo(0, 500); // Scroll hacia arriba
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -40,6 +40,7 @@ const Home = () => {
     <img src={banner} className="background-image" />
     <div className="container py-3">
       <Filter />
+      
       <div className="row">
         {currentProduct.map((product, index) => (
           <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
@@ -54,6 +55,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+
       <div className="d-flex justify-content-center align-items-center py-3">
         <button
           className="btn btn-primary me-2"

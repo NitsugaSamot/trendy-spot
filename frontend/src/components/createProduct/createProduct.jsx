@@ -26,7 +26,8 @@ const CreateProduct = () => {
 
   const handleSize = (event) => {
     setForm({ ...form, size: event.target.value });
-  };
+    setErrors(validation({ ...form, size: event.target.value}));
+    };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +36,18 @@ const CreateProduct = () => {
     const idSinView = idPrenda[1].split("/");
     const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`;
     postForm.image = idUltimo;
+
+    //----------------------------toLowerCase a los string y toUpperCase a la primera letra de cada palabra------------------
+    const lower = postForm.brand.toLocaleLowerCase()
+    let array = lower.split(" ")
+    let losArrays = array.map(palabra => {
+      return palabra[0].toUpperCase() + palabra.slice(1);
+    })
+  
+    const resultado = losArrays.join(" ");
+    postForm.brand = resultado
+//------------------------------------------------------------------------------------------------------------------------
+
     await axios.post("http://localhost:3004/products/create", postForm);
     alert("The product has been created");
   };
@@ -70,7 +83,7 @@ const CreateProduct = () => {
             onChange={handleSize}
             value={form.size}
           >
-            <option value="">Choose a size</option>
+            <option value="" disabled>Choose a size</option>
             {sizes.map((prenda) => (
               <option key={prenda} value={prenda}>
                 {prenda}

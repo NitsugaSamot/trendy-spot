@@ -16,6 +16,10 @@
 .search{
     height: 2rem;
     width: 30rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .btnSearch{
@@ -23,4 +27,5 @@
     width: 5rem;
     height: 2.5rem;
     gap: 1rem;
+    background-color: rgb(17, 76, 95);
 }

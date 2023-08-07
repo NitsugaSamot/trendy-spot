@@ -18,6 +18,8 @@
     outline: none;
     margin-top: 5px;
     margin-bottom: 5px;
+    color: black;
+    padding-left: 10px;
 }
 
 .containerPrice{
@@ -39,9 +41,6 @@
     width: 20rem;
     height: 3rem;
     gap: 1rem;
-}
-
-.btnPrice:hover {
-    
+    background-color: rgb(17, 76, 95);
 }
 
