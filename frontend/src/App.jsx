@@ -1,10 +1,10 @@
 import "./App.css";
-import Nav from "./components/nav/nav";
 import Home from "./components/home/home";
 import Detail from "./components/detail/detail";
 import CreateProduct from "./components/createProduct/createProduct";
 import Footer from "./components/footer/footer";
 import { Routes, Route } from "react-router-dom";
+import Nav from "./components/nav/nav";
 
 function App() {
 

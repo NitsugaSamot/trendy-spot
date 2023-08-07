@@ -1,12 +1,17 @@
 import { NavLink } from "react-router-dom";
+import './card.css'
 
-const Card = ({ image, id, name, price }) => {
+const Card = ({ image, id, name, price , productbrand}) => {
   return (
-    <div>
+    <div className="card">
       <NavLink to={`/detail/${id}`}>
-        <h1>{name}</h1>
-        <img src={image} alt={name} width={"300px"} />
-        <h2>$ {price}</h2>
+        <img className="" src={image} alt={name} width={"300px"} padding-right={"60px"}/>
+        <hr/>
+        <h4 className="h5">{name}</h4>
+        <h3 className="h5">{productbrand}</h3>
+        <hr />
+        <h2 className="h5">$ {price}</h2>
+        <hr />
       </NavLink>
     </div>
   );
