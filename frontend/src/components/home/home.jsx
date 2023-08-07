@@ -3,19 +3,18 @@ import "./home.css";
 import Card from "../card/card";
 import banner from '../../assets/Home.png'
 import Filter from "../filter/filter";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllClothes } from "../../redux/actions";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const dispatch = useDispatch();
   const allClothes1 = useSelector((state) => state.allClothes1);
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
   useEffect(() => {
-    dispatch(getAllClothes());
-  }, [dispatch]);
+    setCurrentPage(1)
+
+  }, [allClothes1]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -39,7 +38,8 @@ const Home = () => {
   <div>
     <img src={banner} className="background-image" />
     <div className="container py-3">
-      <Filter />
+      <Filter onPageChange={(page) => setCurrentPage(page)}/>
+
       <div className="row">
         {currentProduct.map((product, index) => (
           <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
@@ -54,6 +54,7 @@ const Home = () => {
           </div>
         ))}
       </div>
+
       <div className="d-flex justify-content-center align-items-center py-3">
         <button
           className="btn btn-primary me-2"

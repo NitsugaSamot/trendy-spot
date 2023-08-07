@@ -1,5 +1,3 @@
-
-
 import {
   FILTER_BY_BRAND,
   ORDER_BY_NAME,

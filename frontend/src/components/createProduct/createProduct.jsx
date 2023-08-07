@@ -25,8 +25,9 @@ const CreateProduct = () => {
   };
 
   const handleSize = (event) => {
-  event.target.value !== "" && setForm({ ...form, size: event.target.value });
-  };
+    setForm({ ...form, size: event.target.value });
+    setErrors(validation({ ...form, size: event.target.value}));
+    };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,14 +37,37 @@ const CreateProduct = () => {
     const idSinView = idPrenda[1].split("/");
     const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`;
     postForm.image = idUltimo;
+
+    //----------------------------toLowerCase a los string y toUpperCase a la primera letra de cada palabra------------------
+    const lower = postForm.brand.toLocaleLowerCase()
+    let array = lower.split(" ")
+    let losArrays = array.map(palabra => {
+      return palabra[0].toUpperCase() + palabra.slice(1);
+    })
+  
+    const resultado = losArrays.join(" ");
+    postForm.brand = resultado
+//------------------------------------------------------------------------------------------------------------------------
     await axios.post("http://localhost:3004/products/create", postForm);
+    setForm({
+      name: "",
+      size: "",
+      price: "",
+      image: "",
+      description: "",
+      stock: "",
+      color: "",
+      brand: "",
+    });
     alert("The product has been created");
   };
 
   return (
-    <div className="container mt-5 divAllForm">
-      <h1 className="mb-4">Ingresar Prenda</h1>
-      <form>
+    <div>
+      <div className="tomasSeco"></div>
+      <hr />
+      <h3 className="mb-4">Ingresar Prenda</h3>
+      <form className="form">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -71,7 +95,7 @@ const CreateProduct = () => {
             onChange={handleSize}
             value={form.size}
           >
-            <option value="">Choose a size</option>
+            <option value="" disabled>Choose a size</option>
             {sizes.map((prenda) => (
               <option key={prenda} value={prenda}>
                 {prenda}

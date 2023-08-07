@@ -1,16 +1,16 @@
-.back {
-      background-color: red;
-      
-}
-
 .spanError{
       color: red;
 }
 
-.container{
-      margin-top: 200px;
+.tomasSeco {
+      height: 80px;
 }
 
-.divAllForm{
-      width: 60%;
+.form {
+      width: 50%;
+      margin: auto;
+}
+
+.btn-primary{
+      margin-bottom: 20px;
 }

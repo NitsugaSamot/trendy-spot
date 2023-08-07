@@ -21,7 +21,6 @@ const createProduct = async (
     description,
     stock,
     color,
-    brand,
     brandId: brandResult.id,
     productbrand: brand,
   });
