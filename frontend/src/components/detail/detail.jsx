@@ -24,12 +24,12 @@ const Detail = () => {
   return (
     <div className="nav">
       <Nav/>
-      <div className="contImageprops">
+      <div className="contImage">
         <img className="detailImage" src={garment.image} alt={garment.name} />
         
         <div>
-        <img className="backprice" src={price}/>
-        <h4 className="detailPriceh3">${garment.price}</h4>
+        <img className="blueTag" src={price}/>
+        <h4 className="priceTag">${garment.price}</h4>
         </div>
 
         <div>
