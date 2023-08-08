@@ -18,19 +18,19 @@ module.exports = (sequelize) => {
     },
     price: {
       type: DataTypes.INTEGER,
-      allowNull: false
-    }, 
+      allowNull: false,
+    },  
     image: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     description: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     stock: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     color: {
       type: DataTypes.STRING,
@@ -45,3 +45,4 @@ module.exports = (sequelize) => {
   );
 };
 
+  

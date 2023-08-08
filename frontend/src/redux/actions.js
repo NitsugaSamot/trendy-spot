@@ -6,9 +6,12 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
+<<<<<<< HEAD
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
   FILTER_BRAND_AND_PRICE
+=======
+>>>>>>> Juan
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -25,6 +28,7 @@ export const getAllClothes = () => {
   };
 };
 
+<<<<<<< HEAD
 export const orderByName = (payload) => {
   return {
     type: ORDER_BY_NAME,
@@ -62,6 +66,30 @@ export const setSelectedBrand = (brandName) => {
 };
 
 
+=======
+export function orderByName(payload){
+    return function (dispatch){
+    return dispatch ({
+        type: ORDER_BY_NAME,
+        payload
+    });
+    };
+}
+
+export const filterByBrand = (payload) => {
+  return {
+    type: FILTER_BY_BRAND,
+    payload,
+  };
+};
+
+export const filterPrice = (payload) => {
+  return {
+    type: FILTER_BY_PRICE,
+    payload,
+  };
+};
+>>>>>>> Juan
 
 export const searchName = (payload) => {
   return async function (dispatch) {
@@ -80,8 +108,6 @@ export const searchName = (payload) => {
   };
 };
 
-
-
 export const refresh = () => {
   return {
     type: REFRESH,
@@ -89,6 +115,7 @@ export const refresh = () => {
   };
 };
 
+<<<<<<< HEAD
 /* NO ESTA IMPLEMENTADA EN EL FRONT */
 export function getAllBrands() {
   return async function (dispatch) {
@@ -192,3 +219,5 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
 
 
 
+=======
+>>>>>>> Juan

@@ -1,22 +1,31 @@
 .containerNav{
+    background-color: rgba(255, 255, 255, 0.869);
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: rgb(228, 241, 254);
-    box-shadow: 0px 10px 15px 0px rgba(201, 218, 235, 0.75);
     height: 5rem;
+    position: fixed;
+    width: 100%;
+    z-index: 3;
 }
 .logoHome{
-    width: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .search{
     height: 2rem;
     width: 30rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px;
 }
 
 .btnSearch{
+    margin-left: 10px;
     width: 5rem;
     height: 2.5rem;
     gap: 1rem;
+    background-color: rgb(17, 76, 95);
 }

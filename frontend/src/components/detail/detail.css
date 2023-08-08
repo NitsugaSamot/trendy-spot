@@ -1,0 +1,55 @@
+
+
+.contImageprops {
+    display: flex;
+    margin: 80px;
+    background-color: rgb(237, 239, 241);
+    border-radius: 10px;
+    position: relative;
+}
+.detailImage {
+    height: 50%;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+.backprice {
+    background-image: url('./kisspng-blue-brand-turquoise-png-price-tag-vector-material-5a6ba043d70c53.8924632615170028198808.png');
+    background-size: contain;
+    width: 150px;
+    background-repeat: no-repeat;
+    align-items: center;
+    position: absolute;
+    left: 32%;
+    top: 20%;
+}
+
+.detailPriceh3 {
+    transform: rotate(26deg);
+    color: white;
+    position: absolute;
+    top: 23%;
+    left: 36.5%;
+    z-index: 1;
+}
+
+.details {
+    margin-top: 35%;
+    margin-left: 30%;
+}
+
+
+/* .detailPrice {
+    position: absolute;
+    background-position: center; 
+    
+}  */
+
+
+
+/* .sizeprop {
+    margin-bottom: 10%;
+}
+.colorprop {
+    margin-bottom: 10%;
+} */

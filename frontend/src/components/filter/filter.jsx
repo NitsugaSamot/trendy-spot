@@ -1,8 +1,17 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
+<<<<<<< HEAD
 import { orderByName, filterByBrand, refresh,  filterPrice, filterPriceAndBrand } from "../../redux/actions";
 import "./filter.css";
+=======
+import {
+  orderByName,
+  filterByBrand,
+  filterPrice,
+} from "../../redux/actions";
+import './filter.css';
+>>>>>>> Juan
 
 const Filter = () => {
   const [price, setPrice] = useState({
@@ -10,6 +19,7 @@ const Filter = () => {
     maxPrice: "",
   });
   const allClothes2 = useSelector((state) => state.allClothes2);
+<<<<<<< HEAD
 
   const handleFilterBrandSelect = (event) => {
     setObjToFilter({ ...objToFilter, [event.target.name]: event.target.value });
@@ -46,13 +56,16 @@ const [objToFilter, setObjToFilter] = useState({
   //   dispatch(filterByBrand(event.target.value));
   // };
 
+=======
+>>>>>>> Juan
   const dispatch = useDispatch();
-  const [filterBrands, setFilterBrands] = useState([]);
+  
 
   const handleOrderSelect = (event) => {
     dispatch(orderByName(event.target.value));
   };
 
+<<<<<<< HEAD
   const calculateUniqueBrands = () => {
     const uniqueBrands = allClothes2.reduce((acc, product) => {
       if (!acc.includes(product.productbrand)) {
@@ -69,22 +82,45 @@ const [objToFilter, setObjToFilter] = useState({
     return () => clearTimeout(delay);
   }, [allClothes2]);
 
+=======
+  const filterBrands = [];
+
+  const brands = allClothes2.filter((product) => {
+    if (!filterBrands.includes(product.productbrand)) {
+      filterBrands.push(product.productbrand);
+    }
+  });
+
+  const handleFilterBrandSelect = (event) => {
+    // dispatch(refresh());
+    dispatch(filterByBrand(event.target.value));
+  };
+>>>>>>> Juan
 
   // const handleFilterPrice = (event) => {
   //   setPrice({ ...price, [event.target.name]: event.target.value });
   // };
 
+<<<<<<< HEAD
   // const handleClickPrice = () => {
   //     dispatch(filterPrice(price.minPrice, price.maxPrice));
   // };
+=======
+  const handleClickPrice = () => {
+    if (price.minPrice >= 100 && price.maxPrice <= 10000)
+    dispatch(filterPrice(price));
+  };
+>>>>>>> Juan
 
   return (
     <div className="containerFilter">
-      <h2>Order</h2>
-      <select name="order" onChange={handleOrderSelect}>
+      <h4>Order</h4>
+      <select className="form-select"   name="order" onChange={handleOrderSelect}>
+      <option value="" disabled selected>Order by Name</option>
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
+<<<<<<< HEAD
       <h2>Brand</h2>
 
       <select name="order" onChange={handleFilterBrandSelect}>
@@ -96,24 +132,41 @@ const [objToFilter, setObjToFilter] = useState({
       </select>
 
       <h2>Price</h2>
+=======
+      <h4>Brand</h4>
+      <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
+        <option value="" disabled selected>Order by Brand</option>
+        { filterBrands.map((brand, index) => ( 
+          
+          <option key={index} value={brand}>
+            {brand}
+          </option>
+        ))}
+      </select >
+      <h4>Price</h4>
+>>>>>>> Juan
       <div className="containerPrice">
         <label>
           <input
+            className="inputPrice"
             type="number"
             name="minPrice"
             value={price.minPrice}
             onChange={handleFilterPrice}
+            placeholder="Price Min"
           />
           <input
+            className="inputPrice"
             type="number"
             name="maxPrice"
             value={price.maxPrice}
             onChange={handleFilterPrice}
+            placeholder="Price Max"
           />
         </label>
       </div>
       <button className="btnPrice" onClick={handleClickPrice}>
-        Price
+        Search 
       </button>
     </div>
   );
