@@ -14,7 +14,7 @@ const validation = require('../helpers/validation')
 
 router.get('/', getAllOrByNameProducts)
 router.get('/name?', getAllOrByNameProducts)
-router.get('/search', filterProductsByPriceRange);
+router.get('/filter', filterProductsByPriceRange);
 router.get('/brands', getAllBrands);
 router.get('/filter?', filterProducts);
 

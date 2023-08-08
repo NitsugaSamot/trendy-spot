@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
-import { orderByName, filterByBrand, refresh,  filterPrice } from "../../redux/actions";
+import { orderByName, filterByBrand, refresh,  filterPrice, filterPriceAndBrand } from "../../redux/actions";
 import "./filter.css";
 
 const Filter = () => {
@@ -12,9 +12,39 @@ const Filter = () => {
   const allClothes2 = useSelector((state) => state.allClothes2);
 
   const handleFilterBrandSelect = (event) => {
-    dispatch(refresh());
-    dispatch(filterByBrand(event.target.value));
+    setObjToFilter({ ...objToFilter, [event.target.name]: event.target.value });
+    if (objToFilter.minPrice && objToFilter.maxPrice) {
+      dispatch(filterPriceAndBrand(objToFilter));
+    } else {
+      dispatch(filterByBrand(event.target.value));
+    }
+    // onPageChange(1);
   };
+
+const handleFilterPrice = (event) => {
+    setPrice({ ...price, [event.target.name]: event.target.value });
+    setObjToFilter({ ...objToFilter, [event.target.name]: event.target.value });
+  };
+
+const handleClickPrice = () => {
+    if (price.minPrice >= 100 && price.maxPrice <= 10000);
+    if (objToFilter.brand) {
+      dispatch(filterPriceAndBrand(objToFilter));
+    } else {
+      dispatch(filterPrice(price));
+    }
+    // onPageChange(1);
+  };
+
+const [objToFilter, setObjToFilter] = useState({
+    brand: "",
+    minPrice: "",
+    maxPrice: "",
+  });
+  // const handleFilterBrandSelect = (event) => {
+  //   dispatch(refresh());
+  //   dispatch(filterByBrand(event.target.value));
+  // };
 
   const dispatch = useDispatch();
   const [filterBrands, setFilterBrands] = useState([]);
@@ -40,13 +70,13 @@ const Filter = () => {
   }, [allClothes2]);
 
 
-  const handleFilterPrice = (event) => {
-    setPrice({ ...price, [event.target.name]: event.target.value });
-  };
+  // const handleFilterPrice = (event) => {
+  //   setPrice({ ...price, [event.target.name]: event.target.value });
+  // };
 
-  const handleClickPrice = () => {
-      dispatch(filterPrice(price.minPrice, price.maxPrice));
-  };
+  // const handleClickPrice = () => {
+  //     dispatch(filterPrice(price.minPrice, price.maxPrice));
+  // };
 
   return (
     <div className="containerFilter">

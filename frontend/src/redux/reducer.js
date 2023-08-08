@@ -6,7 +6,9 @@ import {
   SEARCH_NAME,
   REFRESH,
   GET_ALL_BRANDS,
-  SET_SELECTED_BRAND
+  SET_SELECTED_BRAND,
+  FILTER_BRAND_AND_PRICE
+      
 } from "./action-types";
 
 const initialState = {
@@ -67,7 +69,11 @@ const reducer = (state = initialState, {action, type, payload }) => {
           selectedBrand: payload
         }
 
-        
+        case FILTER_BRAND_AND_PRICE:
+      return {
+        ...state,
+        allClothes1: payload,
+      };
 
             case SEARCH_NAME:
       return {
