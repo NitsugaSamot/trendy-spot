@@ -18,7 +18,7 @@ const Home = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    window.scrollTo(0, 500); // Scroll hacia arriba
+    window.scrollTo(0, 400); // Scroll hacia arriba
   };
 
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -63,6 +63,7 @@ const Home = () => {
         >
           &larr; Anterior
         </button>
+
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             className={`btn btn-outline-primary ${currentPage === index + 1 ? 'active' : ''} me-2`}
@@ -71,6 +72,7 @@ const Home = () => {
           >
             {index + 1}
           </button>
+          
         ))}
         <button
           className="btn btn-primary"

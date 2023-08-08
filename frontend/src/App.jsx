@@ -22,7 +22,7 @@ function App() {
       {!location.pathname.startsWith('/detail') && <Nav />}
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="detail/:id" element={<Detail />} />
+        <Route path="detail/:id" element={<Detail/>} />
         <Route path='/create' element={<CreateProduct/>} />
       </Routes>
     </div>

@@ -7,6 +7,11 @@
     transition: 0.3s;
 }
 
+.card img {
+    max-width: 100%;
+    height: auto;
+}
+
 .card:hover {
     transform: translatey(-14px);
     box-shadow: 1px 6px 17px 0px rgba(0,0,0,0.75);
@@ -22,7 +27,7 @@
     background-color: rgb(58, 159, 218);
     width: 50%;
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     transition: .5s;
 }
 

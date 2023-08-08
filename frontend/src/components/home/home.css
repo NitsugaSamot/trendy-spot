@@ -1,5 +1,8 @@
+
+
 .background-image{
     margin-top: 80px;
+    width: 100%;
 }
 
 .btn-outline-primary {
@@ -11,10 +14,6 @@
 .btn-outline-primary:hover {
     background-color: rgb(17, 76, 95);
     border: solid 3px rgb(17, 76, 95);
-}
-
-.btn-outline-primary.current {
-    background-color: rgb(17, 76, 95);
 }
 
 .btn-primary {
@@ -31,7 +30,4 @@
     border: solid 3px rgb(17, 76, 95);
 }
 
-.btn-primary::selection {
-    background-color: rgb(17, 76, 95);
-    border: solid 3px rgb(17, 76, 95);
-}
+

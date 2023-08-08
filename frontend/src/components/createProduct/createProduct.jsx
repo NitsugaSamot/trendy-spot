@@ -63,14 +63,12 @@ const CreateProduct = () => {
 
   return (
     <div>
+      <div className="allDiv">
       <div className="tomasSeco"></div>
-      <hr />
-      <h3 className="mb-4">Ingresar Prenda</h3>
+      <div className="divForm">
       <form className="form">
+      <h3 className="mb-4 h3">Ingresar Prenda</h3>
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Name
-          </label>
           <input
             type="text"
             className={`form-control ${errors.name ? "is-invalid" : ""}`}
@@ -78,6 +76,7 @@ const CreateProduct = () => {
             name="name"
             value={form.name}
             onChange={handleChange}
+            placeholder="Name"
           />
           {errors.name && (
             <div className="invalid-feedback">{errors.name}</div>
@@ -85,9 +84,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="size" className="form-label">
-            Size
-          </label>
           <select
             className={`form-select ${errors.size ? "is-invalid" : ""}`}
             id="size"
@@ -107,9 +103,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="price" className="form-label">
-            Price
-          </label>
           <input
             type="text"
             className={`form-control ${errors.price ? "is-invalid" : ""}`}
@@ -117,6 +110,7 @@ const CreateProduct = () => {
             name="price"
             value={form.price}
             onChange={handleChange}
+            placeholder="Insert Price"
           />
           {errors.price && (
             <div className="invalid-feedback">{errors.price}</div>
@@ -124,9 +118,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="image" className="form-label">
-            Image URL
-          </label>
           <input
             type="text"
             className={`form-control ${errors.image ? "is-invalid" : ""}`}
@@ -134,6 +125,7 @@ const CreateProduct = () => {
             name="image"
             value={form.image}
             onChange={handleChange}
+            placeholder="Image"
           />
           {errors.image && (
             <div className="invalid-feedback">{errors.image}</div>
@@ -141,9 +133,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description
-          </label>
           <input
             type="text"
             className={`form-control ${errors.description ? "is-invalid" : ""}`}
@@ -151,6 +140,7 @@ const CreateProduct = () => {
             name="description"
             value={form.description}
             onChange={handleChange}
+            placeholder="Write a description"
           />
           {errors.description && (
             <div className="invalid-feedback">{errors.description}</div>
@@ -158,9 +148,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="stock" className="form-label">
-            Stock
-          </label>
           <input
             type="text"
             className={`form-control ${errors.stock ? "is-invalid" : ""}`}
@@ -168,6 +155,7 @@ const CreateProduct = () => {
             name="stock"
             value={form.stock}
             onChange={handleChange}
+            placeholder="Insert Stock"
           />
           {errors.stock && (
             <div className="invalid-feedback">{errors.stock}</div>
@@ -175,9 +163,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="color" className="form-label">
-            Color
-          </label>
           <input
             type="text"
             className={`form-control ${errors.color ? "is-invalid" : ""}`}
@@ -185,6 +170,7 @@ const CreateProduct = () => {
             name="color"
             value={form.color}
             onChange={handleChange}
+            placeholder="Color"
           />
           {errors.color && (
             <div className="invalid-feedback">{errors.color}</div>
@@ -192,9 +178,6 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="brand" className="form-label">
-            Brand
-          </label>
           <input
             type="text"
             className={`form-control ${errors.brand ? "is-invalid" : ""}`}
@@ -202,6 +185,7 @@ const CreateProduct = () => {
             name="brand"
             value={form.brand}
             onChange={handleChange}
+            placeholder="Brand"
           />
           {errors.brand && (
             <div className="invalid-feedback">{errors.brand}</div>
@@ -211,7 +195,7 @@ const CreateProduct = () => {
         <div className="d-grid gap-2 col-6 mx-auto">
           <button
             type="submit"
-            className="btn btn-primary"
+            className="btnForm"
             disabled={Object.keys(errors).length > 0 || form.name.length < 1}
             onClick={handleSubmit}
           >
@@ -219,6 +203,8 @@ const CreateProduct = () => {
           </button>
         </div>
       </form>
+      </div>
+      </div>
     </div>
   );
 };

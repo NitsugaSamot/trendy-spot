@@ -34,16 +34,18 @@ const Nav = () => {
         <img src={imageLogo} alt="logo-home" className="logoHome" />
       </NavLink>
       
-      {!location.pathname.startsWith('/detail') && <form onSubmit={handleSubmit}>
+      <div>
       <input
        className="search"
         type="text"
         placeholder="Search your clothes"
         value={search}
         onChange={handleInputName}
+        onSubmit={handleSubmit}
       />
       <button className="btnSearch" type="submit">Search</button>
-      </form>}
+      </div>
+      
       
       {location.pathname === '/'  && <button className='btnRefresh' onClick={handleRefresh}>Refresh</button>}
       <NavLink  to="/create">

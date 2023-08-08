@@ -44,6 +44,15 @@ const Filter = ({ onPageChange }) => {
   const handleFilterPrice = (event) => {
     setPrice({ ...price, [event.target.name]: event.target.value });
     onPageChange(1)
+    if (
+      price.minPrice >= 100 &&
+      price.maxPrice <= 10000 &&
+      price.minPrice < price.maxPrice
+    ) {
+      setErrorPrice("");
+    } else if (price.minPrice && price.maxPrice && price.minPrice > price.maxPrice){
+      setErrorPrice("The min is higher than the max price")
+    } 
   };
 
   const handleClickPrice = () => {
@@ -54,7 +63,6 @@ const Filter = ({ onPageChange }) => {
     ) {
         dispatch(filterPrice(price));
         setErrorPrice("");
-
     } else if (!price.minPrice || !price.maxPrice){
       setErrorPrice("Please insert price")
     }else {
@@ -64,7 +72,7 @@ const Filter = ({ onPageChange }) => {
   };
 
   return (
-    <div className="containerFilter">
+    <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
       <h4>Order</h4>
       <select className="form-select" name="order" onChange={handleOrderSelect}>
       <option value="" disabled selected>Order by Name</option>
