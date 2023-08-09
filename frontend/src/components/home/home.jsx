@@ -5,6 +5,8 @@ import banner from '../../assets/Home.png'
 import Filter from "../filter/filter";
 import { useSelector } from "react-redux";
 
+import img from "../../../../frontend/whatsapp-fill.svg"
+
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
 
@@ -35,52 +37,57 @@ const Home = () => {
   }
 
   return (
-  <div>
-    <img src={banner} className="background-image" />
-    <div className="container py-3">
-      <Filter onPageChange={(page) => setCurrentPage(page)}/>
+    <div>
+      <img src={banner} className="background-image" />
+      <div className="container py-3">
+        <Filter onPageChange={(page) => setCurrentPage(page)} />
 
-      <div className="row">
-        {currentProduct.map((product, index) => (
-          <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
-            <Card 
-              key={product.id}
-              id={product.id}
-              name={product.name}
-              image={product.image}
-              price={product.price}
-              productbrand={product.productbrand}
-            />
-          </div>
-        ))}
-      </div>
+        <div className="row">
+          {currentProduct.map((product, index) => (
+            <div className="col-sm-12 col-md-2 col-lg-4 col-xl-4" key={index}>
+              <Card
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                image={product.image}
+                price={product.price}
+                productbrand={product.productbrand}
+              />
+            </div>
+          ))}
+        </div>
 
-      <div className="d-flex justify-content-center align-items-center py-3">
-        <button
-          className="btn btn-primary me-2"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          &larr; Anterior
-        </button>
-        {Array.from({ length: totalPages }, (_, index) => (
+        <a href="https://wa.me/5495555555?text=Hola quiero información sobre el producto..." className="whatsapp-link" target="_blank" rel="noreferrer">
+          <img src={img} alt="WhatsApp Icon" className="whatsapp-icon" />
+          <span className="whatsapp-tooltip">Chatea con nosotros</span>
+        </a>
+
+        <div className="d-flex justify-content-center align-items-center py-3">
           <button
-            className={`btn btn-outline-primary ${currentPage === index + 1 ? 'active' : ''} me-2`}
-            key={index + 1}
-            onClick={() => handlePageChange(index + 1)}
+            className="btn btn-primary me-2"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
           >
-            {index + 1}
+            &larr; Anterior
           </button>
-        ))}
-        <button
-          className="btn btn-primary"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Siguiente &rarr;
-        </button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              className={`btn btn-outline-primary ${currentPage === index + 1 ? 'active' : ''} me-2`}
+              key={index + 1}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className="btn btn-primary"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            Siguiente &rarr;
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
