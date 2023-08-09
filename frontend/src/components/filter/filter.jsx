@@ -4,22 +4,27 @@ import "./filter.css";
 import {
   orderByName,
   filterByBrand,
-  // refresh,
   filterPrice,
 } from "../../redux/actions";
 import './filter.css';
 
-const Filter = () => {
+const Filter = ({ onPageChange }) => {
+
   const [price, setPrice] = useState({
     minPrice: "",
     maxPrice: "",
   });
+
+  const [errorPrice, setErrorPrice] = useState("");
+
   const allClothes2 = useSelector((state) => state.allClothes2);
   const dispatch = useDispatch();
   
 
   const handleOrderSelect = (event) => {
     dispatch(orderByName(event.target.value));
+    onPageChange(1)
+
   };
 
   const filterBrands = [];
@@ -33,35 +38,40 @@ const Filter = () => {
   const handleFilterBrandSelect = (event) => {
     // dispatch(refresh());
     dispatch(filterByBrand(event.target.value));
+    onPageChange(1)
   };
 
   const handleFilterPrice = (event) => {
     setPrice({ ...price, [event.target.name]: event.target.value });
+    onPageChange(1)
   };
 
-  // const handleClickPrice = () => {
-  //   if (price.minPrice >= 100 && price.maxPrice <= 1000) {
-  //     console.log(price);
-  //     dispatch(filterPrice(price));
-  //   }
-  //   alert("hola");
-  // };
   const handleClickPrice = () => {
-    if (price.minPrice >= 100 && price.maxPrice <= 10000)
-    dispatch(filterPrice(price));
-    alert("hola");
+    if (
+      price.minPrice >= 100 &&
+      price.maxPrice <= 10000 &&
+      price.minPrice < price.maxPrice
+    ) {
+        dispatch(filterPrice(price));
+        setErrorPrice("");
 
+    } else if (!price.minPrice || !price.maxPrice){
+      setErrorPrice("Please insert price")
+    }else {
+      setErrorPrice("The min is higher than the max price")
+    }
+    onPageChange(1);
   };
 
   return (
     <div className="containerFilter">
-      <h2>Order</h2>
-      <select className="form-select"   name="order" onChange={handleOrderSelect}>
+      <h4>Order</h4>
+      <select className="form-select" name="order" onChange={handleOrderSelect}>
       <option value="" disabled selected>Order by Name</option>
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
-      <h2>Brand</h2>
+      <h4>Brand</h4>
       <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
         <option value="" disabled selected>Order by Brand</option>
         { filterBrands.map((brand, index) => ( 
@@ -71,7 +81,7 @@ const Filter = () => {
           </option>
         ))}
       </select >
-      <h2>Price</h2>
+      <h4>Price</h4>
       <div className="containerPrice">
         <label>
           <input
@@ -81,7 +91,7 @@ const Filter = () => {
             value={price.minPrice}
             onChange={handleFilterPrice}
             placeholder="Price Min"
-          />
+            />
           <input
             className="inputPrice"
             type="number"
@@ -89,8 +99,14 @@ const Filter = () => {
             value={price.maxPrice}
             onChange={handleFilterPrice}
             placeholder="Price Max"
-          />
+            />
+            {errorPrice ? 
+            (<p className="errorp">{errorPrice}</p>) 
+            : (<></>)
+            }
         </label>
+        
+
       </div>
       <button className="btnPrice" onClick={handleClickPrice}>
         Search 
