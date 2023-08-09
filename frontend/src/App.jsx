@@ -7,8 +7,17 @@ import Nav from "./components/nav/nav";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
+import { useDispatch } from "react-redux";
+import {useEffect} from "react";
+import { getAllClothes } from "./redux/actions";
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getAllClothes());
+  }, [dispatch]);
+
   const location = useLocation();
 
   // Define las rutas en las que no quieres mostrar el componente Nav

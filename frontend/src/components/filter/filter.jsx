@@ -13,7 +13,7 @@ import "./filter.css";
 import './filter.css';
 
 
-const Filter = ({onPageChange}) => {
+const Filter = ({ onPageChange }) => {
   const [price, setPrice] = useState({
     minPrice: "",
     maxPrice: "",
