@@ -6,12 +6,11 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-<<<<<<< HEAD
+
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
   FILTER_BRAND_AND_PRICE
-=======
->>>>>>> Juan
+
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -28,13 +27,13 @@ export const getAllClothes = () => {
   };
 };
 
-<<<<<<< HEAD
-export const orderByName = (payload) => {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
-  };
-};
+
+// export const orderByName = (payload) => {
+//   return {
+//     type: ORDER_BY_NAME,
+//     payload,
+//   };
+// };
 export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
@@ -66,7 +65,7 @@ export const setSelectedBrand = (brandName) => {
 };
 
 
-=======
+
 export function orderByName(payload){
     return function (dispatch){
     return dispatch ({
@@ -76,20 +75,20 @@ export function orderByName(payload){
     };
 }
 
-export const filterByBrand = (payload) => {
-  return {
-    type: FILTER_BY_BRAND,
-    payload,
-  };
-};
+// export const filterByBrand = (payload) => {
+//   return {
+//     type: FILTER_BY_BRAND,
+//     payload,
+//   };
+// };
 
-export const filterPrice = (payload) => {
-  return {
-    type: FILTER_BY_PRICE,
-    payload,
-  };
-};
->>>>>>> Juan
+// export const filterPrice = (payload) => {
+//   return {
+//     type: FILTER_BY_PRICE,
+//     payload,
+//   };
+// };
+
 
 export const searchName = (payload) => {
   return async function (dispatch) {
@@ -115,7 +114,7 @@ export const refresh = () => {
   };
 };
 
-<<<<<<< HEAD
+
 /* NO ESTA IMPLEMENTADA EN EL FRONT */
 export function getAllBrands() {
   return async function (dispatch) {
@@ -149,47 +148,47 @@ export const filterPriceAndBrand = (payload) => {
 };
 
 // actions.js
-export const filterPrice = (minPrice, maxPrice) => {
-  return async function (dispatch, getState) {
-    const { selectedBrand } = getState(); // Obtener la marca seleccionada del estado
-
-    if (selectedBrand) {
-      // Si hay una marca seleccionada, filtrar por precio solo para esa marca
-      const response = await axios.get(
-        `http://localhost:3004/products/brands${selectedBrand}?minPrice=${minPrice}&maxPrice=${maxPrice}`
-      );
-      dispatch({
-        type: FILTER_BY_PRICE,
-        payload: response.data,
-      });
-    } else {
-      // Si no hay una marca seleccionada, aplicar el filtro a todos los productos
-      const response = await axios.get(
-        `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
-      );
-      dispatch({
-        type: FILTER_BY_PRICE,
-        payload: response.data,
-      });
-    }
-  };
-};
-
 // export const filterPrice = (minPrice, maxPrice) => {
-//   return async function (dispatch) {
-//     try {
+//   return async function (dispatch, getState) {
+//     const { selectedBrand } = getState(); // Obtener la marca seleccionada del estado
+
+//     if (selectedBrand) {
+//       // Si hay una marca seleccionada, filtrar por precio solo para esa marca
 //       const response = await axios.get(
-//         `http://localhost:3004/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`
+//         `http://localhost:3004/products/brands${selectedBrand}?minPrice=${minPrice}&maxPrice=${maxPrice}`
 //       );
-//       return dispatch({
+//       dispatch({
 //         type: FILTER_BY_PRICE,
 //         payload: response.data,
 //       });
-//     } catch (error) {
-//       console.error(error);
+//     } else {
+//       // Si no hay una marca seleccionada, aplicar el filtro a todos los productos
+//       const response = await axios.get(
+//         `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
+//       );
+//       dispatch({
+//         type: FILTER_BY_PRICE,
+//         payload: response.data,
+//       });
 //     }
 //   };
 // };
+
+export const filterPrice = (minPrice, maxPrice) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(
+        `http://localhost:3004/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`
+      );
+      return dispatch({
+        type: FILTER_BY_PRICE,
+        payload: response.data,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
 
 /* NO LOGRE IMPLEMENTARLA AL FRONT */
 export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
@@ -218,6 +217,3 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
 };
 
 
-
-=======
->>>>>>> Juan

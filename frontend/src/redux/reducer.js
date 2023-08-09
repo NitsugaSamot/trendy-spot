@@ -5,26 +5,24 @@ import {
   FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
-<<<<<<< HEAD
+
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
   FILTER_BRAND_AND_PRICE
       
-=======
->>>>>>> Juan
+
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
-<<<<<<< HEAD
+
   productsByPrice: [],
   allBrands: [],
   products: [],
   selectedBrand: null,
   filteredByPrice: [],
-=======
->>>>>>> Juan
+
 };
 
 const reducer = (state = initialState, {action, type, payload }) => {
@@ -63,7 +61,7 @@ const reducer = (state = initialState, {action, type, payload }) => {
       };
     }
 
-<<<<<<< HEAD
+
       case SET_SELECTED_BRAND:
         return {
           ...state,
@@ -112,36 +110,45 @@ const reducer = (state = initialState, {action, type, payload }) => {
           allClothes1: payload,
           filteredByPrice: [], // Restablecer el filtrado por precio cuando cambia la marca
         };
-    
-=======
-    case FILTER_BY_PRICE: { 
 
-      const filteredByPrice = state.allClothes2.filter((product) => (
+      //       case FILTER_BY_PRICE:
+      // const filteredByPrice = state.allClothes2.filter((product) => {
+      //   product.price >= Number(payload.minPrice) &&
+      //     product.price <= Number(payload.maxPrice);
+      // });
+      // return {
+      //   ...state,
+      //   allClothes1: filteredByPrice,
+      // };
+
+    // case FILTER_BY_PRICE: { 
+
+    //   const filteredByPrice = state.allClothes2.filter((product) => (
         
-        product.price >= Number(payload.minPrice) &&
-          product.price <= Number(payload.maxPrice)
-      ));
-      return {
-        ...state,
-        allClothes1: filteredByPrice,
-      };
-    }
-    case FILTER_BY_BRAND: { 
-      const allBrands = state.allClothes2;
-      const brand = allBrands.filter(
-        (allBrand) => allBrand.productbrand === payload
-      );
-      return {
-        ...state,
-        allClothes1: brand,
-      };
-    }
+    //     product.price >= Number(payload.minPrice) &&
+    //       product.price <= Number(payload.maxPrice)
+    //   ));
+    //   return {
+    //     ...state,
+    //     allClothes1: filteredByPrice,
+    //   };
+    // }
+    // case FILTER_BY_BRAND: { 
+    //   const allBrands = state.allClothes2;
+    //   const brand = allBrands.filter(
+    //     (allBrand) => allBrand.productbrand === payload
+    //   );
+    //   return {
+    //     ...state,
+    //     allClothes1: brand,
+    //   };
+    // }
     case SEARCH_NAME:
       return {
         ...state,
         allClothes1: payload,
       };
->>>>>>> Juan
+
 
     case REFRESH: { 
       const perrito = state.allClothes2;
@@ -168,12 +175,4 @@ export default reducer;
     //     allClothes1: brand,
     //   };
     
-    // case FILTER_BY_PRICE:
-    //   const filteredByPrice = state.allClothes2.filter((product) => {
-    //     product.price >= Number(payload.minPrice) &&
-    //       product.price <= Number(payload.maxPrice);
-    //   });
-    //   return {
-    //     ...state,
-    //     allClothes1: filteredByPrice,
-    //   };
+
