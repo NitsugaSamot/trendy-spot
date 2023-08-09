@@ -1,0 +1,10 @@
+.alertRed{
+    background-color: red;
+    color: white;
+
+}
+
+.alertOk{
+    background-color: blue;
+    color: white;
+}
