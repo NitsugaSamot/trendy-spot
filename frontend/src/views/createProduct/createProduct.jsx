@@ -67,7 +67,9 @@ const CreateProduct = () => {
       <div className="tomasSeco"></div>
       <div className="divForm">
       <form className="form">
+
       <h3 className="mb-4 h3">Ingresar Prenda</h3>
+
         <div className="mb-3">
           <input
             type="text"
