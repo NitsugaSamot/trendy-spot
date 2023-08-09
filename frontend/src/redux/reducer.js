@@ -5,14 +5,13 @@ import {
   FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
-  LOGIN,
-  LOGOUT
+  LOGIN_USER
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
-  isAuthenticated: false,
+  user: null
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -83,16 +82,11 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes1: perrito,
       };
 
-    case LOGIN:
-      return {
-        ...state,
-        isAuthenticated: true,
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        isAuthenticated: false,
-      };
+    case LOGIN_USER:
+     return {
+     ...state,
+     user: action.payload,
+        };
 
     default:
       return { ...state };

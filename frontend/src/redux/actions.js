@@ -6,8 +6,7 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-  LOGIN,
-  LOGOUT
+  LOGIN_USER
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -69,10 +68,9 @@ export const refresh = () => {
   };
 };
 
-export const login = () => ({
-  type: LOGIN,
-});
-
-export const logout = () => ({
-  type: LOGOUT,
-});
+export const loginUser = (userData) => {
+  return {
+    type: LOGIN_USER,
+    payload: userData,
+  };
+};

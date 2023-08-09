@@ -1,48 +1,69 @@
-import "./Formulario.css";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../redux/actions';
+import './Formulario.css'; // Importa la hoja de estilos
 
-import { useState } from "react";
+const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
- function Formulario({ setUser }) {
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    const [name, setName] = useState("")
-    const [pass, setPass] = useState("")
-    const [error, setError] = useState(false)
+    try {
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if(name === '' || pass === ''){
-            setError(true)
-            return
-        }
-        
-        setError(false)
-        
-        setUser([name])
+      if (response.ok) {
+        const data = await response.json();
+        dispatch(loginUser(data)); // Actualiza el estado global con la información del usuario
+      } else {
+        console.error('Error al iniciar sesión:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
     }
+  };
 
-    return(
-        <section>
-            <h1>Login</h1>
+  return (
+    <div className="login-container">
+      <div className="login-form">
+        <h2>Iniciar Sesión</h2>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label>Email:</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Contraseña:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Iniciar Sesión</button>
+        </form>
+        <p>
+          ¿No tienes una cuenta?{' '}
+          <Link to="/createUser">Regístrate</Link>
+        </p>
+      </div>
+    </div>
+  );
+};
 
-            <form 
-                className="formulario"
-                onSubmit={handleSubmit}
-            >
-                <input 
-                    type="text" 
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                />
-                <input 
-                    type="password"
-                    value={pass}
-                    onChange={e => setPass(e.target.value)}
-                />
-                <button>Iniciar Sesión</button>
-            </form>
-            {error && <p>Todos los campos son obligatorios</p>}
-        </section>
-    )
-}
-
-export default Formulario;
+export default Login;
