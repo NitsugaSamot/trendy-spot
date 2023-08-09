@@ -78,12 +78,12 @@ const Register = () => {
 
     <form 
           action=""
-          className="my-10 "
+          className=""
           onSubmit={handleSubmit}
           >
     <div className="my-5">
             <label 
-              className="uppercase text-gray-700 block text-xl font-bold"
+              className=""
               htmlFor="name">
                   name
               </label>
@@ -92,7 +92,7 @@ const Register = () => {
                   id="name"
                   type="text"
                   placeholder="Tu name"
-                  className="w-full mt-3 p-3 border rounded bg-gray-50"
+                  className=""
                   value={name}
                   onChange={e => setName(e.target.value)}
               />
@@ -101,7 +101,7 @@ const Register = () => {
 
         <div className="my-5">
             <label 
-              className="uppercase text-gray-700 block text-xl font-bold"
+              className=""
               htmlFor="email">
                   Email
               </label>
@@ -110,7 +110,7 @@ const Register = () => {
                   id="email"
                   type="email"
                   placeholder="Email de Registro"
-                  className="w-full mt-3 p-3 border rounded bg-gray-50"
+                  className=""
                   value={email}
                   onChange={e => setEmail(e.target.value)}
               />
@@ -119,7 +119,7 @@ const Register = () => {
 
         <div className="my-5">
             <label 
-              className="uppercase text-gray-700 block text-xl font-bold"
+              className=""
               htmlFor="password">
                   Password
               </label>
@@ -128,7 +128,7 @@ const Register = () => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className="w-full mt-3 p-3 border rounded bg-gray-50"
+                  className=""
                   value={password}
                   onChange={e => setPassword(e.target.value)}
               />
@@ -138,7 +138,7 @@ const Register = () => {
 
         <div className="my-5">
             <label 
-              className="uppercase text-gray-700 block text-xl font-bold"
+              className=""
               htmlFor="password">
                 Repetir  Password
               </label>
@@ -147,7 +147,7 @@ const Register = () => {
                   id="password2"
                   type="password"
                   placeholder="Repetir tu Password"
-                  className="w-full mt-3 p-3 border rounded bg-gray-50"
+                  className=""
                   value={repetirPassword }
                   onChange={e => setRepetirPassword(e.target.value)}
               />

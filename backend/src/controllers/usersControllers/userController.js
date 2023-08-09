@@ -2,6 +2,7 @@ const{ User} = require('../../db')
 const { Op } = require("sequelize");
 const {generateToken} = require('../../helpers/generateToken')
 const {generateJWT} = require('../../helpers/generateJWT')
+const {emailRegister} = require('../../helpers/email')
 
 
 const createUser = async (req, res) => {
@@ -26,7 +27,12 @@ const createUser = async (req, res) => {
             token: generateToken()
         });
 
-        // res.status(201).json(user);
+        //Enviar email de confirmacion
+        emailRegister({
+            email: user.email,
+            name: user.name,
+            token: user.token
+        })
 
         res.json({msg: 'Usuario creado correctamente, hemos enviado un mail a tu casilla de correo para que confirmes tu cuenta'})
 

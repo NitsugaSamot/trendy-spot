@@ -41,6 +41,10 @@ const Nav = () => {
       <NavLink  to="/create">
         <button className='btnSearch'>create</button>
       </NavLink>
+
+      <NavLink  to="/login/register">
+        <button className='btnSearch'>Registrate</button>
+      </NavLink>
     </div>
   );
 };

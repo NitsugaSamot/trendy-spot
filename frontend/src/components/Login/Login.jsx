@@ -61,15 +61,15 @@ export const Login = () => {
 
         </form>
 
-        <nav className="lg:flex lg:justify-between">
+        <nav className="">
               <Link
-                className='block text-center my-5 text-slate-500 uppercase text-sm'
+                className=''
                 to="register"
               >
                 ¿No tienes una cuenta? Registrate
               </Link>
               <Link
-                className='block text-center my-5 text-slate-500 uppercase text-sm'
+                className=''
                 to="register"
               >
                 Olvide mi Password
