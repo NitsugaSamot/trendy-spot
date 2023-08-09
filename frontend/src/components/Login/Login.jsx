@@ -4,20 +4,19 @@ import { Link, useNavigate } from 'react-router-dom'
 export const Login = () => {
   return (
     <>
-        <h1 className="text-sky-600 font-black text-6xl capitalize">
-          Inicia Sesión Y administra tus 
-          <span className="text-slate-700"> Proyectos</span>
+        <h1 className="">
+          Inicia Sesión Y haz tus  compras
         </h1>
 
 
 
         <form 
-            className="my-10 bg-white shadow rounded-lg p-10"
-            onSubmit='{handleSubmit}'
+            className=""
+            onSubmit=''
             >
-            <div className="my-5">
+            <div className="">
                 <label 
-                  className="uppercase text-gray-700 block text-xl font-bold"
+                  className=""
                   htmlFor="email">
                       Email
                   </label>
@@ -26,16 +25,16 @@ export const Login = () => {
                       id="email"
                       type="email"
                       placeholder="Email de Registro"
-                      className="w-full mt-3 p-3 border rounded bg-gray-50"
-                      value='{email}'
-                      onChange='{ e=> setEmail(e.target.value)}'
+                      className=""
+                      value=''
+                      onChange=''
                   />
 
             </div>
 
             <div className="my-5">
                 <label 
-                  className="uppercase text-gray-700 block text-xl font-bold"
+                  className=""
                   htmlFor="password">
                       Password
                   </label>
@@ -44,9 +43,9 @@ export const Login = () => {
                       id="password"
                       type="password"
                       placeholder="Password"
-                      className="w-full mt-3 p-3 border rounded bg-gray-50"
-                      value='{password}'
-                      onChange='{ e=> setPassword(e.target.value)}'
+                      className=""
+                      value=''
+                      onChange=''
                  />
 
 
@@ -55,7 +54,7 @@ export const Login = () => {
             <input 
                 type="submit" 
                 value="Iniciar Sesión"
-                className="bg-sky-700 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:ng-sky-800 transition-colors"    
+                className=""    
             />
 
 
