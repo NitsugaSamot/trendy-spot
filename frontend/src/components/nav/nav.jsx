@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllClothes, searchName } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
-import imageLogo from './trendy-spot-logo.png'
+import imageLogo from '../../assets/trendy-spot-logo.png';
 import './nav.css'
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Nav = () => {
 
   const handleRefresh = () => {
     dispatch(getAllClothes());
-    window.scrollTo(0, 500);
+    window.scrollTo(0, 400);
   }
 
   const handleSubmit = (event) => {

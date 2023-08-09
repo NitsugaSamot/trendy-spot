@@ -95,6 +95,7 @@ const Filter = ({ onPageChange }) => {
           <input
             className="inputPrice"
             type="number"
+            min="0"
             name="minPrice"
             value={price.minPrice}
             onChange={handleFilterPrice}
@@ -103,6 +104,7 @@ const Filter = ({ onPageChange }) => {
           <input
             className="inputPrice"
             type="number"
+            min="0"
             name="maxPrice"
             value={price.maxPrice}
             onChange={handleFilterPrice}

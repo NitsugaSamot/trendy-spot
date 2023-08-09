@@ -71,12 +71,13 @@ const CreateProduct = () => {
         <div className="mb-3">
           <input
             type="text"
-            className={`form-control ${errors.name ? "is-invalid" : ""}`}
+            className={`form-control ${!errors.name && form.name !== "" ? "is-valid" : "is-invalid"}`}
             id="name"
             name="name"
             value={form.name}
             onChange={handleChange}
             placeholder="Name"
+            autocomplete="off"
           />
           {errors.name && (
             <div className="invalid-feedback">{errors.name}</div>
@@ -85,7 +86,7 @@ const CreateProduct = () => {
 
         <div className="mb-3">
           <select
-            className={`form-select ${errors.size ? "is-invalid" : ""}`}
+            className={`form-select ${!errors.size && form.size !== "" ? "is-valid" : "is-invalid"}`}
             id="size"
             onChange={handleSize}
             value={form.size}
@@ -104,13 +105,14 @@ const CreateProduct = () => {
 
         <div className="mb-3">
           <input
-            type="text"
-            className={`form-control ${errors.price ? "is-invalid" : ""}`}
+            type="number"
+            className={`form-control ${!errors.price && form.price !== "" ? "is-valid" : "is-invalid"}`}
             id="price"
             name="price"
             value={form.price}
             onChange={handleChange}
             placeholder="Insert Price"
+            autocomplete="off"
           />
           {errors.price && (
             <div className="invalid-feedback">{errors.price}</div>
@@ -120,12 +122,13 @@ const CreateProduct = () => {
         <div className="mb-3">
           <input
             type="text"
-            className={`form-control ${errors.image ? "is-invalid" : ""}`}
+            className={`form-control ${!errors.image && form.image !== "" ? "is-valid" : "is-invalid"}`}
             id="image"
             name="image"
             value={form.image}
             onChange={handleChange}
             placeholder="Image"
+            autocomplete="off"
           />
           {errors.image && (
             <div className="invalid-feedback">{errors.image}</div>
@@ -135,12 +138,13 @@ const CreateProduct = () => {
         <div className="mb-3">
           <input
             type="text"
-            className={`form-control ${errors.description ? "is-invalid" : ""}`}
+            className={`form-control ${!errors.description && form.description !== "" ? "is-valid" : "is-invalid"}`}
             id="description"
             name="description"
             value={form.description}
             onChange={handleChange}
             placeholder="Write a description"
+            autocomplete="off"
           />
           {errors.description && (
             <div className="invalid-feedback">{errors.description}</div>
@@ -149,13 +153,14 @@ const CreateProduct = () => {
 
         <div className="mb-3">
           <input
-            type="text"
-            className={`form-control ${errors.stock ? "is-invalid" : ""}`}
+            type="number"
+            className={`form-control ${!errors.stock && form.stock ? "is-valid" : "is-invalid"}`}
             id="stock"
             name="stock"
             value={form.stock}
             onChange={handleChange}
             placeholder="Insert Stock"
+            autocomplete="off"
           />
           {errors.stock && (
             <div className="invalid-feedback">{errors.stock}</div>
@@ -165,12 +170,13 @@ const CreateProduct = () => {
         <div className="mb-3">
           <input
             type="text"
-            className={`form-control ${errors.color ? "is-invalid" : ""}`}
+            className={`form-control ${!errors.color && form.color !== "" ? "is-valid" : "is-invalid"}`}
             id="color"
             name="color"
             value={form.color}
             onChange={handleChange}
             placeholder="Color"
+            autocomplete="off"
           />
           {errors.color && (
             <div className="invalid-feedback">{errors.color}</div>
@@ -180,12 +186,13 @@ const CreateProduct = () => {
         <div className="mb-3">
           <input
             type="text"
-            className={`form-control ${errors.brand ? "is-invalid" : ""}`}
+            className={`form-control ${!errors.brand && form.brand !== "" ? "is-valid" : "is-invalid"}`}
             id="brand"
             name="brand"
             value={form.brand}
             onChange={handleChange}
             placeholder="Brand"
+            autocomplete="off"
           />
           {errors.brand && (
             <div className="invalid-feedback">{errors.brand}</div>

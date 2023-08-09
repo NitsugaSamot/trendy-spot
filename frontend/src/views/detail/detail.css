@@ -1,6 +1,7 @@
 
 .productImage{
     max-width: 100%;
+    cursor: zoom-in;
 }
 
 .mediumContainer {
@@ -27,3 +28,4 @@
 .divMaxDetails {
     max-width: 100%;
 }
+

@@ -1,11 +1,15 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
   background-color: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+
+form::input{
+  background-color: white;
 }
 
 a {
@@ -31,7 +35,7 @@ button {
 button:hover {
   border-radius: 5px;
   transform: translatey(-2px);
-  box-shadow: 1px 6px 17px 0px rgb(47, 203, 255);;
+  box-shadow: 1px 6px 17px 0px rgb(47, 203, 255);
 }
 
 

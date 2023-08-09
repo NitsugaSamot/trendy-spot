@@ -19,6 +19,11 @@
     padding-left: 10px;
 }
 
+.inputPrice::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
 .containerPrice{
     display: flex;
     flex-direction: column;

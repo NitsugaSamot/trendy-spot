@@ -1,7 +1,7 @@
 import "./App.css";
-import Home from "./components/home/home";
-import Detail from "./components/detail/detail";
-import CreateProduct from "./components/createProduct/createProduct";
+import Home from "./views/home/home";
+import Detail from "./views/detail/detail";
+import CreateProduct from "./views/createProduct/createProduct";
 import { Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/nav/nav";
 import { getAllClothes } from "./redux/actions";
