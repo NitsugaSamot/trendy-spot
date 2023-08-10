@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
+  
 
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;

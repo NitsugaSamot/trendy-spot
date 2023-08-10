@@ -18,8 +18,8 @@ const validation = (req, res, next) => {
   else if (isNaN(price))
     return res.status(400).json({ error: "Should be a number" });
 
-  if (!image)
-    return res.status(400).json({ error: "You must provide an image" });
+  // if (!image)
+  //   return res.status(400).json({ error: "You must provide an image" });
 
   if (!description)
     return res.status(400).json({ error: "You must write a description" });

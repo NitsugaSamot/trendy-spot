@@ -44,7 +44,6 @@ const Detail = () => {
             <h3>{garment.description}</h3>
             <hr />
           </div>
-      
         </div>
       </div>
     </div>

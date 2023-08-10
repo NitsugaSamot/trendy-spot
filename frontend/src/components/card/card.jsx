@@ -3,10 +3,11 @@ import "./card.css";
 
 const Card = ({ image, id, name, price , productbrand}) => {
 
+
   return (
     <div className="card">
       <NavLink to={`/detail/${id}`}>
-        <img className="" src={image} alt={name} width={"300px"} />
+        <img className="" src={image[0]} alt={name} width={"300px"} />
         <hr/>
         <h4 className="h5">{name}</h4>
         <h3 className="h5">{productbrand}</h3>
