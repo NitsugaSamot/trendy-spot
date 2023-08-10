@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClothes, searchName } from "../../redux/actions";
+import { getAllClothes, searchName, removeFromCart } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
 import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
@@ -73,6 +73,13 @@ const Nav = () => {
                   <p>{item.name}</p>
                   <p>Cantidad: {item.quantity}</p>
                   <p>Precio: ${item.price * item.quantity}</p>
+                  <button
+                    className="remove-button"
+                    onClick={() => dispatch(removeFromCart(item.id))
+                    }
+                  >
+                    Eliminar
+                  </button>
                 </div>
               ))}
             </div>
