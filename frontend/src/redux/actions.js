@@ -6,6 +6,9 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
+  ADD_TO_CART,
+  INITIALIZE_CART,
+  REMOVE_FROM_CART,
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -43,7 +46,29 @@ export const filterPrice = (payload) => {
     type: FILTER_BY_PRICE,
     payload,
   };
+}; 
+
+export const addToCart = (item) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: item,
+    });
+
+    const cartItems = getState().cart; // Obtener los elementos del carrito del estado
+    localStorage.setItem("cart", JSON.stringify(cartItems)); // Actualizar el localStorage
+  };
 };
+
+export const initializeCart = (cartItems) => ({
+  type: INITIALIZE_CART,
+  payload: cartItems,
+});
+
+export const removeFromCart = (itemId) => ({
+  type: REMOVE_FROM_CART,
+  payload: itemId,
+});
 
 export const searchName = (payload) => {
   return async function (dispatch) {
