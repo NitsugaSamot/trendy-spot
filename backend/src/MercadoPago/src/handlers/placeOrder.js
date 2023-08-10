@@ -12,7 +12,6 @@ const placeOrder = async (req, res) => {
   try {
     // Obtención de los datos del formulario
     const { id, name, description, image, stock, condition, price, quantity } = req.body
-
     // Creación de la orden de compra
     let preference = {
       		items: [
@@ -22,6 +21,7 @@ const placeOrder = async (req, res) => {
               image: image,
       				unit_price: price,
       				quantity: quantity,
+              description: description,
               currency_id: "ARS"
       			}
       		],

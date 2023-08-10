@@ -45,9 +45,9 @@ const Detail = () => {
       id: garment.id,
       name: garment.name,
       price: garment.price,
-      quantity: 1
+      description: garment.description,
+      quantity: 1,
     };
-    console.log("llegue e")
     dispatch(addToCart(cartItem));
     setShowModal(true);
   };
