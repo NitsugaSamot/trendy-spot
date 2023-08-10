@@ -1,0 +1,31 @@
+
+.productImage{
+    max-width: 100%;
+    cursor: zoom-in;
+}
+
+.mediumContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.maxContainer {
+    padding-top: 7%;
+}
+
+
+.imageCont {
+    max-width: 50%;
+    width: 35%;
+}
+
+.allDetailsDiv {
+    max-width: 100%;
+    margin-top: 10%;
+    padding-left: 5%;
+}
+
+.divMaxDetails {
+    max-width: 100%;
+}
+

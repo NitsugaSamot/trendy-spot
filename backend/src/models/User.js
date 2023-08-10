@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 module.exports = (sequelize) => {
   const User = sequelize.define('user', {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER, 
       autoIncrement: true,
       primaryKey: true
     },
@@ -52,6 +52,10 @@ module.exports = (sequelize) => {
       user.password = await bcrypt.hash(user.password, salt);
     }
   });
+
+  User.prototype.checkPassword = async function(passwordForm) {
+    return await bcrypt.compare(passwordForm, this.password);
+  };
 
   return User;
 };

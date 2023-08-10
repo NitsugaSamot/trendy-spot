@@ -6,3 +6,6 @@ export const FILTER_BY_BRAND = "FILTER_BY_BRAND";
 export const REFRESH = "REFRESH";
 export const FILTER = "FILTER"
 export const GET_ALL_BRANDS = "GET_ALL_BRANDS"
+export const SET_SELECTED_BRAND = "SET_SELECTED_BRAND"
+export const FILTER_BRAND_AND_PRICE = "FILTER_BRAND_AND_PRICE"
+

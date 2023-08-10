@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllClothes, searchName } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
-import imageLogo from './trendy-spot-logo.png'
+import imageLogo from '../../assets/trendy-spot-logo.png';
 import './nav.css'
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const Nav = () => {
 
   const handleRefresh = () => {
     dispatch(getAllClothes());
-    window.scrollTo(0, 500);
+    window.scrollTo(0, 400);
   }
 
   const handleSubmit = (event) => {
@@ -34,20 +34,26 @@ const Nav = () => {
         <img src={imageLogo} alt="logo-home" className="logoHome" />
       </NavLink>
       
-      {!location.pathname.startsWith('/detail') && <form onSubmit={handleSubmit}>
+      <div>
       <input
        className="search"
         type="text"
         placeholder="Search your clothes"
         value={search}
         onChange={handleInputName}
+        onSubmit={handleSubmit}
       />
       <button className="btnSearch" type="submit">Search</button>
-      </form>}
+      </div>
+      
       
       {location.pathname === '/'  && <button className='btnRefresh' onClick={handleRefresh}>Refresh</button>}
       <NavLink  to="/create">
         <button className='btnSearch'>create</button>
+      </NavLink>
+
+      <NavLink  to="/login/register">
+        <button className='btnSearch'>Registrate</button>
       </NavLink>
     </div>
   );
