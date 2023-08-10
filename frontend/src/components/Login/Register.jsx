@@ -1,7 +1,10 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import { Link } from "react-router-dom"
 import Alerta from '../Alerta/Alerta'
-import axios from 'axios'
+// import axios from 'axios'
+import axiosClient from '../../config/axiosClient'
+import './styles.css'
+import imageLogo from './trendy-spot-logo.png'
 
 const Register = () => {
 
@@ -10,6 +13,9 @@ const Register = () => {
   const [ password, setPassword ] = useState('')
   const [ repetirPassword, setRepetirPassword ] = useState('')
   const [ alerta, setAlerta ] = useState({})
+
+  
+  
 
   const handleSubmit = async e => {
     e.preventDefault()
@@ -46,7 +52,7 @@ const Register = () => {
     //Crear usuario de la api
 
     try {
-      const {data} = await axios.post('http://localhost:3004/users', {name, email, password})
+      const {data} = await axiosClient.post(`/users`, {name, email, password})
 
       setAlerta({
         msg: data.msg,
@@ -70,38 +76,43 @@ const Register = () => {
 
   return (
     <>
-    <h1 className="titleLogin">
+    <div className='mainRegister'>
+
+
+    <h3 className="titleLogin">
       Crea una cuenta para hacer tu compra
-    </h1>
+    </h3>
 
     {msg && <Alerta alerta={alerta} />}
 
     <form 
           action=""
-          className=""
+          className="formRegister"
           onSubmit={handleSubmit}
           >
-    <div className="my-5">
+    <div className="columna">
+    <div className="divInput">
             <label 
-              className=""
-              htmlFor="name">
-                  name
+              className="label"
+              htmlFor="name"
+              >
+                  Name
               </label>
             
               <input 
                   id="name"
                   type="text"
                   placeholder="Tu name"
-                  className=""
+                  className="input"
                   value={name}
                   onChange={e => setName(e.target.value)}
               />
 
         </div>
 
-        <div className="my-5">
+        <div className="divInput">
             <label 
-              className=""
+              className="label"
               htmlFor="email">
                   Email
               </label>
@@ -110,16 +121,16 @@ const Register = () => {
                   id="email"
                   type="email"
                   placeholder="Email de Registro"
-                  className=""
+                  className="input"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
               />
 
       </div>
 
-        <div className="my-5">
+        <div className="divInput">
             <label 
-              className=""
+              className="label"
               htmlFor="password">
                   Password
               </label>
@@ -128,7 +139,7 @@ const Register = () => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className=""
+                  className="input"
                   value={password}
                   onChange={e => setPassword(e.target.value)}
               />
@@ -136,9 +147,9 @@ const Register = () => {
 
       </div>
 
-        <div className="my-5">
+        <div className="divInput">
             <label 
-              className=""
+              className="label"
               htmlFor="password">
                 Repetir  Password
               </label>
@@ -147,7 +158,7 @@ const Register = () => {
                   id="password2"
                   type="password"
                   placeholder="Repetir tu Password"
-                  className=""
+                  className="input"
                   value={repetirPassword }
                   onChange={e => setRepetirPassword(e.target.value)}
               />
@@ -155,29 +166,38 @@ const Register = () => {
 
         </div>
 
+
+    </div>
+
+    <div className="columna">
+        <img src={imageLogo} alt="logo-home" className='logoRegister' />
+    </div>
+   
+
         <input 
             type="submit" 
             value="Crear Cuenta"
-            className="bg-sky-700 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:ng-sky-800 transition-colors"    
+            className="btnCreateAccount"    
         />
 
 
     </form>
 
-    <nav className="lg:flex lg:justify-between">
+    <nav className="navRegister">
           <Link
-            className='block text-center my-5 text-slate-500 uppercase text-sm'
+            className='linksRegister'
             to="/login"
           >
             ¿Tienes una cuenta? Inicia Sesión
           </Link>
           <Link
-            className='block text-center my-5 text-slate-500 uppercase text-sm'
+            className='linksRegister'
             to="/olvide-password"
           >
             Olvide Mi Password
           </Link>
     </nav>
+    </div>
 </>
   )
 }

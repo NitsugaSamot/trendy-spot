@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useParams, Link } from 'react-router-dom'
 import Alerta from "../Alerta/Alerta"
-import axios from "axios"
+import axiosClient from "../../config/axiosClient"
+import './styles.css'
 
 const ConfirmAccount = () => {
 
@@ -14,11 +15,11 @@ const ConfirmAccount = () => {
   useEffect(() => {
     const ConfirmAccount = async () => {
       try {
-        const url = `http://localhost:3004/users/confirm/${id}`
+        const url = `/users/confirm/${id}`
         // const {data} = await clienteAxios(url)
-        const {data} = await axios.post(url)
+        const {data} = await axiosClient.post(url)
 
-        console.log(data)
+        // console.log(data)
         setAlerta({
           msg: data.msg,
           error: false
@@ -46,7 +47,7 @@ const ConfirmAccount = () => {
         {accountConfirmated && (
           <Link
             className="block text-center my-5 text-slate-500 uppercase text-sm"
-            to="/"
+            to="/login"
           >
             Inicia Sesión
           </Link>
