@@ -49,11 +49,11 @@ const Nav = () => {
       
       {location.pathname === '/'  && <button className='btnRefresh' onClick={handleRefresh}>Refresh</button>}
       <NavLink  to="/create">
-        <button className='btnSearch'>create</button>
+        <button className='btnSearch'>Create</button>
       </NavLink>
 
       <NavLink  to="/login/register">
-        <button className='btnSearch'>Registrate</button>
+        <button className='btnSearch'>Sign up</button>
       </NavLink>
     </div>
   );

@@ -13,8 +13,8 @@ const validation = (form) => {
     errors.price = "the price must be between 100 and 10000";
   else if (isNaN(form.price)) errors.price = "Should be number";
 
-  if (!form.image) errors.image = "You must provide an image";
-  else if (!reg.test(form.image)) errors.image = "Insert a valid URL"
+  // if (!form.image) errors.image = "You must provide an image";
+  // else if (!reg.test(form.image)) errors.image = "Insert a valid URL"
 
   if (!form.description) errors.description = "You must write a description";
   else if (form.description.lenght < 10 || form.description.lenght > 200)

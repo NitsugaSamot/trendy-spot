@@ -1,31 +1,69 @@
-
-.productImage{
+.theRealMaxContainer {
+    padding: 1%;
     max-width: 100%;
-    cursor: zoom-in;
 }
 
 .mediumContainer {
     display: flex;
+    max-width: 100%;
+    background-color: rgb(17, 76, 95);
+    color: white;  
+    margin-top: 3%;
+    padding: 1%;
+}
+
+.imageCont {
+    background-color: rgb(230, 230, 230);
+    max-width: 40%;
+    margin: 2%;
+    padding: 1%;
+    display: flex;
+    margin-left: 5%;
     justify-content: center;
 }
 
-.maxContainer {
-    padding-top: 7%;
+.productImage{
+    max-width: 100%;
+    padding: 4%;
 }
 
+/* rgb(47, 203, 255); */
+/* rgb(17, 76, 95); */
 
-.imageCont {
-    max-width: 50%;
-    width: 35%;
+.divImage{
+    max-width: 100%;
 }
 
 .allDetailsDiv {
+    background-color: rgb(17, 76, 95);
     max-width: 100%;
+    padding: 3%;
     margin-top: 10%;
-    padding-left: 5%;
 }
 
 .divMaxDetails {
     max-width: 100%;
 }
+
+.divBtn{
+    max-width: 100%;
+    padding: 1%;
+    display: flex;
+    flex-direction: column;
+}
+
+.priceh4 {
+    margin-top: 1%;
+    font-family: 'DMSans';
+    padding: 1%;
+    margin: 1%; 
+    color: rgb(47, 203, 255);
+    background-color: rgb(230, 230, 230);
+}
+
+@font-face {
+    font-family: "DMSans";
+    src: url('../../utils/DMSans-VariableFont_opszwght.ttf') 
+    format('truetype');
+  }
 
