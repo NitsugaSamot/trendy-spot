@@ -16,11 +16,15 @@ const Nav = () => {
   // Carrito 
   const cart = useSelector((state) => state.cart)
   const [cartVisible, setCartVisible] = useState(false);
-
-  useEffect(()=> {
-    
-  })
-
+  const [totalPrice, setTotalPrice] = useState(0);
+  
+  useEffect(() => {
+    let total = 0;
+    cart.forEach(item => {
+      total += item.price * item.quantity;
+    });
+    setTotalPrice(total);
+  },[cart]);
 
   const handleRefresh = () => {
     dispatch(getAllClothes());
@@ -36,6 +40,13 @@ const Nav = () => {
 
   const handleInputName = (event) => {
     setSearch(event.target.value);
+  };
+
+
+  const handleEmptyCart = () => {
+    cart.forEach(item => {
+      dispatch(removeFromCart(item.id));
+    });
   };
 
   return (
@@ -62,8 +73,8 @@ const Nav = () => {
 
       <div className="cart-icon-container">
         <div className="cart-icon" onClick={() => setCartVisible(!cartVisible)}>
-          <img src={imageCart} alt="Carrito" />
-          {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
+          <img src={imageCart} alt="Carrito" className="icon-image" />
+          {cart.length > 0 && <div className="bak-cart-count"><span className="cart-count">{cart.length}</span></div>}
         </div>
         {cartVisible && (
           <div className="cart-popup">
@@ -78,11 +89,17 @@ const Nav = () => {
                     onClick={() => dispatch(removeFromCart(item.id))
                     }
                   >
-                    Eliminar
+                    X
                   </button>
                 </div>
               ))}
             </div>
+            <div className="cart-total">
+              Total: ${totalPrice}
+            </div>
+            <button className="empty-cart-button" onClick={handleEmptyCart}>
+            Empty Cart
+            </button>
           </div>
         )}
       </div>
