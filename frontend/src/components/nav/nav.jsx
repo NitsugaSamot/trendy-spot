@@ -56,6 +56,7 @@ const handleBuy = () => {
       const response = await axios.post("http://localhost:3004/mercadopago/order", orderData);
       const link = response.data.response.body.init_point;
       window.location.href = link;
+      handleEmptyCart()
     } catch (error) {
       console.log(error.message);
     }

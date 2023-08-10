@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 //* Mercado Pago
 import Product from "./MercadoPago/Product";
 import ConfirmationPage from "./MercadoPago/ConfirmationPage";
-import Cart from "../src/components/nav/cart"
 
 
 
@@ -40,7 +39,6 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path='/create' element={<CreateProduct />} />
         <Route path='/confirmation' element={<ConfirmationPage />} />
-        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );
