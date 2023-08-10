@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllClothes, searchName, removeFromCart } from "../../redux/actions";
+import { getAllClothes, searchName, removeFromCart, increaseQuantity, decreaseQuantity } from "../../redux/actions";
 import { NavLink } from "react-router-dom";
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import { useLocation, useNavigate } from "react-router-dom";
@@ -63,6 +63,14 @@ const handleBuy = () => {
 
   // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
   createPreference();
+};
+
+const handleIncrement = (itemId) => {
+  dispatch(increaseQuantity(itemId));
+};
+
+const handleDecrement = (itemId) => {
+  dispatch(decreaseQuantity(itemId));
 };
 
 
@@ -140,7 +148,11 @@ return (
             {cart.map(item => (
               <div key={item.id} className="cart-item">
                 <p>{item.name}</p>
+                  <button className="quantity-button" onClick={() => handleIncrement(item.id)}>+</button>
                 <p>Cantidad: {item.quantity}</p>
+                  <button className="quantity-button" onClick={() => handleDecrement(item.id)}>-</button>
+                <div>
+                </div>
                 <p>Precio: ${item.price * item.quantity}</p>
                 {/* Botón para eliminar un elemento del carrito */}
                 <button

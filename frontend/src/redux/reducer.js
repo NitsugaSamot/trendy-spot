@@ -7,7 +7,9 @@ import {
   REFRESH,
   ADD_TO_CART,
   REMOVE_FROM_CART,
-  INITIALIZE_CART
+  INITIALIZE_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY
 } from "./action-types";
 
 const initialState = {
@@ -109,8 +111,27 @@ const reducer = (state = initialState, { type, payload }) => {
         cart: updatedCart,
       };
     }
-    // case "ADD_TO_CART":
-    //   // ... Lógica para agregar al carrito en Redux y actualizar el localStorage
+    case INCREASE_QUANTITY:{ 
+      return {
+        ...state,
+        cart: state.cart.map(item =>
+          item.id === payload
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        ),
+      }
+    }
+
+    case DECREASE_QUANTITY: {
+      return {
+        ...state,
+        cart: state.cart.map(item =>
+          item.id === payload
+            ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
+            : item
+        ),
+      };
+    }
     
     default:
       return { ...state };

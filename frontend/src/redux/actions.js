@@ -9,6 +9,8 @@ import {
   ADD_TO_CART,
   INITIALIZE_CART,
   REMOVE_FROM_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -69,6 +71,20 @@ export const removeFromCart = (itemId) => ({
   type: REMOVE_FROM_CART,
   payload: itemId,
 });
+
+export const increaseQuantity = (itemId) => {
+  return {
+    type: INCREASE_QUANTITY,
+    payload: itemId,
+  };
+};
+
+export const decreaseQuantity = (itemId) => {
+  return {
+    type: DECREASE_QUANTITY,
+    payload: itemId,
+  };
+};
 
 export const searchName = (payload) => {
   return async function (dispatch) {
