@@ -3,6 +3,7 @@ const {
   searchProductsByName,
   getDBinfo,
 } = require("../../controllers/productsControllers/getProductsControllers");
+
 // http://localhost:3004/products
 const getAllOrByNameProducts = async(req, res) => {
     const { name } = req.query;

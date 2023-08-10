@@ -21,11 +21,11 @@ module.exports = (sequelize) => {
       allowNull: false,
     },  
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.ARRAY(DataTypes.STRING(500)),
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     stock: {
@@ -44,5 +44,3 @@ module.exports = (sequelize) => {
   { timestamps: false }
   );
 };
-
-  
