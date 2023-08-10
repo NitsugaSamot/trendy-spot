@@ -2,10 +2,13 @@ const{ User} = require('../../db')
 const { Op } = require("sequelize");
 const {generateToken} = require('../../helpers/generateToken')
 const {generateJWT} = require('../../helpers/generateJWT')
+const {emailRegister} = require('../../helpers/email')
 
 
 const createUser = async (req, res) => {
     try {
+
+        //Datos necesarios para el registro
         const { name, email, password } = req.body;
 
         // Verificar si el usuario ya existe por su email
@@ -24,7 +27,16 @@ const createUser = async (req, res) => {
             token: generateToken()
         });
 
-        res.status(201).json(user);
+        //Enviar email de confirmacion
+        emailRegister({
+            email: user.email,
+            name: user.name,
+            token: user.token
+        })
+
+        res.json({msg: 'Usuario creado correctamente, hemos enviado un mail a tu casilla de correo para que confirmes tu cuenta'})
+
+        
         // console.log(user);
     } catch (error) { 
         console.log(error);
@@ -33,6 +45,8 @@ const createUser = async (req, res) => {
 };
 
 const authenticateUser = async (req, res ) => {
+
+    
     const {email, password} = req.body
 
     //Comprobar si el usuario existe
@@ -46,16 +60,18 @@ const authenticateUser = async (req, res ) => {
     //Comprobar si esta confirmated
     if(!user.confirmated) {
         const error = new Error('Your count is not confimed')
-        res.status(403).json({msg: error.message})
+        res.status(400).json({msg: error.message})
     }
  
-    //Comprobar su  password
+    //Comprobar su  password mediante bcrypt compare establecito en el modelo User
     const isPasswordCorrect = await user.checkPassword(password);
 
 
 //     UPDATE users
 // SET confirmated = true
 // WHERE id = tu_id;
+
+//Si la contraseña es correcta, responde con los detalles del usuario y un token JWT generado utilizando generateJWT()
     if (isPasswordCorrect) {
 
         res.json({
@@ -74,7 +90,10 @@ const authenticateUser = async (req, res ) => {
 };
 
 const confirmAccount = async (req, res) => {
+
+    //Extrae el token de la url
     const { token } = req.params;
+    //Busca en la base de datos un usuario con el token proporcionado.
     const userConfirm = await User.findOne({ where: { token } });
   
     if (!userConfirm) {
@@ -85,7 +104,7 @@ const confirmAccount = async (req, res) => {
     try {
       userConfirm.confirmated = true;
       userConfirm.token = '';
-      await userConfirm.save(); // Save the changes to the database
+      await userConfirm.save(); // Gyarda los cambios de token y confirmated
     //   console.log(userConfirm);
       res.json({ msg: 'Account confirmed successfully' });
     } catch (error) {

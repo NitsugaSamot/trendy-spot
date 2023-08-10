@@ -1,12 +1,12 @@
 .containerNav{
     background-color: rgba(255, 255, 255, 0.869);
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+    /* display: flex; */
+    /* align-items: center; */
+
     height: 5rem;
-    position: fixed;
+    /* position: fixed; */
     width: 100%;
-    z-index: 3;
+    /* z-index: 3; */
 }
 .logoHome{
     width: 80px;
@@ -17,7 +17,7 @@
     height: 2rem;
     width: 30rem;
     border: none;
-    outline: none;
+    /* outline: none; */
     border-radius: 5px;
     padding: 10px;
 }

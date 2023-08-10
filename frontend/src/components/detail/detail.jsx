@@ -24,7 +24,6 @@ const Detail = () => {
 
   return (
     <div className="nav">
-      <Nav/>
       <div className="contImage">
         <img className="detailImage" src={garment.image} alt={garment.name} />
         

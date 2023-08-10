@@ -5,11 +5,14 @@ import { NavLink } from "react-router-dom";
 import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
 import { useLocation } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const Nav = () => {
   const location = useLocation();
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+
+  const {closeSession} = useAuth()
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -42,9 +45,12 @@ const Nav = () => {
         <button className='btnSearch'>create</button>
       </NavLink>
 
-      <NavLink  to="/login/register">
-        <button className='btnSearch'>Registrate</button>
-      </NavLink>
+      {/* <NavLink  to="/logout"> */}
+        <button 
+            className='btnSearch'
+            onClick={closeSession} 
+          >Cerrar Sesión</button>
+      {/* </NavLink> */}
     </div>
   );
 };

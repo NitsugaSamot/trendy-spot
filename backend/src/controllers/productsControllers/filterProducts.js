@@ -15,19 +15,29 @@ const filterByBrands = async (req, res) => {
     return res.status(404).json({ message: "No se encontraron productos para esta marca." });
   };
   
-
-const filterProductsByPriceRange = async (req, res) => {
+  const filterProductsByPriceRange = async (req, res) => {
     const { minPrice, maxPrice } = req.query;
   
     if (!minPrice || !maxPrice) {
       return res.status(400).json({ error: 'Debe proporcionar valores para minPrice y maxPrice.' });
     }
   
+    const parsedMinPrice = parseInt(minPrice);
+    const parsedMaxPrice = parseInt(maxPrice);
+  
+    if (isNaN(parsedMinPrice) || isNaN(parsedMaxPrice)) {
+      return res.status(400).json({ error: 'Los valores proporcionados para minPrice y maxPrice deben ser números válidos.' });
+    }
+  
+    if (parsedMinPrice >= parsedMaxPrice) {
+      return res.status(400).json({ error: 'El precio mínimo debe ser mayor al precio máximo.' });
+    }
+  
     try {
       const dbProducts = await Product.findAll({
         where: {
           price: {
-            [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+            [Op.between]: [parsedMinPrice, parsedMaxPrice],
           },
         },
       });
@@ -38,9 +48,35 @@ const filterProductsByPriceRange = async (req, res) => {
   
       return res.json(dbProducts);
     } catch (error) {
-      return res.status(500).json({ error: 'Error al obtener los productos.' });
+      return res.status(400).json({ error: 'Error al obtener los productos.' });
     }
   };
+  
+// const filterProductsByPriceRange = async (req, res) => {
+//     const { minPrice, maxPrice } = req.query;
+  
+//     if (!minPrice || !maxPrice) {
+//       return res.status(400).json({ error: 'Debe proporcionar valores para minPrice y maxPrice.' });
+//     }
+  
+//     try {
+//       const dbProducts = await Product.findAll({
+//         where: {
+//           price: {
+//             [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+//           },
+//         },
+//       });
+  
+//       if (!dbProducts.length) {
+//         return res.json([]);
+//       }
+  
+//       return res.json(dbProducts);
+//     } catch (error) {
+//       return res.status(400).json({ error: 'Error al obtener los productos.' });
+//     }
+//   };
 
 
   /* ESTE ES EL SUPER CONTROLLER QUE COMBINA FILTRADOS, QUEDA PENDIENTE LOGRAR IMPLEMENTARLO EN EL FRONT 
@@ -52,16 +88,22 @@ const filterProductsByPriceRange = async (req, res) => {
   */
 
   const filterProducts = async (req, res) => {
+
+    //Desestruturamos estos valores
     const { brandName, minPrice, maxPrice } = req.query;
   
+    //Crea este objeto vacio que se utilizara para construir las condiciones de filtrado para la consulta a la base de datos
     let whereCondition = {};
   
+    //Si brandname esta en los parámetros de de consulta agrega la condicion a wherecondition para filtrar por marca
     if (brandName) {
       whereCondition = { ...whereCondition, productbrand: brandName };
     }
   
+    //Verifica si minPrice y maxPrice estan en los parametros de busqueda
     if (minPrice && maxPrice) {
       whereCondition = {
+        //agrega una condición al objeto whereCondition para filtrar por el rango de precios del producto utilizando el operador Op.between proporcionado por Sequelize
         ...whereCondition,
         price: {
           [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
@@ -78,7 +120,7 @@ const filterProductsByPriceRange = async (req, res) => {
         return res.json([]);
       }
     } catch (error) {
-      return res.status(500).json({ error: 'Error al obtener los productos.' });
+      return res.status(400).json({ error: 'Error al obtener los productos.' });
     }
   };
   
