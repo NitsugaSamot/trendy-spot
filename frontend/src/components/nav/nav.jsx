@@ -148,9 +148,9 @@ return (
             {cart.map(item => (
               <div key={item.id} className="cart-item">
                 <p>{item.name}</p>
-                  <button className="quantity-button" onClick={() => handleIncrement(item.id)}>+</button>
-                <p>Cantidad: {item.quantity}</p>
                   <button className="quantity-button" onClick={() => handleDecrement(item.id)}>-</button>
+                <p>Cantidad: {item.quantity}</p>
+                  <button className="quantity-button" onClick={() => handleIncrement(item.id)}>+</button>
                 <div>
                 </div>
                 <p>Precio: ${item.price * item.quantity}</p>
