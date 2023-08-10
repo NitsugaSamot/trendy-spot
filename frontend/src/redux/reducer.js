@@ -5,11 +5,15 @@ import {
   FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INITIALIZE_CART
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
+  cart: []
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -83,6 +87,31 @@ const reducer = (state = initialState, { type, payload }) => {
         allClothes1: perrito,
       };
     }
+    case ADD_TO_CART:{
+
+      console.log(payload);
+      return {
+      ...state,
+        cart: [...state.cart, payload]
+      };
+    }
+    case INITIALIZE_CART:{ 
+      return {
+        ...state,
+        cart: payload,
+      };
+    }
+    case REMOVE_FROM_CART: {
+      const updatedCart = state.cart.filter(item => item.id !== payload);
+      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
+      return {
+        ...state,
+        cart: updatedCart,
+      };
+    }
+    // case "ADD_TO_CART":
+    //   // ... Lógica para agregar al carrito en Redux y actualizar el localStorage
+    
     default:
       return { ...state };
   }

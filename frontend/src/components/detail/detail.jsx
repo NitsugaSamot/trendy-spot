@@ -1,22 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import { addToCart } from "../../redux/actions";
 import axios from 'axios';
 
 import Nav from "../nav/nav";
 import price from "../detail/price.png"
 import './detail.css'
+import { useDispatch } from "react-redux";
 
 // Definición del componente funcional "Detail"
 const Detail = () => {
   // Extraer el parámetro "id" de la URL utilizando useParams de react-router-dom
   const { id } = useParams();
+  const dispatch = useDispatch()
   
   // Estado para almacenar la información de la prenda actual
   const [garment, setGarment] = useState({});
-  
-  // Estado para almacenar los elementos en el carrito
-  const [cart, setCart] = useState([]);
   
   // Estado para controlar la visualización del modal
   const [showModal, setShowModal] = useState(false);
@@ -37,6 +37,7 @@ const Detail = () => {
     fetchData(); // Llamar a la función para obtener los datos cuando cambie el ID
   }, [id]); // El efecto se ejecutará cada vez que el ID cambie
 
+
   // Manejador para agregar la prenda actual al carrito
   const handleAddToCart = () => {
     // Crear un objeto que representa el elemento en el carrito
@@ -46,18 +47,8 @@ const Detail = () => {
       price: garment.price,
       quantity: 1
     };
-
-    // Obtener los elementos existentes en el carrito desde el almacenamiento local o un array vacío si no hay elementos
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    
-    // Crear un nuevo array que incluya el nuevo elemento agregado al carrito
-    const updatedCart = [...cartItems, cartItem];
-    
-    // Actualizar el almacenamiento local con el nuevo carrito
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-    
-    // Actualizar el estado "cart" con el nuevo carrito y mostrar el modal
-    setCart(updatedCart);
+    console.log("llegue e")
+    dispatch(addToCart(cartItem));
     setShowModal(true);
   };
 

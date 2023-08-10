@@ -2,24 +2,29 @@ import "./App.css";
 import Home from "./components/home/home";
 import Detail from "./components/detail/detail";
 import CreateProduct from "./components/createProduct/createProduct";
-import { Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/nav/nav";
-import { getAllClothes } from "./redux/actions";
-import { useEffect, useState } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { getAllClothes, initializeCart } from "./redux/actions";
+import { useEffect} from "react";
 import { useDispatch } from "react-redux";
 
 //* Mercado Pago
 import Product from "./MercadoPago/Product";
 import ConfirmationPage from "./MercadoPago/ConfirmationPage";
+import Cart from "../src/components/nav/cart"
 
 
 
 function App() {
   const dispatch = useDispatch()
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
+    console.log(storedCart);
     dispatch(getAllClothes());
-  }, [dispatch]);
+    dispatch(initializeCart(storedCart))
+  }, [dispatch,storedCart]);
+
   
   const location = useLocation();
 
@@ -29,7 +34,7 @@ function App() {
     <div>
 
       
-      {!location.pathname.startsWith('/confirmation') && <Nav />}
+      {!location.pathname.startsWith('/detail') && <Nav />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -37,6 +42,7 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path='/create' element={<CreateProduct/>} />
         <Route path='/confirmation' element={<ConfirmationPage/>} />
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
     </div>
   );
