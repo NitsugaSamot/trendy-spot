@@ -14,6 +14,7 @@ import Carrito from "./components/Carrito/Carrito";
 import {AuthProvider} from './context/AuthPrivider'
 
 
+
 function App() {
   const location = useLocation();
 

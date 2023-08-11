@@ -39,11 +39,11 @@ const Nav = () => {
       </form>}
 
       <NavLink  to="/create">
-        <button className='btnSearch'>create</button>
+        <button className='btnSearch'>Crear</button>
       </NavLink>
 
-      <NavLink  to="/login/register">
-        <button className='btnSearch'>Registrate</button>
+      <NavLink  to="/login">
+        <button className='login'>Inicia sesión</button>
       </NavLink>
     </div>
   );

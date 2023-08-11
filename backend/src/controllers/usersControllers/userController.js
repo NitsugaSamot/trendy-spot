@@ -59,7 +59,7 @@ const authenticateUser = async (req, res ) => {
 
     //Comprobar si esta confirmated
     if(!user.confirmated) {
-        const error = new Error('Your count is not confimed')
+        const error = new Error('Your account is not confirmed')
         res.status(400).json({msg: error.message})
     }
  

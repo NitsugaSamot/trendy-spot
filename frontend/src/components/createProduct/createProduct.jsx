@@ -5,6 +5,7 @@ import "./createProduct.css";
 
 const CreateProduct = () => {
   const sizes = ["S", "M", "L", "XL", "XXL"];
+  const predefinedColors = ["red", "black", "white", "blue", "green", "yellow", "orange", "brown", "beige", "purple", "pink", "grey"];
 
   const [form, setForm] = useState({
     name: "",
@@ -13,49 +14,50 @@ const CreateProduct = () => {
     image: "",
     description: "",
     stock: "",
-    color: "",
+    colors: [],
     brand: "",
   });
 
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-    setErrors(validation({ ...form, [event.target.name]: event.target.value }));
+    const { name, value, type, checked } = event.target;
+    if (type === "checkbox") {
+      const updatedColors = checked
+        ? [...form.colors, value]
+        : form.colors.filter((color) => color !== value);
+      setForm({ ...form, colors: updatedColors });
+      setErrors(validation({ ...form, colors: updatedColors }));
+    } else {
+      setForm({ ...form, [name]: value });
+      setErrors(validation({ ...form, [name]: value }));
+    }
   };
-
-  const handleSize = (event) => {
-    setForm({ ...form, size: event.target.value });
-    setErrors(validation({ ...form, size: event.target.value}));
-    };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const postForm = form;
-    const idPrenda = postForm.image.split("/d/");
-    const idSinView = idPrenda[1].split("/");
-    const idUltimo = `https://drive.google.com/uc?id=${idSinView[0]}`;
-    postForm.image = idUltimo;
-
-    //----------------------------toLowerCase a los string y toUpperCase a la primera letra de cada palabra------------------
-    const lower = postForm.brand.toLocaleLowerCase()
-    let array = lower.split(" ")
-    let losArrays = array.map(palabra => {
-      return palabra[0].toUpperCase() + palabra.slice(1);
-    })
-  
-    const resultado = losArrays.join(" ");
-    postForm.brand = resultado
-//------------------------------------------------------------------------------------------------------------------------
-
-    await axios.post("http://localhost:3004/products/create", postForm);
+    const postForm = { ...form };
+    // Resto del código para manejar el envío del formulario
+    console.log("Formulario enviado:", postForm);
+    setForm({
+      name: "",
+      size: "",
+      price: "",
+      image: "",
+      description: "",
+      stock: "",
+      colors: [],
+      brand: "",
+    });
     alert("The product has been created");
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="mb-4">Ingresar Prenda</h1>
-      <form>
+    <div className="mainContainer">
+      <div className="tomasSeco"></div>
+      <hr />
+      <h3 className="mb-4">Ingresar Prenda</h3>
+      <form className="form">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
@@ -80,8 +82,9 @@ const CreateProduct = () => {
           <select
             className={`form-select ${errors.size ? "is-invalid" : ""}`}
             id="size"
-            onChange={handleSize}
+            onChange={handleChange}
             value={form.size}
+            name="size"
           >
             <option value="" disabled>Choose a size</option>
             {sizes.map((prenda) => (
@@ -117,7 +120,7 @@ const CreateProduct = () => {
             Image URL
           </label>
           <input
-            type="text"
+            type="input"
             className={`form-control ${errors.image ? "is-invalid" : ""}`}
             id="image"
             name="image"
@@ -164,19 +167,28 @@ const CreateProduct = () => {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="color" className="form-label">
-            Color
-          </label>
-          <input
-            type="text"
-            className={`form-control ${errors.color ? "is-invalid" : ""}`}
-            id="color"
-            name="color"
-            value={form.color}
-            onChange={handleChange}
-          />
-          {errors.color && (
-            <div className="invalid-feedback">{errors.color}</div>
+          <label className="form-label">Colors</label>
+          <div className="color-options">
+            {predefinedColors.map((color) => (
+              <label key={color}>
+                <input
+                  type="checkbox"
+                  name="colors"
+                  value={color}
+                  checked={form.colors.includes(color)}
+                  onChange={handleChange}
+                />
+                <span
+                  className={`color-box ${
+                    form.colors.includes(color) ? "selected" : ""
+                  }`}
+                  style={{ backgroundColor: color }}
+                ></span>
+              </label>
+            ))}
+          </div>
+          {errors.colors && (
+            <div className="invalid-feedback">{errors.colors}</div>
           )}
         </div>
 

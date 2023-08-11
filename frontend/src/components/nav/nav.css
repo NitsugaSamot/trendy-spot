@@ -1,31 +1,53 @@
-.containerNav{
-    background-color: rgba(255, 255, 255, 0.869);
+/* nav.css */
+
+.containerNav {
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    height: 5rem;
-    position: fixed;
-    width: 100%;
-    z-index: 3;
-}
-.logoHome{
+    justify-content: space-between;
+    padding: 15px 20px;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .logoHome {
     width: 80px;
-    height: 80px;
-}
-
-.search{
-    height: 2rem;
-    width: 30rem;
+    height: auto;
+  }
+  
+  .search {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+    margin-right: 10px;
+    background-color: #333;
+  }
+  
+  .btnSearch {
+    background-color: #007bff;
+    color: #fff;
     border: none;
-    outline: none;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.btnSearch{
-    margin-left: 10px;
-    width: 5rem;
-    height: 2.5rem;
-    gap: 1rem;
-    background-color: rgb(17, 76, 95);
-}
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btnSearch:hover {
+    background-color: #0056b3;
+  }
+  
+  .login {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .login:hover {
+    background-color: #ccc;
+  }
+  

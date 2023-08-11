@@ -2,7 +2,6 @@ import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import { useState, useEffect } from "react";
 import './detail.css'
-import Nav from "../nav/nav";
 import price from "../detail/price.png"
 
 const Detail = () => {
@@ -36,13 +35,16 @@ const Detail = () => {
           <div className="details">
             <h2 className="name">{garment.name}</h2>
 
-            <h5 className="exDetail">Tamaño: &nbsp; {garment.size}<br />Color: &nbsp; {garment.color}</h5>
+            <h5 className="exDetail">
+                Tamaño: &nbsp; {garment.size}
+            <br />Color: &nbsp; {garment.color}
+            <br />Stock: &nbsp; {garment.stock}</h5>
 
             <h3 className="description">DESCRIPCIÓN: <br />{garment.description}</h3>
             
             <hr />
 
-            <Link to="/cashout">
+            <Link to="/carrito">
               <button className="btnCashout">Añadir al carrito</button>
             </Link>
 
