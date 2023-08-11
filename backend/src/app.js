@@ -6,6 +6,9 @@ const routes = require('./routes/index.js');
 const { application } = require('express');
 const cors = require('cors')
 
+//MERCADO PAGO
+const paymentRouter = require("./MercadoPago/src/routes/payment.js")
+
 require('./db.js');
 
 const server = express();

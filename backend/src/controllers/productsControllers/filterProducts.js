@@ -78,6 +78,32 @@ const filterByBrands = async (req, res) => {
 //     }
 //   };
 
+// const filterProductsByPriceRange = async (req, res) => {
+//     const { minPrice, maxPrice } = req.query;
+  
+//     if (!minPrice || !maxPrice) {
+//       return res.status(400).json({ error: 'Debe proporcionar valores para minPrice y maxPrice.' });
+//     }
+  
+//     try {
+//       const dbProducts = await Product.findAll({
+//         where: {
+//           price: {
+//             [Op.between]: [parseInt(minPrice), parseInt(maxPrice)],
+//           },
+//         },
+//       });
+  
+//       if (!dbProducts.length) {
+//         return res.json([]);
+//       }
+  
+//       return res.json(dbProducts);
+//     } catch (error) {
+//       return res.status(500).json({ error: 'Error al obtener los productos.' });
+//     }
+//   };
+
 
   /* ESTE ES EL SUPER CONTROLLER QUE COMBINA FILTRADOS, QUEDA PENDIENTE LOGRAR IMPLEMENTARLO EN EL FRONT 
   http://localhost:3004/products/filter?brandName=Nike&minPrice=7000&maxPrice=

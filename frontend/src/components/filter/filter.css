@@ -44,3 +44,9 @@
     background-color: rgb(17, 76, 95);
 }
 
+.errorp{
+    font-weight: bold;
+    color: red;
+    margin-bottom: -8px;
+}
+

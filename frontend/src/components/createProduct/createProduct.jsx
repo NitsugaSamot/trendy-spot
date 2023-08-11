@@ -47,15 +47,26 @@ const CreateProduct = () => {
     const resultado = losArrays.join(" ");
     postForm.brand = resultado
 //------------------------------------------------------------------------------------------------------------------------
-
     await axios.post("http://localhost:3004/products/create", postForm);
+    setForm({
+      name: "",
+      size: "",
+      price: "",
+      image: "",
+      description: "",
+      stock: "",
+      color: "",
+      brand: "",
+    });
     alert("The product has been created");
   };
 
   return (
-    <div className="container mt-5">
-      <h1 className="mb-4">Ingresar Prenda</h1>
-      <form>
+    <div>
+      <div className="tomasSeco"></div>
+      <hr />
+      <h3 className="mb-4">Ingresar Prenda</h3>
+      <form className="form">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Name
