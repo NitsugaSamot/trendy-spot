@@ -7,15 +7,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-
 import imageCart from "../nav/cart.png"
 import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
 
 const Nav = () => {
 
-  const { auth } = useAuth();
-
+  // const { auth } = useAuth();
+  const {closeSession} = useAuth()
   initMercadoPago("APP_USR-d7ee1f6e-0196-45be-81ed-388bfebc9319");
   const location = useLocation();
   const [search, setSearch] = useState("");
@@ -137,7 +136,7 @@ return (
     </NavLink>
 
     {/* Contenedor del icono del carrito */}
-{ auth.token &&   <div className="cart-icon-container">
+  <div className="cart-icon-container">
       <div className="cart-icon" onClick={() => setCartVisible(!cartVisible)}>
         {/* Icono del carrito */}
         <img src={imageCart} alt="Carrito" className="icon-image" />
@@ -145,7 +144,7 @@ return (
         {cart.length > 0 && <div className="bak-cart-count"><span className="cart-count">{cart.length}</span></div>}
       </div>
       {/* Mostrar el contenido del carrito si está visible */}
-      {cartVisible && (
+     
         <div className="cart-popup">
           <div className="cart-items">
             {/* Mostrar los elementos en el carrito */}
@@ -181,11 +180,14 @@ return (
             Buy
           </button>
         </div>
-      )}
-    </div>}
-    <NavLink to="/login">
-      <button className='btnSearch'>Sing Up</button>
-    </NavLink>
+      
+    </div>
+      <NavLink  to="/">
+        <button 
+            className='btnSearch'
+            onClick={closeSession} 
+          >Cerrar Sesión</button>
+      </NavLink>
   </div>
 );
 }
@@ -408,4 +410,70 @@ export default Nav;
 //   </div>
 // );
 // }
+// export default Nav;
+
+
+
+
+
+
+
+
+
+// import { useState } from "react";
+// import { useDispatch } from "react-redux";
+// import { searchName } from "../../redux/actions";
+// import { NavLink } from "react-router-dom";
+// import imageLogo from './trendy-spot-logo.png'
+// import './nav.css'
+// import { useLocation } from "react-router-dom";
+// import useAuth from "../../hooks/useAuth";
+
+// const Nav = () => {
+//   const location = useLocation();
+//   const [search, setSearch] = useState("");
+//   const dispatch = useDispatch();
+
+//   const {closeSession} = useAuth()
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     dispatch(searchName(search));
+//     setSearch("");
+//   };
+
+//   const handleInputName = (event) => {
+//     setSearch(event.target.value);
+//   };
+
+//   return (
+//     <div className="containerNav">
+//       <NavLink to="/">
+//         <img src={imageLogo} alt="logo-home" className="logoHome" />
+//       </NavLink>
+      
+//       {!location.pathname.startsWith('/detail') && <form onSubmit={handleSubmit}>
+//       <input
+//        className="search"
+//         type="text"
+//         placeholder="Search your clothes"
+//         value={search}
+//         onChange={handleInputName}
+//       />
+//       <button className="btnSearch" type="submit">Search</button>
+//       </form>}
+
+//       <NavLink  to="/create">
+//         <button className='btnSearch'>create</button>
+//       </NavLink>
+
+//       {/* <NavLink  to="/logout"> */}
+//         <button 
+//             className='btnSearch'
+//             onClick={closeSession} 
+//           >Cerrar Sesión</button>
+//       {/* </NavLink> */}
+//     </div>
+//   );
+// };
 // export default Nav;
