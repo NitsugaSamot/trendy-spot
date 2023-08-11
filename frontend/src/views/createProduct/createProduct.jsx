@@ -17,13 +17,13 @@ const CreateProduct = () => {
     name: "",
     size: "",
     price: "",
-    image: "",
+    image: {},
     description: "",
     stock: "",
     color: "",
     brand: "",
   });
-
+  const [stock, setStock] = useState({})
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
@@ -59,9 +59,20 @@ const CreateProduct = () => {
   // const handleEndPoint = (event) => {
   //   setEndpoint(event.target.value);
   // };
+
   const handleDeleteImg = (event) => {
     const name = event.target.name;
     setImage({ ...image, [name]: "" });
+  };
+
+  const handleInputStock = (event) => {
+    const {value, name, id} = event.target;
+    const object = {
+      color: id,
+      size: name,
+      stock: value,
+    }
+    setStock({...stock, })
   };
 
   form.image = image;
@@ -85,10 +96,8 @@ const CreateProduct = () => {
       name: "",
       size: "",
       price: "",
-      image: [],
+      image: {},
       description: "",
-      stock: "",
-      color: "",
       brand: "",
     });
     alert("The product has been created");
@@ -116,25 +125,6 @@ const CreateProduct = () => {
           />
           {errors.name && (
             <div className="invalid-feedback">{errors.name}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <select
-            className={`form-select ${!errors.size && form.size !== "" ? "is-valid" : "is-invalid"}`}
-            id="size"
-            onChange={handleSize}
-            value={form.size}
-          >
-            <option value="" disabled>Choose a size</option>
-            {sizes.map((prenda) => (
-              <option key={prenda} value={prenda}>
-                {prenda}
-              </option>
-            ))}
-          </select>
-          {errors.size && (
-            <div className="invalid-feedback">{errors.size}</div>
           )}
         </div>
 
@@ -251,38 +241,6 @@ const CreateProduct = () => {
 
         <div className="mb-3">
           <input
-            type="number"
-            className={`form-control ${!errors.stock && form.stock ? "is-valid" : "is-invalid"}`}
-            id="stock"
-            name="stock"
-            value={form.stock}
-            onChange={handleChange}
-            placeholder="Insert Stock"
-            autocomplete="off"
-          />
-          {errors.stock && (
-            <div className="invalid-feedback">{errors.stock}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.color && form.color !== "" ? "is-valid" : "is-invalid"}`}
-            id="color"
-            name="color"
-            value={form.color}
-            onChange={handleChange}
-            placeholder="Color"
-            autocomplete="off"
-          />
-          {errors.color && (
-            <div className="invalid-feedback">{errors.color}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <input
             type="text"
             className={`form-control ${!errors.brand && form.brand !== "" ? "is-valid" : "is-invalid"}`}
             id="brand"
@@ -306,6 +264,18 @@ const CreateProduct = () => {
           >
             Create
           </button>
+        </div>
+
+        <div className="divStock">
+        <label style={{backgroundColor: "red"}}>
+          <input 
+          id='white'
+          name='S'
+          type="number"
+          min="0" 
+          onChange={handleInputStock}
+          />
+        </label>
         </div>
       </form>
       </div>

@@ -174,11 +174,11 @@ export const filterPriceAndBrand = (payload) => {
 //   };
 // };
 
-export const filterPrice = (minPrice, maxPrice) => {
+export const filterPrice = ({minPrice, maxPrice}) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3004/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`
+        `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,

@@ -125,16 +125,6 @@ const [objToFilter, setObjToFilter] = useState({
       </select>
 
       <h4>Brand</h4>
-
-      <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
-        {filterBrands.map((brand) => (
-          <option key={brand} value={brand}>
-            {brand}
-          </option>
-        ))}
-      </select>
-
-      <h4>Brand</h4>
       <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
         <option value="" disabled selected>Order by Brand</option>
         { filterBrands.map((brand, index) => ( 

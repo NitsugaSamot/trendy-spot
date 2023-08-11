@@ -53,8 +53,10 @@ const Detail = () => {
             <div className="divImage">
             {garment.image && <img className="productImage" src={imagePP || garment.image[0]} alt={garment.name} />}
             {garment.price && ( 
-            <div className="priceh4">
+              <div className="priceh4">
+              <hr />
               <h4 className="therealh4">${garment.price}</h4>
+              <hr />
             </div>
               )}
             </div>

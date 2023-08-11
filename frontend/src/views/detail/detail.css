@@ -13,7 +13,7 @@
 }
 
 .imageCont {
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(238, 238, 238);
     max-width: 40%;
     margin: 2%;
     padding: 1%;
@@ -53,12 +53,13 @@
 }
 
 .priceh4 {
-    margin-top: 1%;
-    font-family: 'DMSans';
-    padding: 1%;
-    margin: 1%; 
+    max-width: 100%;
     color: rgb(47, 203, 255);
-    background-color: rgb(230, 230, 230);
+    background-color: rgb(238, 238, 238);
+}
+
+.theRealh4 {
+    font-family: 'DMSans';
 }
 
 @font-face {
