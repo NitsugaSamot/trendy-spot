@@ -46,6 +46,7 @@ const Detail = () => {
       name: garment.name,
       price: garment.price,
       description: garment.description,
+      stock: garment.stock,
       quantity: 1,
     };
     dispatch(addToCart(cartItem));
@@ -75,6 +76,7 @@ const Detail = () => {
             <hr />
             <h3>{garment.description}</h3>
             <hr />
+            <h3>Stock: {garment.stock}</h3>
           </div>
           {/* Botón para agregar la prenda al carrito */}
           <button onClick={handleAddToCart}>Añadir al carrito</button>

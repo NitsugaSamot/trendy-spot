@@ -19,7 +19,6 @@ function App() {
   const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
-    console.log(storedCart);
     dispatch(getAllClothes());
     dispatch(initializeCart(storedCart))
   }, [dispatch, storedCart]);

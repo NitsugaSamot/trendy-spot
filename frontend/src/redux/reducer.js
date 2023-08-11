@@ -90,8 +90,6 @@ const reducer = (state = initialState, { type, payload }) => {
       };
     }
     case ADD_TO_CART:{
-
-      console.log(payload);
       return {
       ...state,
         cart: [...state.cart, payload]
@@ -111,15 +109,15 @@ const reducer = (state = initialState, { type, payload }) => {
         cart: updatedCart,
       };
     }
-    case INCREASE_QUANTITY:{ 
+    case INCREASE_QUANTITY: {
       return {
         ...state,
         cart: state.cart.map(item =>
-          item.id === payload
+          item.id === payload && item.quantity < item.stock // Verificar si la cantidad es menor al stock
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-      }
+      };
     }
 
     case DECREASE_QUANTITY: {
