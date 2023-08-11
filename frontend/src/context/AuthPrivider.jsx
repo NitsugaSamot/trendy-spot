@@ -8,16 +8,12 @@ const AuthContext = createContext()
 const AuthProvider = ({children}) => {
 
     const [auth, setAuth] = useState({})
-
-    /*  */
     const [cargando, setCargando] = useState(true)
 
     console.log(auth)
     console.log(cargando)
 
     const navigate = useNavigate()
-
-
 
 /* Se ejecuta una sola vez , ya que solo comprueba que haya un token para autenticar al usuario */
     useEffect(() => {

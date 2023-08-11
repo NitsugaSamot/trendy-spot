@@ -4,7 +4,8 @@ import { Modal, Button } from "react-bootstrap";
 import { addToCart } from "../../redux/actions";
 import axios from 'axios';
 
-import Nav from "../nav/nav";
+import NavClient from '../nav-client/NavClient'
+// import Nav from "../nav/nav";
 import price from "../detail/price.png"
 import './detail.css'
 import { useDispatch } from "react-redux";
@@ -55,7 +56,7 @@ const Detail = () => {
   // Estructura del componente de la interfaz de usuario
   return (
     <div className="nav">
-      <Nav /> {/* Renderizar el componente de navegación */}
+      <NavClient /> {/* Renderizar el componente de navegación */}
       <div className="contImageprops">
         {/* Mostrar la imagen y el precio de la prenda */}
         <img className="detailImage" src={garment.image} alt={garment.name} />

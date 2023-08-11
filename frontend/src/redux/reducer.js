@@ -5,26 +5,26 @@ import {
   FILTER_BY_PRICE,
   SEARCH_NAME,
   REFRESH,
-<<<<<<< HEAD
+
 
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
-  FILTER_BRAND_AND_PRICE
+  FILTER_BRAND_AND_PRICE,
       
 
-=======
+
   ADD_TO_CART,
   REMOVE_FROM_CART,
   INITIALIZE_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY
->>>>>>> rober
+
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
-<<<<<<< HEAD
+
 
   productsByPrice: [],
   allBrands: [],
@@ -32,9 +32,9 @@ const initialState = {
   selectedBrand: null,
   filteredByPrice: [],
 
-=======
+
   cart: []
->>>>>>> rober
+
 };
 
 const reducer = (state = initialState, {action, type, payload }) => {

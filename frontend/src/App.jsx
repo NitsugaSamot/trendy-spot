@@ -7,7 +7,8 @@ import Home from "./components/home/home";
 import Detail from "./components/detail/detail";
 import CreateProduct from "./components/createProduct/createProduct";
 import Nav from "./components/nav/nav";
-<<<<<<< HEAD
+import NavClient from './components/nav-client/NavClient'
+
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
@@ -15,9 +16,7 @@ import Carrito from "./components/Carrito/Carrito";
 import {AuthProvider} from './context/AuthPrivider'
 
 
-function App() {
-=======
-import { Routes, Route, useLocation } from "react-router-dom";
+// function App() {
 import { getAllClothes, initializeCart } from "./redux/actions";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -38,8 +37,6 @@ function App() {
     dispatch(initializeCart(storedCart))
   }, [dispatch, storedCart]);
 
-
->>>>>>> rober
   const location = useLocation();
 
   // Define las rutas en las que no quieres mostrar el componente Nav
@@ -49,10 +46,11 @@ function App() {
 
   return (
     <div>
-<<<<<<< HEAD
+      <AuthProvider>
+
       {shouldShowNav && <Nav />}
       
-      <AuthProvider>
+      
           <Routes>
               <Route path='/' element={<AuthLayout/>}>
                   <Route path="/" element={<Home />} />
@@ -61,6 +59,9 @@ function App() {
                     <Route path='login' element={<Login/>} />
                     <Route path='login/register' element={<Register/>} />
                     <Route path='confirm/:id' element={<ConfirmAccount/>} />
+                    <Route path="/" element={<Home />} />
+                  <Route path="mercado" element={<Product />} />
+                  <Route path='/confirmation' element={<ConfirmationPage />} />
 
               <Route/>
 
@@ -75,10 +76,10 @@ function App() {
           </Routes>
       </AuthProvider>
 
-=======
 
 
-      {!location.pathname.startsWith('/detail') && !location.pathname.startsWith('/confirmation') && <Nav />}
+
+      {/* {!location.pathname.startsWith('/detail') && !location.pathname.startsWith('/confirmation') && <Nav />}
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -86,8 +87,8 @@ function App() {
         <Route path="detail/:id" element={<Detail />} />
         <Route path='/create' element={<CreateProduct />} />
         <Route path='/confirmation' element={<ConfirmationPage />} />
-      </Routes>
->>>>>>> rober
+      </Routes> */}
+
     </div>
   );
 }

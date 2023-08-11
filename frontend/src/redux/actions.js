@@ -6,19 +6,18 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-<<<<<<< HEAD
+
 
   GET_ALL_BRANDS,
-  SET_SELECTED_BRAND,
-  FILTER_BRAND_AND_PRICE
+  FILTER_BRAND_AND_PRICE,
 
-=======
+
   ADD_TO_CART,
   INITIALIZE_CART,
   REMOVE_FROM_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
->>>>>>> rober
+
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -97,14 +96,13 @@ export function orderByName(payload){
 //   };
 // };
 
-<<<<<<< HEAD
-=======
-export const filterPrice = (payload) => {
-  return {
-    type: FILTER_BY_PRICE,
-    payload,
-  };
-}; 
+
+// export const filterPrice = (payload) => {
+//   return {
+//     type: FILTER_BY_PRICE,
+//     payload,
+//   };
+// }; 
 
 export const addToCart = (item) => {
   return (dispatch, getState) => {
@@ -141,7 +139,7 @@ export const decreaseQuantity = (itemId) => {
     payload: itemId,
   };
 };
->>>>>>> rober
+
 
 export const searchName = (payload) => {
   return async function (dispatch) {
