@@ -25,10 +25,6 @@ const validation = (form) => {
   else if (form.stock < 1 || form.stock > 1000)
     errors.stock = "the stock must be between 1 and 1000";
 
-  if (!form.color) errors.color = "Choose a color";
-  else if (form.color.lenght < 3 || form.color.lenght > 20)
-    errors.color = "the color must be between 3 and 20 caracters";
-
   if (!form.brand) errors.brand = "Write a brand";
   else if (form.brand.lenght < 3 || form.brand.lenght > 20)
     errors.brand = "the brand name must have between 3 and 20 caracters";

@@ -1,14 +1,21 @@
-import { useParams } from "react-router-dom";
-import axios from 'axios';
 import { useState, useEffect } from "react";
-import './detail.css'
+import { useParams } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import { addToCart } from "../../redux/actions";
+import axios from 'axios';
+
 import Nav from "../../components/nav/nav";
 
+import './detail.css'
+import { useDispatch } from "react-redux";
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
   const [imagePP, setImagePP] = useState('');
   const [expanded, setExpanded] = useState(false);
+  const dispatch = useDispatch()
+  // Estado para controlar la visualización del modal
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,6 +41,21 @@ const Detail = () => {
     const toogleExpand = () => {
       setExpanded(!expanded);
     };
+
+    // Manejador para agregar la prenda actual al carrito
+  const handleAddToCart = () => {
+    // Crear un objeto que representa el elemento en el carrito
+    const cartItem = {
+      id: garment.id,
+      name: garment.name,
+      price: garment.price,
+      description: garment.description,
+      stock: garment.stock,
+      quantity: 1,
+    };
+    dispatch(addToCart(cartItem));
+    setShowModal(true);
+  };
 
   return(
 
@@ -74,6 +96,28 @@ const Detail = () => {
             {garment.description && <h5>{expanded ? garment.description : garment.description.slice(0, 99) + '...'}
             </h5>}
             <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Ver menos' : 'Ver mas'}</span>
+            
+            {/* Botón para agregar la prenda al carrito */}
+          <button onClick={handleAddToCart}>Añadir al carrito</button>
+          
+          {/* Modal para mostrar cuando se agrega un producto al carrito */}
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>Producto agregado al carrito</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              {/* Mostrar detalles del producto recién añadido en el modal */}
+              <p>Nombre: {garment.name}</p>
+              <p>Precio: ${garment.price}</p>
+              {/* Puedes agregar más detalles aquí si es necesario */}
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setShowModal(false)}>
+                Cerrar
+              </Button>
+            </Modal.Footer>
+          </Modal>
+
           </div>
         </div>
       </div>

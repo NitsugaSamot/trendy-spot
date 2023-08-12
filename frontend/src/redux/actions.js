@@ -6,11 +6,13 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-
   GET_ALL_BRANDS,
-  SET_SELECTED_BRAND,
-  FILTER_BRAND_AND_PRICE
-
+  FILTER_BRAND_AND_PRICE,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  INITIALIZE_CART,
+  INCREASE_QUANTITY,
+  DECREASE_QUANTITY,
 } from "./action-types";
 
 export const getAllClothes = () => {
@@ -27,13 +29,6 @@ export const getAllClothes = () => {
   };
 };
 
-
-// export const orderByName = (payload) => {
-//   return {
-//     type: ORDER_BY_NAME,
-//     payload,
-//   };
-// };
 export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
@@ -49,13 +44,6 @@ export const filterByBrand = (brandName) => {
     }
   };
 };
-
-// export const filterByBrand = (payload) => {
-//   return {
-//     type: FILTER_BY_BRAND,
-//     payload,
-//   };
-// };
 
 export const setSelectedBrand = (brandName) => {
   return {
@@ -74,20 +62,6 @@ export function orderByName(payload){
     });
     };
 }
-
-// export const filterByBrand = (payload) => {
-//   return {
-//     type: FILTER_BY_BRAND,
-//     payload,
-//   };
-// };
-
-// export const filterPrice = (payload) => {
-//   return {
-//     type: FILTER_BY_PRICE,
-//     payload,
-//   };
-// };
 
 
 export const searchName = (payload) => {
@@ -147,33 +121,6 @@ export const filterPriceAndBrand = (payload) => {
   };
 };
 
-// actions.js
-// export const filterPrice = (minPrice, maxPrice) => {
-//   return async function (dispatch, getState) {
-//     const { selectedBrand } = getState(); // Obtener la marca seleccionada del estado
-
-//     if (selectedBrand) {
-//       // Si hay una marca seleccionada, filtrar por precio solo para esa marca
-//       const response = await axios.get(
-//         `http://localhost:3004/products/brands${selectedBrand}?minPrice=${minPrice}&maxPrice=${maxPrice}`
-//       );
-//       dispatch({
-//         type: FILTER_BY_PRICE,
-//         payload: response.data,
-//       });
-//     } else {
-//       // Si no hay una marca seleccionada, aplicar el filtro a todos los productos
-//       const response = await axios.get(
-//         `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
-//       );
-//       dispatch({
-//         type: FILTER_BY_PRICE,
-//         payload: response.data,
-//       });
-//     }
-//   };
-// };
-
 export const filterPrice = ({minPrice, maxPrice}) => {
   return async function (dispatch) {
     try {
@@ -216,4 +163,39 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
   };
 };
 
+export const addToCart = (item) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ADD_TO_CART,
+      payload: item,
+    });
+
+    const cartItems = getState().cart; // Obtener los elementos del carrito del estado
+    localStorage.setItem("cart", JSON.stringify(cartItems)); // Actualizar el localStorage
+  };
+};
+
+export const initializeCart = (cartItems) => ({
+  type: INITIALIZE_CART,
+  payload: cartItems,
+});
+
+export const removeFromCart = (itemId) => ({
+  type: REMOVE_FROM_CART,
+  payload: itemId,
+});
+
+export const increaseQuantity = (itemId) => {
+  return {
+    type: INCREASE_QUANTITY,
+    payload: itemId,
+  };
+};
+
+export const decreaseQuantity = (itemId) => {
+  return {
+    type: DECREASE_QUANTITY,
+    payload: itemId,
+  };
+};
 
