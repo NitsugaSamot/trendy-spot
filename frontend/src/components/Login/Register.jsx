@@ -14,9 +14,6 @@ const Register = () => {
   const [ repetirPassword, setRepetirPassword ] = useState('')
   const [ alerta, setAlerta ] = useState({})
 
-  
-  
-
   const handleSubmit = async e => {
     e.preventDefault()
 

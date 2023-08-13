@@ -24,9 +24,7 @@ const Filter = ({ onPageChange }) => {
   };
 
   const handleClickPrice = () => {
-
-    dispatch(filterPrice(price));
-
+    dispatch(filterPrice(price.minPrice, price.maxPrice));
     onPageChange(1);
   };
 

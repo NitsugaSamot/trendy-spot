@@ -7,7 +7,7 @@ import Home from "./components/home/home";
 import Detail from "./components/detail/detail";
 import CreateProduct from "./components/createProduct/createProduct";
 import Nav from "./components/nav/nav";
-import NavClient from './components/nav-client/NavClient'
+// import NavClient from './components/nav-client/NavClient'
 
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";

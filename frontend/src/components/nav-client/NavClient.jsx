@@ -186,7 +186,7 @@ return (
         <button 
             className='btnSearch'
             onClick={closeSession} 
-          >Cerrar Sesión</button>
+          >Log Out</button>
       </NavLink>
   </div>
 );

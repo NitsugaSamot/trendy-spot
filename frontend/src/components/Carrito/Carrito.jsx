@@ -11,10 +11,10 @@ const Carrito = () => {
     <>
       <div className='containerDiv'> 
             <Nav/>
+            
+            <Home/>
 
             <Filter/>
-
-            <Home/>
       </div>
 
     </>
