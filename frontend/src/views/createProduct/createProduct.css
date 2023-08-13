@@ -26,9 +26,8 @@
 }
 
 .divForm{ 
-      max-width: 100%;
+      width: 100%;
       height: 100%;
-      background-color: red;
 }
 
 .form-control::-webkit-inner-spin-button {
@@ -36,24 +35,33 @@
 }
 
 .divStock {
+      margin: 2%;
       max-width: 100%;
       display: flex;
-      padding: 1%;
-      background-color: green;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(58, 159, 218);
 }
 
 .theRealLabelDiv {
+      width: 165px;
       display: flex;
-      background-color: cadetblue;  
+      padding: 0.2%;
+      border-radius: 5px;
+      justify-content: right;
+      align-items: center;
+      color: white;
+
 }
 .divh4 {
       background-color: white;
 }
 
 .input-goup {
-      width: 80%;
-      margin: 5%;
-      background-color: rgba(0, 255, 255, 0);
+      width: 100%;
+      background-color: transparent;
+      border-radius: 5px;
 }
 
 .input-goup::-webkit-inner-spin-button {
@@ -62,24 +70,23 @@
 }
 
 .tomasSeco{
-      background-color: blue;
-      max-width: 70%;
       margin-top: 7%;
       display: flex;
-      align-items: center;
+      justify-content: space-between;
+      background-color: blue;
+      width: 85%;
 }
 
 .divImagenes {
       background-color: blueviolet;
       padding: 1%;
-      width: 50%;
+      width: 100%;
       height: 100%;
-      justify-content: center;
 }
 
 .divlabelImage {
       background-color: red;
-      max-width: 100%;
+      max-width: 50%;
 }
 
 .imageButtonContainer {
@@ -99,7 +106,7 @@
       display: flex;
       flex-direction: column;
       background-color: brown;
-      justify-content: flex-end;
+      align-items: end;
 }
 
 .theRealDiv{
@@ -135,28 +142,46 @@
 
 .stockWhite {
       background-color: white;
-      max-width: 10%;
+      max-width: 40px;
       margin-right: 2%;
-      margin-left: 2%;
+      margin-left: 3%;
+      border-radius: 10px;
 }
 
 .stockBlack {
       background-color: black;
-      max-width: 10%;
+      max-width: 40px;
       margin-right: 2%;
       margin-left: 2%;
+      border-radius: 10px;
 }
 
 .stockGrey {
       background-color: grey;
-      max-width: 10%;
+      max-width: 40px;
       margin-right: 2%;
       margin-left: 2%;
+      border-radius: 10px;
 }
 
-.stockBlue {
-      background-color: blue;
-      max-width: 10%;
-      margin-right: 2%;
-      margin-left: 2%;
+
+.inputsProduct {
+      background-color: red;
+      padding: 1%;
+}
+
+.inputsProduct textarea {
+      width: 100%;
+      height: 100px;
+}
+
+.form-control {
+      height: 30px;
+}
+
+.btnForm:disabled {
+      transition: none;
+      box-shadow: none;
+      transform: none;
+      background-color: rgba(255, 255, 255, 0.405);
 }

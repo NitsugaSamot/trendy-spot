@@ -24,13 +24,13 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    stock: {
-      type: DataTypes.JSON,
-      allowNull: false,
-    },
     productbrand: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    stock: {
+      type: DataTypes.JSON,
+      allowNull: false,
     }
   },
   { timestamps: false }

@@ -10,13 +10,18 @@ import ConfirmAccount from "./components/Login/ConfirmAccount";
 import { useDispatch } from "react-redux";
 import {useEffect} from "react";
 import { getAllClothes } from "./redux/actions";
+import {initializeCart} from "../src/redux/actions"
+import ConfirmationPage from "./MercadoPago/confirmationPage";
 
 function App() {
   const dispatch = useDispatch()
+  
+  const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
     dispatch(getAllClothes());
-  }, [dispatch]);
+    dispatch(initializeCart(storedCart))
+  }, [dispatch, storedCart]);
 
   const location = useLocation();
 
@@ -36,6 +41,7 @@ function App() {
         <Route path='/login' element={<Login/>} />
         <Route path='/login/register' element={<Register/>} />
         <Route path='/confirm/:id' element={<ConfirmAccount/>} />
+        <Route path='/confirmation' element={<ConfirmationPage/>} />
       </Routes>
     </div>
   );

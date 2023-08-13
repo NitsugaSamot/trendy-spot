@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import validation from "./validation";
+import validation from "./validations";
 import "./createProduct.css";
 import Nav from "../../components/nav/nav";
 
 const CreateProduct = () => {
   const [imagePP, setImagePP] = useState("");
-  // const [endpoint, setEndpoint] = useState("");
   const [image, setImage] = useState({
     principal: "",
     secundaria: "",
@@ -16,7 +15,11 @@ const CreateProduct = () => {
   const [form, setForm] = useState({
     name: "",
     price: "",
-    image: {},
+    image: {
+    principal: "",
+    secundaria: "",
+    extra:""
+  },
     description: "",
     stock: {
       S: {
@@ -44,40 +47,55 @@ const CreateProduct = () => {
   });
   const [stock, setStock] = useState({
       S: {
-        white: '',
-        black: '',
-        grey: ''
+        white: 0,
+        black: 0,
+        grey: 0
       },
       M: {
-        white: '',
-        black: '',
-        grey: ''
+        white: 0,
+        black: 0,
+        grey: 0
       },
       L: {
-        white: '',
-        black: '',
-        grey: ''
+        white: 0,
+        black: 0,
+        grey: 0
       },
       XL: {
-        white: '',
-        black: '',
-        grey: ''
+        white: 0,
+        black: 0,
+        grey: 0
       }
   });
-
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-    setErrors(validation({ ...form, [event.target.name]: event.target.value }));
-    console.log(form);
+    const {name, value} = event.target;
+    setForm({ ...form, [name]: value });
+    setErrors(validation({ ...form, [name]: value }));
   };
+  
+  const handleInputStock = (event) => {
+    const {value, name, id} = event.target;
 
-  const handleSize = (event) => {
-    setForm({ ...form, size: event.target.value });
-    setErrors(validation({ ...form, size: event.target.value}));
-    };
+    setStock((prevStock) => ({
+      ...prevStock,
+      [name]: {
+        ...prevStock[name],
+        [id]: value
+      }
+    }))
 
+    setErrors(validation({
+      ...form,
+      [form.stock]: {
+        ...form.stock,
+        [name]: {
+          [id]: value
+        }
+      }
+    }));
+};
   const uploadImage = async (event) => {
     const name = event.target.name;
     const files = event.target.files;
@@ -93,38 +111,30 @@ const CreateProduct = () => {
     );
 
     const file = await res.json();
-    console.log(file.secure_url)
     setImage({ ...image, [name]: file.secure_url });
+    // console.log(name);
+    setErrors(validation({ ...form, [form.image]: {[name]: file.secure_url}}))
     setLoading(false);
   };
 
-  // const handleEndPoint = (event) => {
-  //   setEndpoint(event.target.value);
-  // };
 
   const handleDeleteImg = (event) => {
     const name = event.target.name;
     setImage({ ...image, [name]: "" });
   };
 
-  const handleInputStock = (event) => {
-    const {value, name, id} = event.target;
-    console.log(value,name,id);
-
-    setStock({...stock, [name]: {[id]: value}})
-  console.log(stock);
-};
 
   const carousel = (event) => {
     setImagePP(form.image[event.target.value]);
   }
+
 
   form.image = image;
   form.stock = stock;
   
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
+    console.log(form);
     //----------------------------toLowerCase a los string y toUpperCase a la primera letra de cada palabra------------------
     const postForm = form;
     const lower = postForm.brand.toLocaleLowerCase();
@@ -166,20 +176,48 @@ const CreateProduct = () => {
       },
       brand: ""
     });
-    alert("The product has been created");
+    setStock({
+      S: {
+        white: 0,
+        black: 0,
+        grey: 0
+      },
+      M: {
+        white: 0,
+        black: 0,
+        grey: 0
+      },
+      L: {
+        white: 0,
+        black: 0,
+        grey: 0
+      },
+      XL: {
+        white: 0,
+        black: 0,
+        grey: 0
+      }
+    });
+    setImage({
+      principal: "",
+      secundaria: "",
+      extra:""
+    });
+    alert("The MAGIC BEST PRODUCT TRENDY-SPOT has been created");
   };
   
   return (
-    <div className="">
+    <div>
       <Nav/>
       <div className="allDiv">
       <div className="tomasSeco">
       <div className="divForm">
       <form className="form">
 
-      <h3 className="mb-4 h3">Ingresar Prenda</h3>
 
-        <div className="mb-3">
+      <h3 className="mb-4 h3">Ingresar Prenda</h3>
+        <div className="maxContainerStock">
+        <div className="inputsProduct">
           <input
             type="text"
             className={`form-control ${!errors.name && form.name !== "" ? "is-valid" : "is-invalid"}`}
@@ -189,13 +227,12 @@ const CreateProduct = () => {
             onChange={handleChange}
             placeholder="Name"
             autocomplete="off"
-          />
-          {errors.name && (
-            <div className="invalid-feedback">{errors.name}</div>
-            )}
+            />
+            {errors.name && (
+              <div className="invalid-feedback">{errors.name}</div>
+              )}
         </div>
-
-        <div className="mb-3">
+        <div className="inputsProduct">
           <input
             type="number"
             className={`form-control ${!errors.price && form.price !== "" ? "is-valid" : "is-invalid"}`}
@@ -211,24 +248,7 @@ const CreateProduct = () => {
             )}
         </div>
 
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.description && form.description !== "" ? "is-valid" : "is-invalid"}`}
-            id="description"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Write a description"
-            autocomplete="off"
-          />
-          {errors.description && (
-            <div className="invalid-feedback">{errors.description}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
+        <div className="inputsProduct">
           <input
             type="text"
             className={`form-control ${!errors.brand && form.brand !== "" ? "is-valid" : "is-invalid"}`}
@@ -244,25 +264,41 @@ const CreateProduct = () => {
             )}
         </div>
 
-        <div className="maxContainerStock">
-            <h5>Colors</h5>
+        <div className="inputsProduct">
+          <textarea
+            type="text"
+            className={`form-control ${form.description !== "" ? "is-valid" : "is-invalid"}`}
+            id="description"
+            name="description"
+            value={form.description}
+            onChange={handleChange}
+            placeholder="Write a description"
+            autocomplete="off"
+          />
+          {errors.description && (
+            <div className="invalid-feedback">{errors.description}</div>
+          )}
         </div>
+        </div>
+
+        <div className="divStockColors">
+        <h5>Colors</h5>
         {errors.stock && (
-            <div className="">{errors.stock}</div>
-            )}
+          <div className="">{errors.stock}</div>
+          )}
         <div className="divStock">
-          <div>
-            <label>S:</label>
-            </div>
             <div className="theRealLabelDiv">
+            <h6>S</h6>
         <label className="stockWhite">
           <input 
-           style={{color: "black"}}
+          style={{color: "black"}}
           className="input-goup"
           id='white'
+          value={stock.S.white}
           name='S'
           type="number"
           min="0" 
+          max="999"
           onChange={handleInputStock}
           />
         </label>
@@ -271,9 +307,11 @@ const CreateProduct = () => {
           <input 
           className="input-goup"
           id='black'
+          value={stock.S.black}
           name='S'
           type="number"
           min="0" 
+          max="999"
           onChange={handleInputStock}
           />
         </label>
@@ -282,30 +320,153 @@ const CreateProduct = () => {
           <input 
           className="input-goup"
           id='grey'
+          value={stock.S.grey}
           name='S'
           type="number"
           min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+        </div>
+
+            <div className="theRealLabelDiv">
+            <h6>M</h6>
+        <label className="stockWhite">
+          <input 
+           style={{color: "black"}}
+          className="input-goup"
+          id='white'
+          value={stock.M.white}
+          name='M'
+          type="number"
+          min="0" 
+          max="999"
           onChange={handleInputStock}
           />
         </label>
 
-        <label className="stockBlue">
+        <label className="stockBlack">
           <input 
           className="input-goup"
-          id='BLUE'
-          name='S'
+          id='black'
+          value={stock.M.black}
+          name='M'
           type="number"
           min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+        <label className="stockGrey">
+          <input 
+          className="input-goup"
+          id='grey'
+          value={stock.M.grey}
+          name='M'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+        </div>
+
+        <div className="theRealLabelDiv">
+            <h6>L</h6>
+        <label className="stockWhite">
+          <input 
+           style={{color: "black"}}
+          className="input-goup"
+          id='white'
+          value={stock.L.white}
+          name='L'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+        <label className="stockBlack">
+          <input 
+          className="input-goup"
+          id='black'
+          value={stock.L.black}
+          name='L'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+        <label className="stockGrey">
+          <input 
+          className="input-goup"
+          id='grey'
+          value={stock.L.grey}
+          name='L'
+          type="number"
+          min="0" 
+          max="999"
           onChange={handleInputStock}
           />
         </label>
 
 
+        </div>
+
+        <div className="theRealLabelDiv">
+            <h6>XL</h6>
+        <label className="stockWhite">
+          <input 
+           style={{color: "black"}}
+          className="input-goup"
+          id='white'
+          value={stock.XL.white}
+          name='XL'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+        <label className="stockBlack">
+          <input 
+          className="input-goup"
+          id='black'
+          value={stock.XL.black}
+          name='XL'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+        <label className="stockGrey">
+          <input 
+          className="input-goup"
+          id='grey'
+          value={stock.XL.grey}
+          name='XL'
+          type="number"
+          min="0" 
+          max="999"
+          onChange={handleInputStock}
+          />
+        </label>
+
+
+        </div>
         </div>
         </div>
 
         <div className="d-grid gap-2 col-6 mx-auto">
-          <button
+          <button 
             type="submit"
             className="btnForm"
             disabled={Object.keys(errors).length > 0 || form.name.length < 1}
@@ -368,6 +529,7 @@ const CreateProduct = () => {
 
             <div className="divInputs">
               <input
+                  placeholder="Imagen 1"
                   type="file"
                   name="principal"
                   onChange={uploadImage}

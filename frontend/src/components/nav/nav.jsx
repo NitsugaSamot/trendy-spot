@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 import { useLocation, useNavigate } from "react-router-dom";
 import { initMercadoPago } from '@mercadopago/sdk-react';
 import axios from "axios";
-
 import imageCart from "../../assets/cart.png";
 import imageLogo from '../../assets/trendy-spot-logo.png';
 import './nav.css'
@@ -21,7 +20,6 @@ const Nav = () => {
   const cart = useSelector((state) => state.cart);
   const [cartVisible, setCartVisible] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
-  
   // Calcular el precio total del carrito cada vez que cambie //
   useEffect(() => {
     let total = 0;
@@ -48,6 +46,7 @@ const Nav = () => {
         console.log(error.message);
       }
     };
+  
     // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
     createPreference();
   };
@@ -112,11 +111,16 @@ const Nav = () => {
       
       {/* Contenedor del icono del carrito */}
     <div className="cart-icon-container">
+      
+      <div className="cartDiv">
       <div className="cart-icon" onClick={() => setCartVisible(!cartVisible)}>
         {/* Icono del carrito */}
         <img src={imageCart} alt="Carrito" className="icon-image" />
         {/* Mostrar cantidad de elementos en el carrito */}
-        {cart.length > 0 && <div className="bak-cart-count"><span className="cart-count">{cart.length}</span></div>}
+        <div className="bak-cart-count">
+          <span className="cart-count">{cart.length}</span>
+          </div>
+      </div>
       </div>
       {/* Mostrar el contenido del carrito si está visible */}
       {cartVisible && (

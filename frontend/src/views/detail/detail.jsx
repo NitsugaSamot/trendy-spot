@@ -13,6 +13,9 @@ const Detail = () => {
   const [garment, setGarment] = useState({});
   const [imagePP, setImagePP] = useState('');
   const [expanded, setExpanded] = useState(false);
+  const [colorsAvailable, setColorsAvailable] = useState([]);
+  const [size, setSize] = useState("");
+  const [stockComb, setStockComb] = useState(0);
   const dispatch = useDispatch()
   // Estado para controlar la visualización del modal
   const [showModal, setShowModal] = useState(false);
@@ -57,6 +60,29 @@ const Detail = () => {
     setShowModal(true);
   };
 
+  const handleClickStock = (event, stock = garment.stock) => {
+    setColorsAvailable([])
+    setSize(event.target.value);
+
+    for (let index in stock[size]) {
+      if (stock[size][index] > 0) {
+        console.log(index);
+        setColorsAvailable((colorsAvailable) => [...colorsAvailable, index]);
+        console.log(colorsAvailable);
+      }
+    }
+    console.log(colorsAvailable);
+  };
+
+  const handleClickColor = (event, stock = garment.stock) => {
+    const color = event.target.name;
+
+    if (color) {
+      setStockComb(stock[size][color]);
+    }
+  };
+
+
   return(
 
     <div className="">
@@ -79,6 +105,30 @@ const Detail = () => {
               <hr />
               <h4 className="therealh4">${garment.price}</h4>
               <hr />
+              <div>
+            <button onClick={handleClickStock} value="s">
+              s
+            </button>
+            <button onClick={handleClickStock} value="m">
+              m
+            </button>
+            <button onClick={handleClickStock} value="l">
+              l
+            </button>
+            <button onClick={handleClickStock} value="xl">
+              xl
+            </button>
+          </div>
+
+          <div>
+            {colorsAvailable.map((color) => (
+              <button onClick={handleClickColor} name={color} key={color}>
+                {color}
+              </button>
+            ))}
+          </div>
+          <div>{stockComb}</div>
+
             </div>
               )}
             </div>
@@ -89,8 +139,6 @@ const Detail = () => {
             <hr />
             {garment.name && <h3>{garment.name}</h3>}
             <hr />
-            {garment.size && <h5>Talle: {garment.size}</h5>}
-            {garment.color && <h5>Color: {garment.color}</h5>}
             {garment.productbrand && <h5>{garment.productbrand}</h5>}
             <hr />
             {garment.description && <h5>{expanded ? garment.description : garment.description.slice(0, 99) + '...'}
@@ -98,6 +146,7 @@ const Detail = () => {
             <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Ver menos' : 'Ver mas'}</span>
             
             {/* Botón para agregar la prenda al carrito */}
+            <hr />
           <button onClick={handleAddToCart}>Añadir al carrito</button>
           
           {/* Modal para mostrar cuando se agrega un producto al carrito */}
@@ -124,33 +173,6 @@ const Detail = () => {
       </div>
       </div>
     </div>
-
-    // <div className="">
-    //     <Nav/>
-    //   <div className="maxContainer">
-    //     <div className="mediumContainer">
-        
-    //     <div className="imageCont">
-    //     <img className="productImage" src={garment.image} alt={garment.name} />
-    //     </div>
-        
-    //     <div className="divMaxDetails">
-    //     <div className="allDetailsDiv">
-    //     <h2>{garment.name}</h2>
-    //     <br />
-    //     <h5 >Talle: {garment.size}</h5>
-    //     <h5 >Color: {garment.color}</h5>
-    //     <hr />
-    //     <h5 >{garment.productbrand}</h5>
-    //     <h4 >${garment.price}</h4>
-    //     <hr />
-    //     <h3>{garment.description}</h3>
-    //     <hr />
-    //     </div>
-    //     </div>
-    //     </div>
-    //   </div>
-    // </div>
   )
 };
 

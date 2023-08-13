@@ -138,30 +138,39 @@ const reducer = (state = initialState, {action, type, payload }) => {
       };
     }
     case INCREASE_QUANTITY: {
+      const updatedCart = state.cart.map(item =>
+        item.id === payload && item.quantity < item.stock
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
+
       return {
         ...state,
-        cart: state.cart.map(item =>
-          item.id === payload && item.quantity < item.stock // Verificar si la cantidad es menor al stock
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
+        cart: updatedCart,
       };
     }
 
     case DECREASE_QUANTITY: {
+      const updatedCart = state.cart.map(item =>
+        item.id === payload
+          ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
+          : item
+      );
+
+      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
+
       return {
         ...state,
-        cart: state.cart.map(item =>
-          item.id === payload
-            ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
-            : item
-        ),
+        cart: updatedCart,
       };
     }
 
     default:
       return { ...state };
   }
+
 };
 
 export default reducer;
