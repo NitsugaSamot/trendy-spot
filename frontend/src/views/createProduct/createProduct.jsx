@@ -1,44 +1,103 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
-import validation from "./validation";
+import validation from "../../utils/validation";
 import "./createProduct.css";
+import Nav from "../../components/nav/nav";
 
 const CreateProduct = () => {
-  const sizes = ["S", "M", "L", "XL", "XXL"];
+  const [imagePP, setImagePP] = useState("");
   const [image, setImage] = useState({
     principal: "",
     secundaria: "",
-    extra:""
+    extra: "",
   });
   const [loading, setLoading] = useState(false);
-  // const [endpoint, setEndpoint] = useState("");
-
   const [form, setForm] = useState({
     name: "",
-    size: "",
     price: "",
-    image: "",
+    image: {
+      principal: "",
+      secundaria: "",
+      extra: "",
+    },
     description: "",
     stock: {
-      verde: "3",
+      S: {
+        white: "",
+        black: "",
+        grey: "",
+      },
+      M: {
+        white: "",
+        black: "",
+        grey: "",
+      },
+      L: {
+        white: "",
+        black: "",
+        grey: "",
+      },
+      XL: {
+        white: "",
+        black: "",
+        grey: "",
+      },
     },
-    color: "",
     brand: "",
   });
-
+  const [stock, setStock] = useState({
+    S: {
+      white: 0,
+      black: 0,
+      grey: 0,
+    },
+    M: {
+      white: 0,
+      black: 0,
+      grey: 0,
+    },
+    L: {
+      white: 0,
+      black: 0,
+      grey: 0,
+    },
+    XL: {
+      white: 0,
+      black: 0,
+      grey: 0,
+    },
+  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-    setErrors(validation({ ...form, [event.target.name]: event.target.value }));
+    const { name, value } = event.target;
+    setForm({ ...form, [name]: value });
+    setErrors(validation({ ...form, [name]: value }));
   };
 
-  const handleSize = (event) => {
-    setForm({ ...form, size: event.target.value });
-    setErrors(validation({ ...form, size: event.target.value }));
-  };
+  const handleInputStock = (event) => {
+    const { value, name, id } = event.target;
 
-  //***carga de imagenes*************** */
+    setStock((prevStock) => ({
+      ...prevStock,
+      [name]: {
+        ...prevStock[name],
+        [id]: value,
+      },
+    }));
+
+    setErrors(
+      validation({
+        ...form,
+        [form.stock]: {
+          ...form.stock,
+          [name]: {
+            [id]: value,
+          },
+        },
+      })
+    );
+  };
   const uploadImage = async (event) => {
     const name = event.target.name;
     const files = event.target.files;
@@ -55,25 +114,28 @@ const CreateProduct = () => {
 
     const file = await res.json();
     setImage({ ...image, [name]: file.secure_url });
+    // console.log(name);
+    setErrors(
+      validation({ ...form, [form.image]: { [name]: file.secure_url } })
+    );
     setLoading(false);
   };
-
-  // const handleEndPoint = (event) => {
-  //   setEndpoint(event.target.value);
-  // };
 
   const handleDeleteImg = (event) => {
     const name = event.target.name;
     setImage({ ...image, [name]: "" });
   };
 
+  const carousel = (event) => {
+    setImagePP(form.image[event.target.value]);
+  };
 
   form.image = image;
-  console.log();
-  //********************** */
+  form.stock = stock;
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(form);
     //----------------------------toLowerCase a los string y toUpperCase a la primera letra de cada palabra------------------
     const postForm = form;
     const lower = postForm.brand.toLocaleLowerCase();
@@ -88,220 +150,474 @@ const CreateProduct = () => {
     await axios.post("http://localhost:3004/products/create", postForm);
     setForm({
       name: "",
-      size: "",
       price: "",
-      image: "",
+      image: {},
       description: "",
-      stock: "",
-      color: "",
+      stock: {
+        S: {
+          white: "",
+          black: "",
+          grey: "",
+        },
+        M: {
+          white: "",
+          black: "",
+          grey: "",
+        },
+        L: {
+          white: "",
+          black: "",
+          grey: "",
+        },
+        XL: {
+          white: "",
+          black: "",
+          grey: "",
+        },
+      },
       brand: "",
     });
-    alert("The product has been created");
+    setStock({
+      S: {
+        white: 0,
+        black: 0,
+        grey: 0,
+      },
+      M: {
+        white: 0,
+        black: 0,
+        grey: 0,
+      },
+      L: {
+        white: 0,
+        black: 0,
+        grey: 0,
+      },
+      XL: {
+        white: 0,
+        black: 0,
+        grey: 0,
+      },
+    });
+    setImage({
+      principal: "",
+      secundaria: "",
+      extra: "",
+    });
+    alert("The MAGIC BEST PRODUCT TRENDY-SPOT has been created");
   };
 
   return (
     <div>
+      <Nav />
       <div className="allDiv">
-      <div className="tomasSeco"></div>
-      <div className="divForm">
-      <form className="form">
+        <div className="tomasSeco">
+          <div className="divForm">
+            <form className="form">
+              <h3 className="mb-4 h3">Ingresar Prenda</h3>
+              <div className="maxContainerStock">
+                <div className="inputsProduct">
+                  <input
+                    type="text"
+                    className={`form-control ${
+                      !errors.name && form.name !== ""
+                        ? "is-valid"
+                        : "is-invalid"
+                    }`}
+                    id="name"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    placeholder="Name"
+                    autocomplete="off"
+                  />
+                  {errors.name && (
+                    <div className="invalid-feedback">{errors.name}</div>
+                  )}
+                </div>
+                <div className="inputsProduct">
+                  <input
+                    type="number"
+                    className={`form-control ${
+                      !errors.price && form.price !== ""
+                        ? "is-valid"
+                        : "is-invalid"
+                    }`}
+                    id="price"
+                    name="price"
+                    value={form.price}
+                    onChange={handleChange}
+                    placeholder="Insert Price"
+                    autocomplete="off"
+                  />
+                  {errors.price && (
+                    <div className="invalid-feedback">{errors.price}</div>
+                  )}
+                </div>
 
-      <h3 className="mb-4 h3">Ingresar Prenda</h3>
+                <div className="inputsProduct">
+                  <input
+                    type="text"
+                    className={`form-control ${
+                      !errors.brand && form.brand !== ""
+                        ? "is-valid"
+                        : "is-invalid"
+                    }`}
+                    id="brand"
+                    name="brand"
+                    value={form.brand}
+                    onChange={handleChange}
+                    placeholder="Brand"
+                    autocomplete="off"
+                  />
+                  {errors.brand && (
+                    <div className="invalid-feedback">{errors.brand}</div>
+                  )}
+                </div>
 
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.name && form.name !== "" ? "is-valid" : "is-invalid"}`}
-            id="name"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Name"
-            autocomplete="off"
-          />
-          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
-        </div>
+                <div className="inputsProduct">
+                  <textarea
+                    type="text"
+                    className={`form-control ${
+                      form.description !== "" ? "is-valid" : "is-invalid"
+                    }`}
+                    id="description"
+                    name="description"
+                    value={form.description}
+                    onChange={handleChange}
+                    placeholder="Write a description"
+                    autocomplete="off"
+                  />
+                  {errors.description && (
+                    <div className="invalid-feedback">{errors.description}</div>
+                  )}
+                </div>
+              </div>
 
-        <div className="mb-3">
-          <select
-            className={`form-select ${!errors.size && form.size !== "" ? "is-valid" : "is-invalid"}`}
-            id="size"
-            onChange={handleSize}
-            value={form.size}
-          >
-            <option value="" disabled>
-              Choose a size
-            </option>
-            {sizes.map((prenda) => (
-              <option key={prenda} value={prenda}>
-                {prenda}
-              </option>
-            ))}
-          </select>
-          {errors.size && <div className="invalid-feedback">{errors.size}</div>}
-        </div>
+              <div className="divStockColors">
+                <h5>Colors</h5>
+                {errors.stock && <div className="">{errors.stock}</div>}
+                <div className="divStock">
+                  <div className="theRealLabelDiv">
+                    <h6>S</h6>
+                    <label className="stockWhite">
+                      <input
+                        style={{ color: "black" }}
+                        className="input-goup"
+                        id="white"
+                        value={stock.S.white}
+                        name="S"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
 
-        <div className="mb-3">
-          <input
-            type="number"
-            className={`form-control ${!errors.price && form.price !== "" ? "is-valid" : "is-invalid"}`}
-            id="price"
-            name="price"
-            value={form.price}
-            onChange={handleChange}
-            placeholder="Insert Price"
-            autocomplete="off"
-          />
-          {errors.price && (
-            <div className="invalid-feedback">{errors.price}</div>
-          )}
-        </div>
+                    <label className="stockBlack">
+                      <input
+                        className="input-goup"
+                        id="black"
+                        value={stock.S.black}
+                        name="S"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
 
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.image && form.image !== "" ? "is-valid" : "is-invalid"}`}
-            id="image"
-            name="image"
-            value={form.image}
-            onChange={handleChange}
-            placeholder="Image"
-            autocomplete="off"
-          />
-          {errors.image && (
-            <div className="invalid-feedback">{errors.image}</div>
-          )}
-          <label>
-            secundaria
-            <input
-              type="file"
-              name="secundaria"
-              placeholder="Sube tu imagen aqui!"
-              onChange={uploadImage}
-            />
-          </label>
-          {loading ? (
-            <h3>Cargando Imagenes...</h3>
-          ) : (
-            <div>
-              <img src={image.secundaria} alt="" width="100px" />
-              {image.secundaria ? (
-                <button name="secundaria" onClick={handleDeleteImg}>
-                  boton
+                    <label className="stockGrey">
+                      <input
+                        className="input-goup"
+                        id="grey"
+                        value={stock.S.grey}
+                        name="S"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="theRealLabelDiv">
+                    <h6>M</h6>
+                    <label className="stockWhite">
+                      <input
+                        style={{ color: "black" }}
+                        className="input-goup"
+                        id="white"
+                        value={stock.M.white}
+                        name="M"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockBlack">
+                      <input
+                        className="input-goup"
+                        id="black"
+                        value={stock.M.black}
+                        name="M"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockGrey">
+                      <input
+                        className="input-goup"
+                        id="grey"
+                        value={stock.M.grey}
+                        name="M"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="theRealLabelDiv">
+                    <h6>L</h6>
+                    <label className="stockWhite">
+                      <input
+                        style={{ color: "black" }}
+                        className="input-goup"
+                        id="white"
+                        value={stock.L.white}
+                        name="L"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockBlack">
+                      <input
+                        className="input-goup"
+                        id="black"
+                        value={stock.L.black}
+                        name="L"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockGrey">
+                      <input
+                        className="input-goup"
+                        id="grey"
+                        value={stock.L.grey}
+                        name="L"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+                  </div>
+
+                  <div className="theRealLabelDiv">
+                    <h6>XL</h6>
+                    <label className="stockWhite">
+                      <input
+                        style={{ color: "black" }}
+                        className="input-goup"
+                        id="white"
+                        value={stock.XL.white}
+                        name="XL"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockBlack">
+                      <input
+                        className="input-goup"
+                        id="black"
+                        value={stock.XL.black}
+                        name="XL"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+
+                    <label className="stockGrey">
+                      <input
+                        className="input-goup"
+                        id="grey"
+                        value={stock.XL.grey}
+                        name="XL"
+                        type="number"
+                        min="0"
+                        max="999"
+                        onChange={handleInputStock}
+                      />
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="d-grid gap-2 col-6 mx-auto">
+                <button
+                  type="submit"
+                  className="btnForm"
+                  disabled={
+                    Object.keys(errors).length > 0 || form.name.length < 1
+                  }
+                  onClick={handleSubmit}
+                >
+                  Create
                 </button>
-              ) : null}
+              </div>
+            </form>
+          </div>
+          {/* *********** */}
+          <div className="divImagenes">
+            <div className="theRealDiv">
+              <div className="buttonStyles">
+                {loading ? (
+                  <h5>Cargando Imagenes...</h5>
+                ) : (
+                  <div className="imageButtonContainer">
+                    <hr />
+                    {image.principal ? (
+                      <button
+                        className="btn-close"
+                        aria-label="Close"
+                        name="principal"
+                        onClick={handleDeleteImg}
+                      />
+                    ) : null}
+                    <button
+                      style={{
+                        backgroundImage: `url(${image.principal})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        width: "100px",
+                        height: "100px",
+                        marginRight: "3px",
+                        border: "none",
+                      }}
+                      value="principal"
+                      onClick={carousel}
+                      className="imageUploaded"
+                    >
+                      Frente
+                    </button>
+                    <hr />
+                  </div>
+                )}
+
+                {loading ? (
+                  <h5>Cargando Imagenes...</h5>
+                ) : (
+                  <div className="imageButtonContainer">
+                    <hr />
+                    {image.secundaria ? (
+                      <button
+                        className="btn-close"
+                        aria-label="Close"
+                        name="secundaria"
+                        onClick={handleDeleteImg}
+                      />
+                    ) : null}
+                    <button
+                      style={{
+                        backgroundImage: `url(${image.secundaria})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        width: "100px",
+                        height: "100px",
+                        marginRight: "3px",
+                        border: "none",
+                      }}
+                      value="secundaria"
+                      onClick={carousel}
+                      className="imageUploaded"
+                    >
+                      Dorso
+                    </button>
+                    <hr />
+                  </div>
+                )}
+
+                {loading ? (
+                  <h5>Cargando Imagenes...</h5>
+                ) : (
+                  <div className="imageButtonContainer">
+                    <hr />
+                    {image.extra ? (
+                      <button
+                        className="btn-close"
+                        aria-label="Close"
+                        name="extra"
+                        onClick={handleDeleteImg}
+                      />
+                    ) : null}
+                    <button
+                      style={{
+                        backgroundImage: `url(${image.extra})`,
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "center",
+                        width: "100px",
+                        height: "100px",
+                        marginRight: "3px",
+                        border: "none",
+                      }}
+                      value="extra"
+                      onClick={carousel}
+                      className="imageUploaded"
+                    >
+                      Extra
+                    </button>
+                    <hr />
+                  </div>
+                )}
+              </div>
+              <div className="containerImage">
+                {form.image && (
+                  <img
+                    className="productImage"
+                    src={imagePP || form.image[0]}
+                  />
+                )}
+              </div>
             </div>
-          )}
-          <label>
-            extra
-            <input
-              type="file"
-              name="extra"
-              placeholder="Sube tu imagen aqui!"
-              onChange={uploadImage}
-            />
-          </label>
-          {loading ? (
-            <h3>Cargando Imagenes...</h3>
-          ) : (
-            <div>
-              <img src={image.extra} alt="" width="100px" />
-              {image.extra ? (
-                <button name="extra" onClick={handleDeleteImg}>
-                  boton
-                </button>
-              ) : null}
+
+            <div className="divInputs">
+              <input
+                placeholder="Imagen 1"
+                type="file"
+                name="principal"
+                onChange={uploadImage}
+              />
+
+              <input type="file" name="secundaria" onChange={uploadImage} />
+
+              <input type="file" name="extra" onChange={uploadImage} />
             </div>
-          )}
-          {/* <label>
-            ruta de la imagen
-            <input
-              type="text"
-              value={endpoint}
-              placeholder="Sube tu endpoint"
-              onChange={handleEndPoint}
-            />
-          </label> */}
-        </div>
+          </div>
 
-        {/* *************************** */}
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.description && form.description !== "" ? "is-valid" : "is-invalid"}`}
-            id="description"
-            name="description"
-            value={form.description}
-            onChange={handleChange}
-            placeholder="Write a description"
-            autocomplete="off"
-          />
-          {errors.description && (
-            <div className="invalid-feedback">{errors.description}</div>
-          )}
+          {/* ********* */}
         </div>
-
-        <div className="mb-3">
-          <input
-            type="number"
-            className={`form-control ${!errors.stock && form.stock ? "is-valid" : "is-invalid"}`}
-            id="stock"
-            name="stock"
-            value={form.stock}
-            onChange={handleChange}
-            placeholder="Insert Stock"
-            autocomplete="off"
-          />
-          {errors.stock && (
-            <div className="invalid-feedback">{errors.stock}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.color && form.color !== "" ? "is-valid" : "is-invalid"}`}
-            id="color"
-            name="color"
-            value={form.color}
-            onChange={handleChange}
-            placeholder="Color"
-            autocomplete="off"
-          />
-          {errors.color && (
-            <div className="invalid-feedback">{errors.color}</div>
-          )}
-        </div>
-
-        <div className="mb-3">
-          <input
-            type="text"
-            className={`form-control ${!errors.brand && form.brand !== "" ? "is-valid" : "is-invalid"}`}
-            id="brand"
-            name="brand"
-            value={form.brand}
-            onChange={handleChange}
-            placeholder="Brand"
-            autocomplete="off"
-          />
-          {errors.brand && (
-            <div className="invalid-feedback">{errors.brand}</div>
-          )}
-        </div>
-
-        <div className="d-grid gap-2 col-6 mx-auto">
-          <button
-            type="submit"
-            className="btnForm"
-            disabled={Object.keys(errors).length > 0 || form.name.length < 1}
-            onClick={handleSubmit}
-          >
-            Create
-          </button>
-        </div>
-      </form>
-      </div>
       </div>
     </div>
   );

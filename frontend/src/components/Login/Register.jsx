@@ -1,185 +1,169 @@
-import {useState, useEffect} from 'react'
-import { Link } from "react-router-dom"
-import Alerta from '../Alerta/Alerta'
-import axios from 'axios'
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import Alerta from "../Alerta/Alerta";
+// import axios from 'axios'
+import axiosClient from "../config/axiosClient";
+import "./styles.css";
+import imageLogo from "../../assets/trendy-spot-logo.png";
 
 const Register = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repetirPassword, setRepetirPassword] = useState("");
+  const [alerta, setAlerta] = useState({});
 
-  const [ name, setName ] = useState('')
-  const [ email, setEmail ] = useState('')
-  const [ password, setPassword ] = useState('')
-  const [ repetirPassword, setRepetirPassword ] = useState('')
-  const [ alerta, setAlerta ] = useState({})
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleSubmit = async e => {
-    e.preventDefault()
-
-    if([name, email, password, repetirPassword].includes('')) {
+    if ([name, email, password, repetirPassword].includes("")) {
       setAlerta({
-      msg: 'Todos los campos son obligatorios',
-      error: true
-    })
-     return
-    }  
+        msg: "Todos los campos son obligatorios",
+        error: true,
+      });
+      return;
+    }
 
-    name
+    name;
 
-    if(password !== repetirPassword) {
+    if (password !== repetirPassword) {
       setAlerta({
-        
-        msg: 'Los Passwords no coinciden',
-        error: true
-      })
-      return
-  }
+        msg: "Los Passwords no coinciden",
+        error: true,
+      });
+      return;
+    }
 
-  if(password.length < 6) {
-    setAlerta({
-      msg: 'El Password debe tener al menos 6 caracteres',
-      error: true
-    })
-     return
-  }
+    if (password.length < 6) {
+      setAlerta({
+        msg: "El Password debe tener al menos 6 caracteres",
+        error: true,
+      });
+      return;
+    }
 
-    setAlerta({})
+    setAlerta({});
 
     //Crear usuario de la api
 
     try {
-      const {data} = await axios.post('http://localhost:3004/users', {name, email, password})
+      const { data } = await axiosClient.post(`/users`, {
+        name,
+        email,
+        password,
+      });
 
       setAlerta({
         msg: data.msg,
-        error: false
-      })
+        error: false,
+      });
 
-      setName('')
-      setEmail('')
-      setPassword('')
-      setRepetirPassword('')
-
+      setName("");
+      setEmail("");
+      setPassword("");
+      setRepetirPassword("");
     } catch (error) {
-       setAlerta({
+      setAlerta({
         msg: error.response.data.error,
-        error: true
-       })
+        error: true,
+      });
     }
-  }
+  };
 
-  const {msg} = alerta
+  const { msg } = alerta;
 
   return (
     <>
-    <h1 className="titleLogin">
-      Crea una cuenta para hacer tu compra
-    </h1>
+      <div className="mainRegister">
+        <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
 
-    {msg && <Alerta alerta={alerta} />}
+        {msg && <Alerta alerta={alerta} />}
 
-    <form 
-          action=""
-          className=""
-          onSubmit={handleSubmit}
-          >
-    <div className="my-5">
-            <label 
-              className=""
-              htmlFor="name">
-                  name
+        <form action="" className="formRegister" onSubmit={handleSubmit}>
+          <div className="columna">
+            <div className="divInput">
+              <label className="label" htmlFor="name">
+                Name
               </label>
-            
-              <input 
-                  id="name"
-                  type="text"
-                  placeholder="Tu name"
-                  className=""
-                  value={name}
-                  onChange={e => setName(e.target.value)}
+
+              <input
+                id="name"
+                type="text"
+                placeholder="Name"
+                className="input"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
+            </div>
 
-        </div>
-
-        <div className="my-5">
-            <label 
-              className=""
-              htmlFor="email">
-                  Email
+            <div className="divInput">
+              <label className="label" htmlFor="email">
+                Email
               </label>
-            
-              <input 
-                  id="email"
-                  type="email"
-                  placeholder="Email de Registro"
-                  className=""
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
+
+              <input
+                id="email"
+                type="email"
+                placeholder="Email"
+                className="input"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
+            </div>
 
-      </div>
-
-        <div className="my-5">
-            <label 
-              className=""
-              htmlFor="password">
-                  Password
+            <div className="divInput">
+              <label className="label" htmlFor="password">
+                Password
               </label>
-            
-              <input 
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  className=""
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
+
+              <input
+                id="password"
+                type="password"
+                placeholder="Password"
+                className="input"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
+            </div>
 
-
-      </div>
-
-        <div className="my-5">
-            <label 
-              className=""
-              htmlFor="password">
-                Repetir  Password
+            <div className="divInput">
+              <label className="label" htmlFor="password">
+                Repetir Password
               </label>
-            
-              <input 
-                  id="password2"
-                  type="password"
-                  placeholder="Repetir tu Password"
-                  className=""
-                  value={repetirPassword }
-                  onChange={e => setRepetirPassword(e.target.value)}
+
+              <input
+                id="password2"
+                type="password"
+                placeholder="Repetir tu Password"
+                className="input"
+                value={repetirPassword}
+                onChange={(e) => setRepetirPassword(e.target.value)}
               />
+            </div>
+          </div>
 
+          <div className="columna">
+            <img src={imageLogo} alt="logo-home" className="logoRegister" />
+          </div>
 
-        </div>
-
-        <input 
-            type="submit" 
+          <input
+            type="submit"
             value="Crear Cuenta"
-            className="bg-sky-700 mb-5 w-full py-3 text-white uppercase font-bold rounded hover:cursor-pointer hover:ng-sky-800 transition-colors"    
-        />
+            className="btnCreateAccount"
+          />
+        </form>
 
-
-    </form>
-
-    <nav className="lg:flex lg:justify-between">
-          <Link
-            className='block text-center my-5 text-slate-500 uppercase text-sm'
-            to="/login"
-          >
+        <nav className="navRegister">
+          <Link className="linksRegister" to="/login">
             ¿Tienes una cuenta? Inicia Sesión
           </Link>
-          <Link
-            className='block text-center my-5 text-slate-500 uppercase text-sm'
-            to="/olvide-password"
-          >
+          <Link className="linksRegister" to="/olvide-password">
             Olvide Mi Password
           </Link>
-    </nav>
-</>
-  )
-}
+        </nav>
+      </div>
+    </>
+  );
+};
 
-export default Register
+export default Register;

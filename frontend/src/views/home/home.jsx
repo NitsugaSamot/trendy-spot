@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import "./home.css";
-import CardsContainer from '../../components/cardsContainer/container'
-import banner from '../../assets/Home.png'
-import Filter from "../../components/filter/filter";
 import { useSelector } from "react-redux";
+import CardsContainer from '../../components/cardsContainer/container'
+import Filter from "../../components/filter/filter";
 import Paginate from '../../components/paginate/Paginate';
+import banner from '../../assets/Home.png'
+import "./home.css";
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
