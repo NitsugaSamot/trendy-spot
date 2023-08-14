@@ -6,7 +6,7 @@ import {
   GET_ALL,
   SEARCH_NAME,
   REFRESH,
-
+  SET_PRODUCT_RATING, 
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
   FILTER_BRAND_AND_PRICE
@@ -64,7 +64,13 @@ export const setSelectedBrand = (brandName) => {
   };
 };
 
-
+export const setProductRating = (productId, rating) => ({
+  type: SET_PRODUCT_RATING,
+  payload: {
+    productId,
+    rating,
+  },
+});
 
 export function orderByName(payload){
     return function (dispatch){

@@ -23,6 +23,6 @@ router.get('/:productId/ratings', getRatingsByProduct);
 router.get('/:productId/average-rating', getAverageRating);
 
 router.post('/create', validation, newProductHandler);
-router.post('/:productId/ratings', checkAuth, createRating);
+router.post('/:productId/rating', checkAuth, createRating);
 
 module.exports = router;
