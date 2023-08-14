@@ -1,6 +1,8 @@
+import './pag-styles.css'
+
 const Paginate = ({handlePageChange, currentPage, totalPages}) => {
   return (
-    <div className="d-flex justify-content-center align-items-center py-3">
+    <div className="d-flex justify-content-center align-items-center py-3 pagination">
         <button
           className="btn btn-primary me-2"
           onClick={() => handlePageChange(currentPage - 1)}

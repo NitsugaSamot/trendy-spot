@@ -105,29 +105,54 @@ const Detail = () => {
               <hr />
               <h4 className="therealh4">${garment.price}</h4>
               <hr />
-              <div>
-            <button onClick={handleClickStock} value="s">
+              {/* <div className="containerBtn">
+            <button className="btnSize" onClick={handleClickStock} value="s">
               s
             </button>
-            <button onClick={handleClickStock} value="m">
+            <button className="btnSize" onClick={handleClickStock} value="m">
               m
             </button>
-            <button onClick={handleClickStock} value="l">
+            <button className="btnSize" onClick={handleClickStock} value="l">
               l
             </button>
-            <button onClick={handleClickStock} value="xl">
+            <button className="btnSize" onClick={handleClickStock} value="xl">
               xl
             </button>
-          </div>
-
+          </div> */}
+{/* 
           <div>
             {colorsAvailable.map((color) => (
               <button onClick={handleClickColor} name={color} key={color}>
                 {color}
               </button>
             ))}
+          </div> */}
+          {/* <div>{stockComb}</div> */}
+          <h5>Check our stock!</h5>
+              <div className="divButtons">
+            <button className="buttonSize" onClick={handleClickStock} value="s">
+              S
+            </button>
+            <button className="buttonSize" onClick={handleClickStock} value="m">
+              M
+            </button>
+            <button className="buttonSize" onClick={handleClickStock} value="l">
+              L
+            </button>
+            <button className="buttonSize" onClick={handleClickStock} value="xl">
+              XL
+            </button>
           </div>
-          <div>{stockComb}</div>
+
+          <div>
+            {colorsAvailable.map((color) => (
+              <button style={{width: '100px', background: `${color}`}} className="buttonSize2" onClick={handleClickColor} name={color} key={color}>
+                {color}
+              </button>
+            ))}
+          </div>
+          <hr />
+          <div className="stock">Stock: {stockComb}</div>
 
             </div>
               )}

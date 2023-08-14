@@ -15,6 +15,11 @@ const Detail = () => {
   // Extraer el parámetro "id" de la URL utilizando useParams de react-router-dom
   const { id } = useParams();
   const dispatch = useDispatch()
+
+  const [expanded, setExpanded] = useState(false);
+  const toogleExpand = () => {
+    setExpanded(!expanded);
+  };
   
   // Estado para almacenar la información de la prenda actual
   const [garment, setGarment] = useState({});
@@ -66,7 +71,24 @@ const Detail = () => {
         </div>
         <div>
           {/* Mostrar detalles de la prenda */}
-          <div className="details">
+
+          <div className="divMaxDetails">
+          <div className="allDetailsDiv">
+          
+            <hr />
+            {garment.name && <h3>{garment.name}</h3>}
+            <hr />
+            {garment.productbrand && <h5>{garment.productbrand}</h5>}
+            <hr />
+            {garment.description && <h5>{expanded ? garment.description : garment.description.slice(0, 99) + '...'}
+            </h5>}
+            <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Show less...' : 'Show more...'}</span>
+            
+            {/* Botón para agregar la prenda al carrito */}
+            <hr />
+          <button onClick={handleAddToCart}>Add to cart</button>
+
+          {/* <div className="details">
             <h2>{garment.name}</h2>
             <br />
             <h5 className="sizeprop">Talle: {garment.size}</h5>
@@ -78,7 +100,7 @@ const Detail = () => {
             <hr />
           </div>
           {/* Botón para agregar la prenda al carrito */}
-          <button onClick={handleAddToCart}>Añadir al carrito</button>
+
           
           {/* Modal para mostrar cuando se agrega un producto al carrito */}
           <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -97,6 +119,8 @@ const Detail = () => {
               </Button>
             </Modal.Footer>
           </Modal>
+          </div>
+          </div>
         </div>
       </div>
     </div>

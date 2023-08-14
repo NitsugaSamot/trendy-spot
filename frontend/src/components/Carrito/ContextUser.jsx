@@ -13,7 +13,7 @@ const ContextUser = () => {
             
             <Home/>
 
-            <Filter/>
+            {/* <Filter/> */}
       </div>
 
     </>

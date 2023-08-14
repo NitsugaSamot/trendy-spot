@@ -14,7 +14,7 @@ const Card = ({ image, id, name, price, productbrand }) => {
          {/* <h8>{name}</h8> */}
         <hr />
 
-        <img src={image[0]} alt={name} width={"300px"} />
+        <img className="imgProduct" src={image[0]} alt={name} width={"300px"} />
         <hr/>
 
         <h4 className="h5">{name}</h4>

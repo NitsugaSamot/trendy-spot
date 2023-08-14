@@ -1,4 +1,8 @@
 
+.sizeprop{
+  padding: 1rem;
+  width: 3rem;
+}
 
 .contImageprops {
     display: flex;
@@ -11,6 +15,17 @@
     height: 50%;
     margin-top: 100px;
     margin-left: 100px;
+}
+
+.divMaxDetails {
+  max-width: 100%;
+  width: 100%;
+}
+.allDetailsDiv {
+  background-color: rgb(17, 76, 95);
+  max-width: 100%;
+  padding: 3%;
+  margin-top: 10%;
 }
 
 .backprice {

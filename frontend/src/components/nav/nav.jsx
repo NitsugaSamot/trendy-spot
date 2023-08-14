@@ -8,9 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
-
-// import imageCart from "../nav/cart.png"
-// import imageLogo from './trendy-spot-logo.png'
+import imageCart from "../../assets/cart.png"
+import imageLogo from '../../assets/trendy-spot-logo.png'
 import './nav.css'
 
 const Nav = () => {
@@ -111,9 +110,26 @@ const handleEmptyCart = () => {
 return (
   <div className="containerNav">
     {/* Logo del enlace de inicio */}
-    <NavLink to="/">
-      {/* <img src={imageLogo} alt="logo-home" className="logoHome" /> */}
-    </NavLink>
+
+        
+          {auth.token ? (
+
+            <NavLink to="/logged_in">
+            <img src={imageLogo} alt="logo-home" className="logoHome" />
+            </NavLink>
+          ) : (
+
+            <NavLink to="/">
+            <img src={imageLogo} alt="logo-home" className="logoHome" />
+          </NavLink>
+
+          )}
+
+
+
+     {/* <NavLink to="/">
+      <img src={imageLogo} alt="logo-home" className="logoHome" />
+    </NavLink>  */}
 
     {/* Formulario de búsqueda */}
     {!location.pathname.startsWith('/detail') && (
@@ -143,7 +159,7 @@ return (
 <div className="cart-icon-container">
       <div className="cart-icon" onClick={() => setCartVisible(!cartVisible)}>
         {/* Icono del carrito */}
-        {/* <img src={imageCart} alt="Carrito" className="icon-image" /> */}
+        <img src={imageCart} alt="Carrito" className="icon-image" />
         {/* Mostrar cantidad de elementos en el carrito */}
         {cart.length > 0 && <div className="bak-cart-count"><span className="cart-count">{cart.length}</span></div>}
       </div>
@@ -176,21 +192,28 @@ return (
             Total: ${totalPrice}
           </div>
           {/* Botón para vaciar el carrito */}
-          <button className="empty-cart-button empty" onClick={handleEmptyCart}>
-            Empty Cart
-          </button>
-          {auth.token ? (
-            <button className="buy" onClick={handleBuy}>
-              Buy
-            </button>
-          ) : (
-            <>
-            <button className="empty-cart-button buyDisabled" disabled>
-              Buy
-            </button>
-            <p className="alert">Ten en cuenta que debes estar logeado para poder concretar la compra</p>
-            </>
-          )}
+         
+
+          <div className="maxDiv">
+              <button className="empty-cart-button" onClick={handleEmptyCart}>
+                Empty Cart
+              </button>
+
+              
+              {auth.token ? (
+                <button className="buy" onClick={handleBuy}>
+                  Buy
+                </button>
+              ) : (
+                <>
+                <button className="empty-cart-button buyDisabled" disabled>
+                  Buy
+                </button>
+                <p className="alert">Ten en cuenta que debes estar logeado para poder concretar la compra</p>
+                </>
+              )}
+          </div>
+
           {/* Botón para comprar */}
           {/* <button className="empty-cart-button" onClick={handleBuy}>
             Buy

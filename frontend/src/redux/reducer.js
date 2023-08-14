@@ -9,6 +9,7 @@ import {
   GET_ALL_BRANDS,
   SET_SELECTED_BRAND,
   FILTER_BRAND_AND_PRICE,
+  FILTER_PRODUCTS,
       
   ADD_TO_CART,
   REMOVE_FROM_CART,
@@ -66,7 +67,11 @@ const reducer = (state = initialState, {action, type, payload }) => {
         allClothes1: sortedArr,
       };
     }
-
+    case FILTER_PRODUCTS:
+      return {
+        ...state,
+        allClothes1: payload,
+      }
 
       case SET_SELECTED_BRAND:
         return {

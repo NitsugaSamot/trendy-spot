@@ -60,6 +60,68 @@ const products = [
         gris: '0'
       }
     }
+  },
+  {
+    name: 'Classics Slim Urban T-shirt for Women',
+    price: 9420,
+    image: ['https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692026799/Trendy/huiwswe3jysgubt9jlhq.jpg',
+    'https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692026744/Trendy/a8bauvkqsjokehftwxxl.jpg',
+    'https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692026861/Trendy/ebq0k0v2nwholy6tgvv5.jpg'],
+    description: 'Style and comfort have never been so close as with the Puma Classics Slim Urban T-shirt for Women. This essential garment for your urban style is made of cotton and features a slim fit for a modern and elegant silhouette. Its round neck and short sleeves allow you to move freely whether you re training or out in the city. So, if you re looking for a basic T-shirt that combines style and comfort in all kinds of looks, this is the one.',
+    brand: 'Puma',
+    stock: {
+      s: {
+        blanco: '91',
+        negro: '6',
+        gris: '40'
+      },
+      m: {
+        blanco: '12',
+        negro: '3',
+        gris: '8'
+      },
+      l: {
+        blanco: '4',
+        negro: '18',
+        gris: '2'
+      },
+      xl: {
+        blanco: '22',
+        negro: '1',
+        gris: '3'
+      }
+    }
+  },
+  {
+    name: 'Women s Long Sport Jogging Pants.',
+    price: 16969,
+    image: ['https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692028277/Trendy/bcvisfylgn4ln3y5zz8w.webp',
+    'https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692028308/Trendy/l4rgtus7trh0z3fwabow.webp',
+    'https://res.cloudinary.com/dpqsnv9bu/image/upload/v1692028341/Trendy/x3xtkbstvhi6xjb05pqf.webp'],
+    description: 'WOMEN S THERMA TECH THERMAL SPORTS PANTS Excellent quality Features thermally sealed pockets with zippers on the sides Super lightweight, quick-drying, comfortable, and stylish Finished with cuffs Suitable for all your sports activities.',
+    brand: 'Urban Luxury',
+    stock: {
+      s: {
+        blanco: '20',
+        negro: '7',
+        gris: '22'
+      },
+      m: {
+        blanco: '1',
+        negro: '4',
+        gris: '9'
+      },
+      l: {
+        blanco: '22',
+        negro: '31',
+        gris: '77'
+      },
+      xl: {
+        blanco: '30',
+        negro: '50',
+        gris: '10'
+      }
+    }
   }
 ];
 

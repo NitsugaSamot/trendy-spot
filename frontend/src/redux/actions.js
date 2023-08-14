@@ -7,6 +7,8 @@ import {
   SEARCH_NAME,
   REFRESH,
 
+  FILTER_PRODUCTS,
+
   GET_ALL_BRANDS,
   FILTER_BRAND_AND_PRICE,
 
@@ -213,4 +215,36 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+export const filterProducts = (brandName, minPrice, maxPrice) => {
+  return async function (dispatch) {
+    try {
+      let url = "http://localhost:3004/products/filter?";
+      if (brandName) {
+        url += `brandName=${brandName}&`;
+      }
+      if (minPrice && maxPrice) {
+        url += `minPrice=${minPrice}&maxPrice=${maxPrice}`;
+      }
+
+      const filteredProducts = await axios.get(url);
+      return dispatch({
+        type: FILTER_PRODUCTS,
+        payload: filteredProducts.data,
+      });
+    } catch (error) {
+      console.log(error);
+      alert(error.response.data.error);
+    }
+  };
+};
 

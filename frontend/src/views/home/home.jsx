@@ -36,10 +36,10 @@ const Home = () => {
   }
 
   return (
-  <div>
+  <div className='containerHome'>
     <img src={banner} className="background-image" />
-    <div className="container py-3">
-      <Filter onPageChange={(page) => setCurrentPage(page)}/>
+    <div className="">
+      {/* <Filter onPageChange={(page) => setCurrentPage(page)}/> */}
       <CardsContainer currentProduct={currentProduct} />
       <Paginate currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
     </div>

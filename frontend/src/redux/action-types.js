@@ -17,7 +17,8 @@ export const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY"
 
 export const DECREASE_QUANTITY = "DECREASE_QUANTITY"
-
+export const FILTER_PRODUCTS = "FILTER_PRODUCTS"
+ 
 // export const GET_ALL = 'GET_ALL';
 // export const FILTER_BY_PRICE = 'FILTER_BY_PRICE';
 // export const SEARCH_NAME = 'SEARCH_NAME';
