@@ -16,14 +16,13 @@ router.get('/filter', filterProductsByPriceRange);
 router.get('/brands', getAllBrands);
 router.get('/filter?', filterProducts);
 router.get('/:id', getProductById);
-router.get('/brands', getAllBrands);
-
 router.get('/brands/:brandName', filterByBrands);
+
+// Rutas de valoración después de las rutas de filtrado
 router.get('/:productId/ratings', getRatingsByProduct);
-router.get('/:productId/average-rating', getAverageRating)
+router.get('/:productId/average-rating', getAverageRating);
 
 router.post('/create', validation, newProductHandler);
-router.post('/:productId/ratings', checkAuth, createRating );
-
+router.post('/:productId/ratings', checkAuth, createRating);
 
 module.exports = router;

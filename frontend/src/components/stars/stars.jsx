@@ -12,7 +12,7 @@ const StarRating = ({ productId }) => {
 
   const fetchAverageRating = async () => {
     try {
-      const response = await axios.get(`/api/products/${productId}/average-rating`);
+      const response = await axios.get(`/api/detail/${productId}/average-rating`);
       setAverageRating(response.data.averageRating);
     } catch (error) {
       console.error('Error al obtener el promedio de valoración:', error);

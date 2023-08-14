@@ -94,3 +94,9 @@
     background-color: rgb(91, 190, 252);
     border: solid 1.5px #1f1f1f;
   }
+
+   .starPos {
+      font-size: 40px;
+      margin-left: 10%; 
+      cursor: pointer;
+   }

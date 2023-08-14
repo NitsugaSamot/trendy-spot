@@ -7,6 +7,7 @@ import StarRating from "../stars/stars"
 
 const Detail = () => {
   const { id } = useParams();
+  const productId = parseInt(id);
   const [garment, setGarment] = useState({});
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const Detail = () => {
         const { data } = response;
         setGarment(data);
       } catch (error) {
-        window.alert("Error al obtener los datos del personaje");
+        window.alert("Error al obtener los datos del producto");
       }
     }
     fetchData();
@@ -35,7 +36,10 @@ const Detail = () => {
         <div>
           <div className="details">
             <h2 className="name">{garment.name}</h2>
-            <StarRating productId={id} />
+
+            <div className="starPos">
+              <StarRating  productId={productId} />
+            </div>
 
             <h5 className="exDetail">
               Tamaño: &nbsp; {garment.size}
