@@ -102,10 +102,9 @@
 }
 
 .divInputs {
-      display: flex;
-      flex-direction: column;
-      background-color: brown;
-      align-items: end;
+      justify-content: center;
+      background-color: white;
+      border-radius: 10px;
 }
 
 .theRealDiv{
@@ -116,8 +115,10 @@
 
 .buttonStyles {
       max-width: 100%;
-      width: 100%;
-      background-color: red;
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      
 }
 
 .productImage {
@@ -126,11 +127,16 @@
 }
 
 .containerImage {
-      max-width: 100%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 }
 
 .inputgrupo {
-      margin: 1%;
+      margin: 1%;;
 }
 
 .stockWhite {
@@ -180,5 +186,12 @@
 
 .btn-close {
       background-color: white;
-      margin-bottom: 5px;
+      margin-bottom: 7px;
+}
+
+.input1 {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
 }

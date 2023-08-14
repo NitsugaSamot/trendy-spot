@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import validation from "./validations";
 import "./createProduct.css";
@@ -113,6 +113,7 @@ const CreateProduct = () => {
 
     const file = await res.json();
     setImage({ ...image, [name]: file.secure_url });
+    setImagePP(file.secure_url);
     // console.log(name);
     setErrors(validation({ ...form, [form.image]: {[name]: file.secure_url}}))
     setLoading(false);
@@ -122,10 +123,12 @@ const CreateProduct = () => {
   const handleDeleteImg = (event) => {
     const name = event.target.name;
     setImage({ ...image, [name]: "" });
+    setImagePP({ });
   };
 
 
   const carousel = (event) => {
+    if(!form.image[event.target.value]) return alert("Please insert a new image")
     setImagePP(form.image[event.target.value]);
   }
 
@@ -204,6 +207,7 @@ const CreateProduct = () => {
       secundaria: "",
       extra:""
     });
+    setImagePP("");
     alert("The MAGIC BEST PRODUCT TRENDY-SPOT has been created");
   };
   
@@ -216,7 +220,7 @@ const CreateProduct = () => {
       <form className="form">
 
 
-      <h3 className="mb-4 h3">Ingresar Prenda</h3>
+      <h3 className="mb-4 h3">Create Product</h3>
         <div>
         <div className="inputsProduct">
           <input
@@ -478,6 +482,38 @@ const CreateProduct = () => {
       </div>
             {/* *********** */}
             <div className="divImagenes">
+            <h4 style={{color: "white"}}>Product Image</h4>
+            <div className="divInputs">
+
+              <div className="input1">
+              <input
+                  placeholder="Imagen 1"
+                  type="file"
+                  name="principal"
+                  onChange={uploadImage}
+                  className="inputgrupo"
+                  />
+             
+              <input
+                type="file"
+                name="secundaria"
+                onChange={uploadImage}
+                className="inputgrupo"
+              />
+
+              <input
+                type="file"
+                name="extra"
+                onChange={uploadImage}
+                className="inputgrupo"
+              />
+
+              {errors.image && (
+              <div style={{color: "red", padding: "2px"}}>{errors.image}</div>
+              )}
+              </div>
+
+            </div>
             <div className="theRealDiv">
 
                 <div className="buttonStyles">
@@ -505,7 +541,7 @@ const CreateProduct = () => {
                     <button style={{backgroundImage: `url(${image.secundaria})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100px', height: '100px', marginRight: '3px', border: 'none'}} value='secundaria' onClick={carousel} className="imageUploaded">Back</button>   
                   </div>             
               )}
-
+              
               {loading ? (
                 <h5>Cargando Imagenes...</h5>
               ) : (
@@ -520,36 +556,9 @@ const CreateProduct = () => {
               )}
               </div>
               <div className="containerImage">
-              {form.image && <img className="productImage" src={imagePP || form.image[0]}/>}
+              {imagePP && <img className="productImage" src={imagePP}/>}
               </div>
               </div>
-
-              <h4>hola</h4>
-
-
-            <div className="divInputs">
-              <input
-                  placeholder="Imagen 1"
-                  type="file"
-                  name="principal"
-                  onChange={uploadImage}
-                  className="inputgrupo"
-              />
-              
-              <input
-                type="file"
-                name="secundaria"
-                onChange={uploadImage}
-                className="inputgrupo"
-              />
-          
-              <input
-                type="file"
-                name="extra"
-                onChange={uploadImage}
-                className="inputgrupo"
-              />
-            </div>
         
             </div>
     

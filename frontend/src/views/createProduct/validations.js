@@ -6,7 +6,7 @@ const validation = (form) => {
   else if (form.name.length > 50) errors.name = "Write up to 50 letters";
 
   const {principal, secundaria} = form.image;
-  if(principal === "" || secundaria === "") errors.image = "Image Principal is required";
+  if(principal === "" && secundaria === "") errors.image = "Primary and secondary images as required";
 
   if (!form.price) errors.price = "Insert a price";
   else if (form.price < 100 || form.price > 100000)
