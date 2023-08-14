@@ -1,16 +1,10 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllClothes, searchName, removeFromCart, increaseQuantity, decreaseQuantity } from "../../redux/actions";
-import { NavLink } from "react-router-dom";
-import { initMercadoPago } from '@mercadopago/sdk-react';
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import useAuth from "../../hooks/useAuth";
-
-
-import imageCart from "../nav/cart.png"
-import imageLogo from './trendy-spot-logo.png'
-import './nav.css'
+import { getAllClothes, searchName } from "../../redux/actions";
+import { NavLink } from "react-router-dom";
+import imageLogo from "../../assets/trendy-spot-logo.png";
+import "./nav.css";
 
 const Nav = () => {
 
@@ -22,21 +16,17 @@ const Nav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-// Obtener el estado del carrito desde el store usando useSelector
-  const cart = useSelector((state) => state.cart);
+  const handleRefresh = () => {
+    dispatch(getAllClothes());
+    window.scrollTo(0, 400);
+  };
 
-  // Estado local para controlar la visibilidad del carrito y el precio total
-  const [cartVisible, setCartVisible] = useState(false);
-  const [totalPrice, setTotalPrice] = useState(0);
-
-  // Calcular el precio total del carrito cada vez que cambie
-  useEffect(() => {
-    let total = 0;
-    cart.forEach(item => {
-      total += item.price * item.quantity;
-    });
-    setTotalPrice(total);
-  }, [cart]);
+  const handleClick = (event) => {
+    event.preventDefault();
+    dispatch(searchName(search));
+    navigate("/");
+    setSearch("");
+  };
 
   // const orderData = {
   //   items: cart.map(item => ({
@@ -64,9 +54,39 @@ const handleBuy = () => {
       console.log(error.message);
     }
   };
+  return (
+    <div className="containerNav">
+      <NavLink to="/">
+        <img src={imageLogo} alt="logo-home" className="logoHome" />
+      </NavLink>
 
-  // Llamar a la función para crear la preferencia al hacer clic en el botón "Buy"
-  createPreference();
+      <div>
+        <input
+          className="search"
+          type="text"
+          placeholder="Search your clothes"
+          value={search}
+          onChange={handleInputName}
+        />
+        <button className="btnSearch" type="submit" onClick={handleClick}>
+          Search
+        </button>
+      </div>
+
+      {location.pathname === "/" && (
+        <button className="btnRefresh" onClick={handleRefresh}>
+          Refresh
+        </button>
+      )}
+      <NavLink to="/create">
+        <button className="btnSearch">create</button>
+      </NavLink>
+
+      <NavLink to="/login/register">
+        <button className="btnSearch">Registrate</button>
+      </NavLink>
+    </div>
+  );
 };
 
 const handleIncrement = (itemId) => {

@@ -12,6 +12,9 @@
     width: 80px;
     height: 80px;
 }
+.logoHome:active {
+    transform: scale(.8);
+}
 
 .search{
     height: 2rem;

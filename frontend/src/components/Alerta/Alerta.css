@@ -1,16 +1,16 @@
-.alertRed{
+.alertRed {
     background-color: red;
     color: white;
 }
 
-.alertOk{
+.alertOk {
     background-color: blue;
     color: white;
 }
 
 
 .alertRed,
-.alertOk{
+.alertOk {
     padding: 1rem;
     width: 70%;
     margin: 0 auto;
