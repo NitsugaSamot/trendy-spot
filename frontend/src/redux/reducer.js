@@ -22,7 +22,6 @@ const initialState = {
   productsByPrice: [],
   allBrands: [],
   products: [],
-  selectedBrand: null,
   filteredByPrice: [],
   cart: [],
 

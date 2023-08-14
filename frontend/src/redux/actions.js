@@ -70,7 +70,8 @@ export const searchName = (payload) => {
       const productByName = await axios.get(
         `http://localhost:3004/products/?name=${payload}`
       );
-      return dispatch({
+      console.log(productByName.data);
+      dispatch({
         type: SEARCH_NAME,
         payload: productByName.data,
       });

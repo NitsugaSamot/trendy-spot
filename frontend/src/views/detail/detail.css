@@ -41,10 +41,39 @@
     margin-top: 10%;
 }
 
-.divMaxDetails {
-    max-width: 100%;
+.divButtons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
 }
 
+.buttonSize{
+    width: 35px;
+    margin-right: 2.5px;
+    margin-left: 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonSize2{
+    width: 60px;
+    margin: 1%;
+    justify-content: center;
+    align-items: center;
+}
+
+.divMaxDetails {
+    max-width: 100%;
+    width: 100%;
+}
+
+.stock {
+    font-size: 22px;
+    font-weight: bold;
+}
 .divBtn{
     max-width: 100%;
     padding: 1%;

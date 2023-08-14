@@ -2,6 +2,7 @@ const createProduct = require('../../controllers/productsControllers/createProdu
 
 const newProductHandler = async (req, res) => {
     const {name, price, image, description, brand, stock } = req.body;
+    console.log(req.body);
     const arrayImg = Object.values(image)
     try {
         const newProduct = await createProduct(name, price, arrayImg, description, brand, stock);

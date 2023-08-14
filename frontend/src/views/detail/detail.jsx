@@ -24,6 +24,7 @@ const Detail = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3004/products/${id}`);
+        console.log(response.data);
         const { data } = response;
         setGarment(data);
       } catch (error) {
@@ -60,18 +61,18 @@ const Detail = () => {
     setShowModal(true);
   };
 
-  const handleClickStock = (event, stock = garment.stock) => {
+  const handleClickStock = async (event, stock = garment.stock) => {
     setColorsAvailable([])
+    setStockComb(0)
     setSize(event.target.value);
+    console.log(size);
 
+    
     for (let index in stock[size]) {
       if (stock[size][index] > 0) {
-        console.log(index);
         setColorsAvailable((colorsAvailable) => [...colorsAvailable, index]);
-        console.log(colorsAvailable);
       }
     }
-    console.log(colorsAvailable);
   };
 
   const handleClickColor = (event, stock = garment.stock) => {
@@ -105,30 +106,32 @@ const Detail = () => {
               <hr />
               <h4 className="therealh4">${garment.price}</h4>
               <hr />
-              <div>
-            <button onClick={handleClickStock} value="s">
-              s
+               <h5>Check our stock!</h5>
+              <div className="divButtons">
+            <button className="buttonSize" onClick={handleClickStock} value="s">
+              S
             </button>
-            <button onClick={handleClickStock} value="m">
-              m
+            <button className="buttonSize" onClick={handleClickStock} value="m">
+              M
             </button>
-            <button onClick={handleClickStock} value="l">
-              l
+            <button className="buttonSize" onClick={handleClickStock} value="l">
+              L
             </button>
-            <button onClick={handleClickStock} value="xl">
-              xl
+            <button className="buttonSize" onClick={handleClickStock} value="xl">
+              XL
             </button>
           </div>
 
           <div>
             {colorsAvailable.map((color) => (
-              <button onClick={handleClickColor} name={color} key={color}>
+              <button style={{width: '100px', background: `${color}`}} className="buttonSize2" onClick={handleClickColor} name={color} key={color}>
                 {color}
               </button>
             ))}
           </div>
-          <div>{stockComb}</div>
-
+          <hr />
+          <div className="stock">Stock: {stockComb}</div>
+            
             </div>
               )}
             </div>
@@ -136,6 +139,7 @@ const Detail = () => {
           
         <div className="divMaxDetails">
           <div className="allDetailsDiv">
+          
             <hr />
             {garment.name && <h3>{garment.name}</h3>}
             <hr />
@@ -143,11 +147,11 @@ const Detail = () => {
             <hr />
             {garment.description && <h5>{expanded ? garment.description : garment.description.slice(0, 99) + '...'}
             </h5>}
-            <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Ver menos' : 'Ver mas'}</span>
+            <span style={{cursor: "pointer", marginLeft: "5px", color: "rgb(47, 203, 255)"}} onClick={toogleExpand}>{expanded ? 'Show less...' : 'Show more...'}</span>
             
             {/* Botón para agregar la prenda al carrito */}
             <hr />
-          <button onClick={handleAddToCart}>Añadir al carrito</button>
+          <button onClick={handleAddToCart}>Add to cart</button>
           
           {/* Modal para mostrar cuando se agrega un producto al carrito */}
           <Modal show={showModal} onHide={() => setShowModal(false)}>
@@ -166,9 +170,10 @@ const Detail = () => {
               </Button>
             </Modal.Footer>
           </Modal>
-
+        
           </div>
         </div>
+        
       </div>
       </div>
       </div>

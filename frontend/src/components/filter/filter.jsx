@@ -76,7 +76,6 @@ const [objToFilter, setObjToFilter] = useState({
       }
       return acc;
     }, []);
-    setFilterBrands(uniqueBrands);
   };
 
   useEffect(() => {
@@ -94,39 +93,19 @@ const [objToFilter, setObjToFilter] = useState({
     }
   });
 
-  // const handleFilterBrandSelect = (event) => {
-  //   // dispatch(refresh());
-  //   dispatch(filterByBrand(event.target.value));
-  // };
-
-
-  // const handleFilterPrice = (event) => {
-  //   setPrice({ ...price, [event.target.name]: event.target.value });
-  // };
-
-
-  // const handleClickPrice = () => {
-  //     dispatch(filterPrice(price.minPrice, price.maxPrice));
-  // };
-
-  // const handleClickPrice = () => {
-  //   if (price.minPrice >= 100 && price.maxPrice <= 10000)
-  //   dispatch(filterPrice(price));
-  // };
-
 
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
       <h4>Order</h4>
       <select className="form-select" name="order" onChange={handleOrderSelect}>
-      <option value="" disabled selected>Order by Name</option>
+      <option value="" disabled>Order by Name</option>
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
 
       <h4>Brand</h4>
       <select className="form-select" name="order" onChange={handleFilterBrandSelect}>
-        <option value="" disabled selected>Order by Brand</option>
+        <option value="" disabled>Order by Brand</option>
         { filterBrands.map((brand, index) => ( 
           
           <option key={index} value={brand}>

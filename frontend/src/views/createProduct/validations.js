@@ -24,7 +24,40 @@ const validation = (form) => {
   else if (form.brand.lenght < 3 || form.brand.lenght > 20)
     errors.brand = "The brand name must have between 3 and 20 caracters";
 
-  if(form.stock.S.white < 1 || form.stock.S.black < 1 || form.stock.S.grey < 1) errors.stock = "The stock cannot be 0";
+    if (form.stock.s.blanco < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.s.negro < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.s.gris < 0) errors.stock = 'The value cannot be negative.'
+
+  if (form.stock.m.blanco < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.m.negro < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.m.gris < 0) errors.stock = 'The value cannot be negative.'
+
+  if (form.stock.l.blanco < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.l.negro < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.l.gris < 0) errors.stock = 'The value cannot be negative.'
+
+  if (form.stock.xl.blanco < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.xl.negro < 0) errors.stock = 'The value cannot be negative.'
+  if (form.stock.xl.gris < 0) errors.stock = 'The value cannot be negative.'
+
+
+if (isNaN(form.stock.s.blanco) || form.stock.s.blanco.includes('-') || form.stock.s.blanco.includes('+') || form.stock.s.blanco.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.s.negro) || form.stock.s.negro.includes('-') || form.stock.s.negro.includes('+') || form.stock.s.negro.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.s.gris) || form.stock.s.gris.includes('-') || form.stock.s.gris.includes('+') || form.stock.s.gris.includes('e')) errors.stock = "Should be a positive integer";
+
+if (isNaN(form.stock.m.blanco) || form.stock.m.blanco.includes('-') || form.stock.m.blanco.includes('+') || form.stock.m.blanco.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.m.negro) || form.stock.m.negro.includes('-') || form.stock.m.negro.includes('+') || form.stock.m.negro.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.m.gris) || form.stock.m.gris.includes('-') || form.stock.m.gris.includes('+') || form.stock.m.gris.includes('e')) errors.stock = "Should be a positive integer";
+
+if (isNaN(form.stock.l.blanco) || form.stock.l.blanco.includes('-') || form.stock.l.blanco.includes('+') || form.stock.l.blanco.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.l.negro) || form.stock.l.negro.includes('-') || form.stock.l.negro.includes('+') || form.stock.l.negro.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.l.gris) || form.stock.l.gris.includes('-') || form.stock.l.gris.includes('+') || form.stock.l.gris.includes('e')) errors.stock = "Should be a positive integer";
+
+if (isNaN(form.stock.xl.blanco) || form.stock.xl.blanco.includes('-') || form.stock.xl.blanco.includes('+') || form.stock.xl.blanco.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.xl.negro) || form.stock.xl.negro.includes('-') || form.stock.xl.negro.includes('+') || form.stock.xl.negro.includes('e')) errors.stock = "Should be a positive integer";
+if (isNaN(form.stock.xl.gris) || form.stock.xl.gris.includes('-') || form.stock.xl.gris.includes('+') || form.stock.xl.gris.includes('e')) errors.stock = "Should be a positive integer";
+
+  if((form.stock.s.blanco + form.stock.s.negro + form.stock.s.gris + form.stock.m.blanco + form.stock.m.negro + form.stock.m.gris + form.stock.l.blanco + form.stock.l.negro + form.stock.l.gris + form.stock.xl.blanco + form.stock.xl.negro + form.stock.xl.gris) < 1) errors.stock = "You must enter at least one value in the stock input fields."
 
   return errors;
 };

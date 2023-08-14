@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import validation from "./validations";
 import "./createProduct.css";
@@ -22,52 +22,53 @@ const CreateProduct = () => {
   },
     description: "",
     stock: {
-      S: {
-        white: '',
-        black: '',
-        grey: ''
+      s: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      M: {
-        white: '',
-        black: '',
-        grey: ''
+      m: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      L: {
-        white: '',
-        black: '',
-        grey: ''
+      l: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      XL: {
-        white: '',
-        black: '',
-        grey: ''
+      xl: {
+        blanco: '',
+        negro: '',
+        gris: ''
       }
     },
     brand: "",
   });
   const [stock, setStock] = useState({
-      S: {
-        white: 0,
-        black: 0,
-        grey: 0
-      },
-      M: {
-        white: 0,
-        black: 0,
-        grey: 0
-      },
-      L: {
-        white: 0,
-        black: 0,
-        grey: 0
-      },
-      XL: {
-        white: 0,
-        black: 0,
-        grey: 0
-      }
+    s: {
+      blanco: '',
+      negro: '',
+      gris: ''
+    },
+    m: {
+      blanco: '',
+      negro: '',
+      gris: ''
+    },
+    l: {
+      blanco: '',
+      negro: '',
+      gris: ''
+    },
+    xl: {
+      blanco: '',
+      negro: '',
+      gris: ''
+    }
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+  });
 
   const handleChange = (event) => {
     const {name, value} = event.target;
@@ -77,7 +78,7 @@ const CreateProduct = () => {
   
   const handleInputStock = (event) => {
     const {value, name, id} = event.target;
-
+    
     setStock((prevStock) => ({
       ...prevStock,
       [name]: {
@@ -153,49 +154,49 @@ const CreateProduct = () => {
       image: {},
       description: "",
       stock: {
-        S: {
-          white: '',
-          black: '',
-          grey: ''
+        s: {
+          blanco: '',
+          negro: '',
+          gris: ''
         },
-        M: {
-          white: '',
-          black: '',
-          grey: ''
+        m: {
+          blanco: '',
+          negro: '',
+          gris: ''
         },
-        L: {
-          white: '',
-          black: '',
-          grey: ''
+        l: {
+          blanco: '',
+          negro: '',
+          gris: ''
         },
-        XL: {
-          white: '',
-          black: '',
-          grey: ''
+        xl: {
+          blanco: '',
+          negro: '',
+          gris: ''
         }
       },
       brand: ""
     });
     setStock({
-      S: {
-        white: 0,
-        black: 0,
-        grey: 0
+      s: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      M: {
-        white: 0,
-        black: 0,
-        grey: 0
+      m: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      L: {
-        white: 0,
-        black: 0,
-        grey: 0
+      l: {
+        blanco: '',
+        negro: '',
+        gris: ''
       },
-      XL: {
-        white: 0,
-        black: 0,
-        grey: 0
+      xl: {
+        blanco: '',
+        negro: '',
+        gris: ''
       }
     });
     setImage({
@@ -216,7 +217,7 @@ const CreateProduct = () => {
 
 
       <h3 className="mb-4 h3">Ingresar Prenda</h3>
-        <div className="maxContainerStock">
+        <div>
         <div className="inputsProduct">
           <input
             type="text"
@@ -267,7 +268,7 @@ const CreateProduct = () => {
         <div className="inputsProduct">
           <textarea
             type="text"
-            className={`form-control ${form.description !== "" ? "is-valid" : "is-invalid"}`}
+            className={`form-control ${form.description.length > 10 ? "is-valid" : "is-invalid"}`}
             id="description"
             name="description"
             value={form.description}
@@ -282,20 +283,17 @@ const CreateProduct = () => {
         </div>
 
         <div className="divStockColors">
-        <h5>Colors</h5>
-        {errors.stock && (
-          <div className="">{errors.stock}</div>
-          )}
         <div className="divStock">
+        <h5 style={{color: "white", fontWeight: "bold"}}>Insert stock by color and size</h5>
             <div className="theRealLabelDiv">
             <h6>S</h6>
         <label className="stockWhite">
           <input 
           style={{color: "black"}}
           className="input-goup"
-          id='white'
-          value={stock.S.white}
-          name='S'
+          id='blanco'
+          value={stock.s.white}
+          name='s'
           type="number"
           min="0" 
           max="999"
@@ -306,9 +304,9 @@ const CreateProduct = () => {
         <label className="stockBlack">
           <input 
           className="input-goup"
-          id='black'
-          value={stock.S.black}
-          name='S'
+          id='negro'
+          value={stock.s.black}
+          name='s'
           type="number"
           min="0" 
           max="999"
@@ -319,9 +317,9 @@ const CreateProduct = () => {
         <label className="stockGrey">
           <input 
           className="input-goup"
-          id='grey'
-          value={stock.S.grey}
-          name='S'
+          id='gris'
+          value={stock.s.grey}
+          name='s'
           type="number"
           min="0" 
           max="999"
@@ -336,9 +334,9 @@ const CreateProduct = () => {
           <input 
            style={{color: "black"}}
           className="input-goup"
-          id='white'
-          value={stock.M.white}
-          name='M'
+          id='blanco'
+          value={stock.m.white}
+          name='m'
           type="number"
           min="0" 
           max="999"
@@ -349,9 +347,9 @@ const CreateProduct = () => {
         <label className="stockBlack">
           <input 
           className="input-goup"
-          id='black'
-          value={stock.M.black}
-          name='M'
+          id='negro'
+          value={stock.m.black}
+          name='m'
           type="number"
           min="0" 
           max="999"
@@ -362,9 +360,9 @@ const CreateProduct = () => {
         <label className="stockGrey">
           <input 
           className="input-goup"
-          id='grey'
-          value={stock.M.grey}
-          name='M'
+          id='gris'
+          value={stock.m.grey}
+          name='m'
           type="number"
           min="0" 
           max="999"
@@ -379,9 +377,9 @@ const CreateProduct = () => {
           <input 
            style={{color: "black"}}
           className="input-goup"
-          id='white'
-          value={stock.L.white}
-          name='L'
+          id='blanco'
+          value={stock.l.white}
+          name='l'
           type="number"
           min="0" 
           max="999"
@@ -392,9 +390,9 @@ const CreateProduct = () => {
         <label className="stockBlack">
           <input 
           className="input-goup"
-          id='black'
-          value={stock.L.black}
-          name='L'
+          id='negro'
+          value={stock.l.black}
+          name='l'
           type="number"
           min="0" 
           max="999"
@@ -405,9 +403,9 @@ const CreateProduct = () => {
         <label className="stockGrey">
           <input 
           className="input-goup"
-          id='grey'
-          value={stock.L.grey}
-          name='L'
+          id='gris'
+          value={stock.l.grey}
+          name='l'
           type="number"
           min="0" 
           max="999"
@@ -424,9 +422,9 @@ const CreateProduct = () => {
           <input 
            style={{color: "black"}}
           className="input-goup"
-          id='white'
-          value={stock.XL.white}
-          name='XL'
+          id='blanco'
+          value={stock.xl.white}
+          name='xl'
           type="number"
           min="0" 
           max="999"
@@ -437,9 +435,9 @@ const CreateProduct = () => {
         <label className="stockBlack">
           <input 
           className="input-goup"
-          id='black'
-          value={stock.XL.black}
-          name='XL'
+          id='negro'
+          value={stock.xl.black}
+          name='xl'
           type="number"
           min="0" 
           max="999"
@@ -450,18 +448,19 @@ const CreateProduct = () => {
         <label className="stockGrey">
           <input 
           className="input-goup"
-          id='grey'
-          value={stock.XL.grey}
-          name='XL'
+          id='gris'
+          value={stock.xl.grey}
+          name='xl'
           type="number"
           min="0" 
           max="999"
           onChange={handleInputStock}
           />
         </label>
-
-
         </div>
+        {errors.stock && (
+          <div style={{color: "red", padding: "2px" }}>{errors.stock}</div>
+          )}
         </div>
         </div>
 
@@ -490,7 +489,7 @@ const CreateProduct = () => {
                   {image.principal ? (
                     <button className="btn-close" aria-label="Close" name="principal" onClick={handleDeleteImg}/>
                   ) : null}
-                  <button style={{backgroundImage: `url(${image.principal})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100px', height: '100px', marginRight: '3px', border: "none"}} value='principal' onClick={carousel} className="imageUploaded">Frente</button>
+                  <button style={{backgroundImage: `url(${image.principal})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100px', height: '100px', marginRight: '3px', border: "none"}} value='principal' onClick={carousel} className="imageUploaded">Front</button>
                     <hr />
                 </div>
               )}
@@ -499,12 +498,11 @@ const CreateProduct = () => {
                 <h5>Cargando Imagenes...</h5>
               ) : (
                 <div className="imageButtonContainer">
-                  <hr />                 
+                
                   {image.secundaria ? (
                     <button className="btn-close" aria-label="Close" name="secundaria" onClick={handleDeleteImg}/>
                     ) : null}
-                    <button style={{backgroundImage: `url(${image.secundaria})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100px', height: '100px', marginRight: '3px', border: 'none'}} value='secundaria' onClick={carousel} className="imageUploaded">Dorso</button>   
-                    <hr />
+                    <button style={{backgroundImage: `url(${image.secundaria})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', width: '100px', height: '100px', marginRight: '3px', border: 'none'}} value='secundaria' onClick={carousel} className="imageUploaded">Back</button>   
                   </div>             
               )}
 
@@ -526,6 +524,8 @@ const CreateProduct = () => {
               </div>
               </div>
 
+              <h4>hola</h4>
+
 
             <div className="divInputs">
               <input
@@ -533,26 +533,24 @@ const CreateProduct = () => {
                   type="file"
                   name="principal"
                   onChange={uploadImage}
+                  className="inputgrupo"
               />
               
               <input
                 type="file"
                 name="secundaria"
                 onChange={uploadImage}
+                className="inputgrupo"
               />
           
               <input
                 type="file"
                 name="extra"
                 onChange={uploadImage}
+                className="inputgrupo"
               />
             </div>
-         
-              
-    
-
-                
-              
+        
             </div>
     
             {/* ********* */}

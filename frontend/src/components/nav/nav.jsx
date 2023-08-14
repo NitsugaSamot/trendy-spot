@@ -70,7 +70,7 @@ const Nav = () => {
     window.scrollTo(0, 400);
   }
 
-  const handleSubmit = (event) => {
+  const handleClick = (event) => {
     event.preventDefault();
     dispatch(searchName(search));
     navigate("/")
@@ -94,9 +94,8 @@ const Nav = () => {
         placeholder="Search your clothes"
         value={search}
         onChange={handleInputName}
-        onSubmit={handleSubmit}
       />
-      <button className="btnSearch" type="submit">Search</button>
+      <button onClick={handleClick} className="btnSearch" type="submit">Search</button>
       </div>
       
       
