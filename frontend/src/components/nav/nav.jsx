@@ -9,8 +9,8 @@ import axios from "axios";
 import useAuth from "../../hooks/useAuth";
 
 
-import imageCart from "../nav/cart.png"
-import imageLogo from './trendy-spot-logo.png'
+// import imageCart from "../nav/cart.png"
+// import imageLogo from './trendy-spot-logo.png'
 import './nav.css'
 
 const Nav = () => {
@@ -112,7 +112,7 @@ return (
   <div className="containerNav">
     {/* Logo del enlace de inicio */}
     <NavLink to="/">
-      <img src={imageLogo} alt="logo-home" className="logoHome" />
+      {/* <img src={imageLogo} alt="logo-home" className="logoHome" /> */}
     </NavLink>
 
     {/* Formulario de búsqueda */}
@@ -143,7 +143,7 @@ return (
 <div className="cart-icon-container">
       <div className="cart-icon" onClick={() => setCartVisible(!cartVisible)}>
         {/* Icono del carrito */}
-        <img src={imageCart} alt="Carrito" className="icon-image" />
+        {/* <img src={imageCart} alt="Carrito" className="icon-image" /> */}
         {/* Mostrar cantidad de elementos en el carrito */}
         {cart.length > 0 && <div className="bak-cart-count"><span className="cart-count">{cart.length}</span></div>}
       </div>

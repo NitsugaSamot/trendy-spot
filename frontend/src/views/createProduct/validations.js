@@ -24,7 +24,14 @@ const validation = (form) => {
   else if (form.brand.lenght < 3 || form.brand.lenght > 20)
     errors.brand = "The brand name must have between 3 and 20 caracters";
 
-  if(form.stock.S.white < 1 || form.stock.S.black < 1 || form.stock.S.grey < 1) errors.stock = "The stock cannot be 0";
+
+  // if(form.stock.s.blanco < 1 && form.stock.s.negro < 1 || form.stock.s.gris < 1) errors.stock = "The stock cannot be 0";
+   
+  // if((form.stock.s.blanco + form.stock.s.negro + form.stock.s.gris) +
+  // (form.stock.m.blanco + form.stock.m.negro + form.stock.m.gris) +
+  // (form.stock.l.blanco + form.stock.l.negro + form.stock.l.gris) + 
+  // (form.stock.xl.blanco + form.stock.xl.negro + form.stock.xl.gris)
+  // < 0) errors.stock = "The stock cannot be 0"
 
   return errors;
 };

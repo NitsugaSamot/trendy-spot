@@ -32,13 +32,15 @@
 }
 
 .inputLogin{
-    height: 2rem;
+    height: 3rem;
     width: 20rem;
 }
 
 .label{
     font-weight: 200;
     margin-bottom: 0.3rem;
+    background-color: rgb(210, 210, 230);
+    padding: 0.5rem;
 }
 .titleLogin{
     background-color: rgba(248, 250, 255, 0.891);
