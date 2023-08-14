@@ -3,6 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
 import { orderByName, filterByBrand, filterPrice } from "../../redux/actions";
 
+<<<<<<< HEAD
+=======
+import { orderByName, filterByBrand, refresh,  filterPrice, filterPriceAndBrand } from "../../redux/actions";
+import "./filter.css";
+
+// import {
+//   // orderByName,
+//   filterByBrand,
+//   filterPrice,
+// } from "../../redux/actions";
+import './filter.css';
+
+
+>>>>>>> 1f2da67fbe55cb4b42ae24f4e03988add65edb72
 const Filter = ({ onPageChange }) => {
   const [price, setPrice] = useState({
     minPrice: "",
@@ -41,6 +55,30 @@ const Filter = ({ onPageChange }) => {
     }
   });
 
+<<<<<<< HEAD
+=======
+  // const handleFilterBrandSelect = (event) => {
+  //   // dispatch(refresh());
+  //   dispatch(filterByBrand(event.target.value));
+  // };
+
+
+  // const handleFilterPrice = (event) => {
+  //   setPrice({ ...price, [event.target.name]: event.target.value });
+  // };
+
+
+  // const handleClickPrice = () => {
+  //     dispatch(filterPrice(price.minPrice, price.maxPrice));
+  // };
+
+  // const handleClickPrice = () => {
+  //   if (price.minPrice >= 100 && price.maxPrice <= 10000)
+  //   dispatch(filterPrice(price));
+  // };
+
+
+>>>>>>> 1f2da67fbe55cb4b42ae24f4e03988add65edb72
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
       <h4>Order</h4>
@@ -51,7 +89,11 @@ const Filter = ({ onPageChange }) => {
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
+<<<<<<< HEAD
       
+=======
+
+>>>>>>> 1f2da67fbe55cb4b42ae24f4e03988add65edb72
       <h4>Brand</h4>
       <select
         className="form-select"

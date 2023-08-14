@@ -2,37 +2,67 @@ import { Routes, Route, useLocation } from "react-router-dom";
 import AuthLayout from "./layouts/AuthLayout";
 import ProtectedRoutes from "./components/Layouts/ProtectedRoutes";
 
-import "./App.css";
-import Home from "./components/home/home";
-import Detail from "./components/detail/detail";
-import CreateProduct from "./components/createProduct/createProduct";
-import Nav from "./components/nav/nav";
-// import NavClient from './components/nav-client/NavClient'
+import Home from "./views/home/home";
+import Detail from "./views/detail/detail";
+import CreateProduct from "./views/createProduct/createProduct";
 
+import Nav from "./components/nav/nav";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
-import Carrito from "./components/Carrito/Carrito";
-import {AuthProvider} from './context/AuthPrivider'
+import { AuthProvider } from "./context/AuthProvider";
+import ContextUser from "./components/Carrito/ContextUser";
+
+
+import { useDispatch } from "react-redux";
+import {useEffect} from "react";
+import { getAllClothes } from "./redux/actions";
+import {initializeCart} from "../src/redux/actions"
+import ConfirmationPage from "./MercadoPago/confirmationPage";
+
+import Product from './MercadoPago/Product'
+
+
+import "./App.css";
+
+// import Home from "./components/home/home";
+// import Detail from "./components/detail/detail";
+// import CreateProduct from "./components/createProduct/createProduct";
+// import Nav from "./components/nav/nav";
+// // import NavClient from './components/nav-client/NavClient'
+
+// import { Login } from "./components/Login/Login";
+// import Register from "./components/Login/Register";
+// import ConfirmAccount from "./components/Login/ConfirmAccount";
+// import Carrito from "./components/Carrito/Carrito";
+// import {AuthProvider} from './context/AuthPrivider'
+
+
+// // function App() {
+// import { getAllClothes, initializeCart } from "./redux/actions";
+// import { useEffect } from "react";
+// import { useDispatch } from "react-redux";
+
+// //* Mercado Pago
+// import Product from "./MercadoPago/Product";
+// import ConfirmationPage from "./MercadoPago/ConfirmationPage";
+
 
 
 // function App() {
-import { getAllClothes, initializeCart } from "./redux/actions";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+//   const dispatch = useDispatch()
+//   const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-//* Mercado Pago
-import Product from "./MercadoPago/Product";
-import ConfirmationPage from "./MercadoPago/ConfirmationPage";
-
-
+//   useEffect(() => {
+//     console.log(storedCart);
 
 function App() {
   const dispatch = useDispatch()
+  
   const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
   useEffect(() => {
-    console.log(storedCart);
+
     dispatch(getAllClothes());
     dispatch(initializeCart(storedCart))
   }, [dispatch, storedCart]);
@@ -65,10 +95,9 @@ function App() {
 
               <Route/>
 
-{/* protectedRoutes */}
 
                 <Route path="/logged_in" element={<ProtectedRoutes/>}>
-                    <Route index element={<Carrito/>} />
+                    <Route index element={<ContextUser/>} />
                 </Route>
             </Route>
 
@@ -79,21 +108,48 @@ function App() {
 
 
 
-      {/* {!location.pathname.startsWith('/detail') && !location.pathname.startsWith('/confirmation') && <Nav />}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="mercado" element={<Product />} />
-        <Route path="detail/:id" element={<Detail />} />
-        <Route path='/create' element={<CreateProduct />} />
-        <Route path='/confirmation' element={<ConfirmationPage />} />
-      </Routes> */}
+        {/* <Route path="detail/:id" element={<Detail/>} />
+        <Route path='/create' element={<CreateProduct/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/login/register' element={<Register/>} />
+        <Route path='/confirm/:id' element={<ConfirmAccount/>} />
+        <Route path='/confirmation' element={<ConfirmationPage/>} /> */}
+      {/* </Routes> */}
 
     </div>
   );
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      {/* {!location.pathname.startsWith('/detail') && !location.pathname.startsWith('/confirmation') && <Nav />}
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+<<<<<<< HEAD
+        <Route path="mercado" element={<Product />} />
+        <Route path="detail/:id" element={<Detail />} />
+        <Route path='/create' element={<CreateProduct />} />
+        <Route path='/confirmation' element={<ConfirmationPage />} />
+      </Routes> */}
+
 
 // import "./App.css";
 // import Home from "./components/home/home";

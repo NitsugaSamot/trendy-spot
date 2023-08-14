@@ -7,16 +7,15 @@ import {
   SEARCH_NAME,
   REFRESH,
 
-
   GET_ALL_BRANDS,
   FILTER_BRAND_AND_PRICE,
-
 
   ADD_TO_CART,
   INITIALIZE_CART,
   REMOVE_FROM_CART,
   INCREASE_QUANTITY,
   DECREASE_QUANTITY,
+
 
 } from "./action-types";
 
@@ -34,13 +33,6 @@ export const getAllClothes = () => {
   };
 };
 
-
-// export const orderByName = (payload) => {
-//   return {
-//     type: ORDER_BY_NAME,
-//     payload,
-//   };
-// };
 export const filterByBrand = (brandName) => {
   return async function (dispatch) {
     try {
@@ -56,13 +48,6 @@ export const filterByBrand = (brandName) => {
     }
   };
 };
-
-// export const filterByBrand = (payload) => {
-//   return {
-//     type: FILTER_BY_BRAND,
-//     payload,
-//   };
-// };
 
 export const setSelectedBrand = (brandName) => {
   return {
@@ -81,20 +66,6 @@ export function orderByName(payload){
     });
     };
 }
-
-// export const filterByBrand = (payload) => {
-//   return {
-//     type: FILTER_BY_BRAND,
-//     payload,
-//   };
-// };
-
-// export const filterPrice = (payload) => {
-//   return {
-//     type: FILTER_BY_PRICE,
-//     payload,
-//   };
-// };
 
 
 // export const filterPrice = (payload) => {
@@ -198,38 +169,11 @@ export const filterPriceAndBrand = (payload) => {
   };
 };
 
-// actions.js
-// export const filterPrice = (minPrice, maxPrice) => {
-//   return async function (dispatch, getState) {
-//     const { selectedBrand } = getState(); // Obtener la marca seleccionada del estado
-
-//     if (selectedBrand) {
-//       // Si hay una marca seleccionada, filtrar por precio solo para esa marca
-//       const response = await axios.get(
-//         `http://localhost:3004/products/brands${selectedBrand}?minPrice=${minPrice}&maxPrice=${maxPrice}`
-//       );
-//       dispatch({
-//         type: FILTER_BY_PRICE,
-//         payload: response.data,
-//       });
-//     } else {
-//       // Si no hay una marca seleccionada, aplicar el filtro a todos los productos
-//       const response = await axios.get(
-//         `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
-//       );
-//       dispatch({
-//         type: FILTER_BY_PRICE,
-//         payload: response.data,
-//       });
-//     }
-//   };
-// };
-
-export const filterPrice = (minPrice, maxPrice) => {
+export const filterPrice = ({minPrice, maxPrice}) => {
   return async function (dispatch) {
     try {
       const response = await axios.get(
-        `http://localhost:3004/products/search?minPrice=${minPrice}&maxPrice=${maxPrice}`
+        `http://localhost:3004/products/filter?minPrice=${minPrice}&maxPrice=${maxPrice}`
       );
       return dispatch({
         type: FILTER_BY_PRICE,
@@ -266,5 +210,7 @@ export const filterByBrandAndPrice = (brandName, minPrice, maxPrice) => {
     }
   };
 };
+
+
 
 

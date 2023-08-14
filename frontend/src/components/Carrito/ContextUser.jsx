@@ -1,12 +1,11 @@
-import React from 'react'
-import NavClient from '../nav-client/NavClient'
-import { Outlet, Navigate } from "react-router-dom"
+
+// import { Outlet, Navigate } from "react-router-dom"
 import Filter from '../filter/filter'
 import Home from '../home/home'
 import './styles.css'
 import Nav from '../nav-client/NavClient'
 
-const Carrito = () => {
+const ContextUser = () => {
   return (
     <>
       <div className='containerDiv'> 
@@ -21,4 +20,4 @@ const Carrito = () => {
   )
 }
 
-export default Carrito
+export default ContextUser

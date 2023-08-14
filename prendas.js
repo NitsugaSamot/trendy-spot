@@ -23,6 +23,16 @@ const products = [
     stock: 152,
     color: "black",
     brand: "Adidas",
+  },{
+    id: 3,
+    name: "Shorts de Entrenamiento HIT Spin",
+    size: "S, L, XXL",
+    price: 4125,
+    image: "https://drive.google.com/uc?id=1Cu-WeKkGW-0nQWqCGlcWubu3n61Ikxrs",
+    description: "This is the description for product 2",
+    stock: 300,
+    color: "white",
+    brand: "Adidas",
   },
   {
     name: "Shorts AeroReady Essentials",

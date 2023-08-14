@@ -55,8 +55,13 @@ const Card = ({ image, id, name, price, productbrand }) => {
   return (
     <div className="card">
       <NavLink to={`/detail/${id}`}>
+<<<<<<< HEAD
         <img className="" src={image} alt={name} width={"300px"} />
         <hr />
+=======
+        <img src={image[0]} alt={name} width={"300px"} />
+        <hr/>
+>>>>>>> 1f2da67fbe55cb4b42ae24f4e03988add65edb72
         <h4 className="h5">{name}</h4>
         <h3 className="h5">{productbrand}</h3>
         <hr />
