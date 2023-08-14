@@ -1,8 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  
-    sequelize.define('product', {
+  const Product = sequelize.define('product', {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -39,10 +38,19 @@ module.exports = (sequelize) => {
     productbrand: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    averageRating: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
   },
-  { timestamps: false }
-  );
+  { timestamps: false });
+
+  Product.associate = (models) => {
+    Product.hasMany(models.rating); // Establece la relación uno a muchos con las valoraciones
+  };
+
+  return Product;
 };
 
   

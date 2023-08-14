@@ -38,6 +38,10 @@ module.exports = (sequelize) => {
     timestamps: false
   });
 
+  User.associate = (models) => {
+    User.hasMany(models.rating); // Un usuario puede realizar varias valoraciones
+  };
+
   // Antes de crear o actualizar un usuario, vamos a hashear su contraseña
   User.beforeCreate(async (user) => {
     if (user.changed('password')) {
@@ -59,6 +63,3 @@ module.exports = (sequelize) => {
 
   return User;
 };
-
-
- 

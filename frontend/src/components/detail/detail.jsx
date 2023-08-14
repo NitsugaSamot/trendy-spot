@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useState, useEffect } from "react";
 import './detail.css'
 import price from "../detail/price.png"
+import StarRating from "../stars/stars"
 
 const Detail = () => {
   const { id } = useParams();
@@ -19,37 +20,37 @@ const Detail = () => {
       }
     }
     fetchData();
-  }, [id])
+  }, [id]);
 
   return (
     <div className="nav">
       <div className="contImage">
         <img className="detailImage" src={garment.image} alt={garment.name} />
-        
+
         <div>
-          <img className="blueTag" src={price}/>
+          <img className="blueTag" src={price} />
           <h4 className="priceTag">${garment.price}</h4>
         </div>
 
         <div>
           <div className="details">
             <h2 className="name">{garment.name}</h2>
+            <StarRating productId={id} />
 
             <h5 className="exDetail">
-                Tamaño: &nbsp; {garment.size}
-            <br />Color: &nbsp; {garment.color}
-            <br />Stock: &nbsp; {garment.stock}</h5>
+              Tamaño: &nbsp; {garment.size}
+              <br />Color: &nbsp; {garment.color}
+              <br />Stock: &nbsp; {garment.stock}
+            </h5>
 
             <h3 className="description">DESCRIPCIÓN: <br />{garment.description}</h3>
-            
+
             <hr />
 
             <Link to="/carrito">
               <button className="btnCashout">Añadir al carrito</button>
             </Link>
-
           </div>
-
         </div>
       </div>
     </div>
