@@ -1,57 +1,39 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./filter.css";
-import { orderByName, filterByBrand, filterPrice } from "../../redux/actions";
+import { orderByName, filterPrice, filterByBrand } from "../../redux/actions";
 
 const Filter = ({ onPageChange }) => {
+  const allClothes2 = useSelector((state) => state.allClothes2);
+
   const [price, setPrice] = useState({
     minPrice: "",
     maxPrice: "",
   });
+
+  const [selectedBrand, setSelectedBrand] = useState("");
   const [errorPrice, setErrorPrice] = useState("");
-  const allClothes2 = useSelector((state) => state.allClothes2);
   const dispatch = useDispatch();
 
-  const handleFilterBrandSelect = (event) => {
-    // setObjToFilter({ ...objToFilter, [event.target.name]: event.target.value });
-    // if (objToFilter.minPrice && objToFilter.maxPrice) {
-    // dispatch(filterPriceAndBrand(objToFilter));
-    // } else {
-    dispatch(filterByBrand(event.target.value));
-    // }
-    onPageChange(1);
-  };
-
-  const handleFilterPrice = (event) => {
-    setPrice({ ...price, [event.target.name]: event.target.value });
-  };
-
-  const handleClickPrice = () => {
-    // if (price.minPrice >= 100 && price.maxPrice <= 100000);
-    // if (objToFilter.brand) {
-    //   dispatch(filterPriceAndBrand(objToFilter));
-    // } else {
+  const handleFilterPrice = () => {
+    if (price.minPrice > price.maxPrice) {
+      setErrorPrice("The min is higther than the max");
+      return;
+    }
     dispatch(filterPrice(price));
-    // }
     onPageChange(1);
   };
-
-  // const [objToFilter, setObjToFilter] = useState({
-  //     brand: "",
-  //     minPrice: "",
-  //     maxPrice: "",
-  // });
 
   const handleOrderSelect = (event) => {
     dispatch(orderByName(event.target.value));
     onPageChange(1);
   };
 
-  // useEffect(() => {
-  // Ejecutar la función para calcular las marcas únicas
-  // const delay = setTimeout(calculateUniqueBrands, 3000);
-  // return () => clearTimeout(delay);
-  // }, [allClothes2]);
+  const handleFilterBrandSelect = (event) => {
+    
+    dispatch(filterByBrand(event.target.value));
+    onPageChange(1);
+  };
 
   const filterBrands = [];
 
@@ -61,6 +43,14 @@ const Filter = ({ onPageChange }) => {
     }
   });
 
+  const handleInPutPrice = (event) => {
+    setPrice({ ...price, [event.target.name]: event.target.value });
+  };
+
+  const handleSelectedBrand = (event) => {
+    setSelectedBrand(event.target.value)
+  }
+  
   return (
     <div className="navbar navbar-expand-lg bg-body-tertiary containerFilter">
       <h4>Order</h4>
@@ -71,15 +61,16 @@ const Filter = ({ onPageChange }) => {
         <option value="1">Name A-Z</option>
         <option value="2">Name Z-A</option>
       </select>
-      
+
       <h4>Brand</h4>
       <select
         className="form-select"
-        name="order"
+        name="selectedBrand"
+       
         onChange={handleFilterBrandSelect}
       >
-        <option value="" disabled>
-          Order by Brand
+        <option value="refresh">
+          Select brand
         </option>
         {filterBrands.map((brand, index) => (
           <option key={index} value={brand}>
@@ -96,7 +87,7 @@ const Filter = ({ onPageChange }) => {
             min="0"
             name="minPrice"
             value={price.minPrice}
-            onChange={handleFilterPrice}
+            onChange={handleInPutPrice}
             placeholder="Price Min"
           />
           <input
@@ -105,13 +96,13 @@ const Filter = ({ onPageChange }) => {
             min="0"
             name="maxPrice"
             value={price.maxPrice}
-            onChange={handleFilterPrice}
+            onChange={handleInPutPrice}
             placeholder="Price Max"
           />
           {errorPrice ? <p className="errorp">{errorPrice}</p> : <></>}
         </label>
       </div>
-      <button className="btnPrice" onClick={handleClickPrice}>
+      <button className="btnPrice" onClick={handleFilterPrice}>
         Search
       </button>
     </div>

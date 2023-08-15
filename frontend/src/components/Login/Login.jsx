@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Alerta from "../Alerta/Alerta";
-import axiosClient from "../config/axiosClient";
+import Alerta from "../alerta/Alerta";
+import axiosClient from "../../contextlogin/config/axiosClient";
 // import useAuth from '../hooks/useAuth'
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../contextlogin/hooks/useAuth";
 import "./styles.css";
-import imageLogo from "../../assets/trendy-spot-logo.png";
+import imageLogo from "./trendy-spot-logo.png";
 
 export const Login = () => {
   const [email, setEmail] = useState("");

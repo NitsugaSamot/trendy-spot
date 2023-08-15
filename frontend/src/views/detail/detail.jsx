@@ -1,9 +1,18 @@
-import { useParams } from "react-router-dom";
-import axios from "axios";
 import { useState, useEffect } from "react";
-import "./detail.css";
+import { useParams } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import { addToCart } from "../../redux/actions";
+import axios from "axios";
+
+//-----------------COSAS NUEVAS PARA EL CARRITO MI RAY
+import classnames from "classnames";
+
+//-----------------------------------------------
+
 import Nav from "../../components/nav/nav";
 
+import "./detail.css";
+import { useDispatch, useSelector } from "react-redux";
 const Detail = () => {
   const { id } = useParams();
   const [garment, setGarment] = useState({});
@@ -12,6 +21,29 @@ const Detail = () => {
   const [colorsAvailable, setColorsAvailable] = useState([]);
   const [size, setSize] = useState("");
   const [stockComb, setStockComb] = useState(0);
+  const dispatch = useDispatch();
+  // Estado para controlar la visualización del modal
+  const [showModal, setShowModal] = useState(false);
+
+  //---------------OJOOO NUEVO PARA EL CARRO--------------------------
+  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedButton, setSelectedButton] = useState("");
+  const [selectedColorName, setSelectedColorName] = useState(""); // Estado para almacenar el nombre del color seleccionado
+
+  const cart = useSelector((state) => state.cart);
+  console.log(cart);
+
+  const selectedSizeClass = (size) =>
+    classnames("buttonSize", {
+      seleccionado: selectedSize === size,
+    });
+
+  const selectedColorClass = (color) =>
+    classnames("buttonSize2", {
+      seleccionado: selectedColor === color,
+    });
+  //-----------------------------------------------------------------
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +60,7 @@ const Detail = () => {
     fetchData();
   }, [id]);
 
+  // Cambiar la imagen principal cuando se haga clic en un botón de imagen
   const carousel = (event) => {
     setImagePP(garment.image[event.target.value]);
   };
@@ -38,66 +71,75 @@ const Detail = () => {
     setExpanded(!expanded);
   };
 
-  // garment.stock = {
-  //   s: {
-  //     blanco: 19,
-  //     negro: 3,
-  //     rojo: 2,
-  //     verde: 1,
-  //     azul: 0,
-  //     amarillo: 1,
-  //     rosa: 0,
-  //   },
-  //   m: {
-  //     blanco: 0,
-  //     negro: 3,
-  //     rojo: 2,
-  //     verde: 0,
-  //     azul: 0,
-  //     amarillo: 1,
-  //     rosa: 6,
-  //   },
-  //   l: {
-  //     blanco: 0,
-  //     negro: 3,
-  //     rojo: 2,
-  //     verde: 1,
-  //     azul: 2,
-  //     amarillo: 1,
-  //     rosa: 6,
-  //   },
-  //   xl: {
-  //     blanco: 0,
-  //     negro: 3,
-  //     rojo: 23,
-  //     verde: 0,
-  //     azul: 0,
-  //     amarillo: 0,
-  //     rosa: 0,
-  //   },
-  // };
+  // Manejador para agregar la prenda actual al carrito
+  const handleAddToCart = () => {
+    if (!size || !selectedColorName) {
+      alert("Please select color and size");
+      return; // Salir de la función si no se seleccionaron tamaño o color
+    }
 
+    // Verificar si el producto ya está en el carrito
+    console.log(cart);
+    const itemAlreadyInCart = cart.find(
+      (item) =>
+        item.id === garment.id &&
+        item.size === size &&
+        item.color === selectedColorName
+    );
+
+    console.log(itemAlreadyInCart);
+    if (itemAlreadyInCart) {
+      alert("This product is already in the cart");
+      return; // Salir de la función si el producto ya está en el carrito
+    }
+
+    // Crear un objeto que representa el elemento en el carrito
+    const cartItem = {
+      id: garment.id,
+      color: selectedColorName,
+      size: size,
+      name: garment.name,
+      price: garment.price,
+      description: garment.description,
+      stock: garment.stock,
+      quantity: 1,
+    };
+    dispatch(addToCart(cartItem));
+    setShowModal(true);
+  };
+
+  // Manejador para cambiar el tamaño seleccionado
   const handleClickStock = (event, stock = garment.stock) => {
+    //----------NEUVO CARRITO
+    setColorsAvailable([]);
+    setSelectedButton(event.target.value);
+    //------------
+
+    const newSize = event.target.value;
+    setSelectedSize(newSize);
     setColorsAvailable([]);
     setSize(event.target.value);
 
     for (let index in stock[size]) {
       if (stock[size][index] > 0) {
-        console.log(index);
         setColorsAvailable((colorsAvailable) => [...colorsAvailable, index]);
-        console.log(colorsAvailable);
       }
     }
-    console.log(colorsAvailable);
   };
-  console.log(size);
+
+  // Manejador para cambiar el color seleccionado
   const handleClickColor = (event, stock = garment.stock) => {
     const color = event.target.name;
 
     if (color) {
+      // ----------NUEVO PARA EL CARRITO
+      setSelectedColor(color);
+      setSelectedButton(color);
       setStockComb(stock[size][color]);
+      setSelectedColorName(color);
     }
   };
+
   return (
     <div className="">
       <Nav />
@@ -137,7 +179,73 @@ const Detail = () => {
                 )}
                 {garment.price && (
                   <div className="priceh4">
+                    <hr />
                     <h4 className="therealh4">${garment.price}</h4>
+                    <hr />
+
+                    {/* <div>{stockComb}</div> */}
+                    <h5>Check our stock!</h5>
+                    <div className="divButtons">
+                      <button
+                        className={
+                          selectedSize === "s"
+                            ? "buttonSize seleccionado"
+                            : "buttonSize"
+                        }
+                        onClick={handleClickStock}
+                        value="s"
+                      >
+                        S
+                      </button>
+                      <button
+                        className={
+                          selectedSize === "m"
+                            ? "buttonSize seleccionado"
+                            : "buttonSize"
+                        }
+                        onClick={handleClickStock}
+                        value="m"
+                      >
+                        M
+                      </button>
+                      <button
+                        className={
+                          selectedSize === "l"
+                            ? "buttonSize seleccionado"
+                            : "buttonSize"
+                        }
+                        onClick={handleClickStock}
+                        value="l"
+                      >
+                        L
+                      </button>
+                      <button
+                        className={
+                          selectedSize === "xl"
+                            ? "buttonSize seleccionado"
+                            : "buttonSize"
+                        }
+                        onClick={handleClickStock}
+                        value="xl"
+                      >
+                        XL
+                      </button>
+                    </div>
+                    <hr />
+                    <div className="divButtons">
+                      {colorsAvailable.map((color) => (
+                        <button
+                          className={selectedColorClass(color)}
+                          onClick={handleClickColor}
+                          name={color}
+                          key={color}
+                        >
+                          {color}
+                        </button>
+                      ))}
+                    </div>
+                    <hr />
+                    <div className="stock">Stock: {stockComb}</div>
                   </div>
                 )}
               </div>
@@ -148,8 +256,6 @@ const Detail = () => {
                 <hr />
                 {garment.name && <h3>{garment.name}</h3>}
                 <hr />
-                {garment.size && <h5>Talle: {garment.size}</h5>}
-                {garment.color && <h5>Color: {garment.color}</h5>}
                 {garment.productbrand && <h5>{garment.productbrand}</h5>}
                 <hr />
                 {garment.description && (
@@ -169,31 +275,36 @@ const Detail = () => {
                 >
                   {expanded ? "Ver menos" : "Ver mas"}
                 </span>
+
+                {/* Botón para agregar la prenda al carrito */}
+                <hr />
+                <button onClick={handleAddToCart}>Añadir al carrito</button>
+
+                {/* Modal para mostrar cuando se agrega un producto al carrito */}
+                <Modal show={showModal} onHide={() => setShowModal(false)}>
+                  <Modal.Header closeButton>
+                    <Modal.Title>Producto agregado al carrito</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    {/* Mostrar detalles del producto recién añadido en el modal */}
+                    <p>NAME: {garment.name}</p>
+                    <p>PRICE: ${garment.price}</p>
+                    <p>SIZE: {size}</p>
+                    <p>COLOR: {selectedColorName}</p>
+                    {/* Puedes agregar más detalles aquí si es necesario */}
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      variant="secondary"
+                      onClick={() => setShowModal(false)}
+                    >
+                      Cerrar
+                    </Button>
+                  </Modal.Footer>
+                </Modal>
               </div>
             </div>
           </div>
-          <div>
-            <button onClick={handleClickStock} value="s">
-              s
-            </button>
-            <button onClick={handleClickStock} value="m">
-              m
-            </button>
-            <button onClick={handleClickStock} value="l">
-              l
-            </button>
-            <button onClick={handleClickStock} value="xl">
-              xl
-            </button>
-          </div>
-          <div>
-            {colorsAvailable.map((color) => (
-              <button onClick={handleClickColor} name={color} key={color}>
-                {color}
-              </button>
-            ))}
-          </div>
-          <div>{stockComb}</div>
         </div>
       </div>
     </div>
