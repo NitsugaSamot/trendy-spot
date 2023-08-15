@@ -12,8 +12,10 @@
     width: 80px;
     height: 80px;
 }
-.logoHome:active {
-    transform: scale(.8);
+
+.maxDiv {
+    display: grid;
+    padding: 2%;
 }
 
 .search{
@@ -39,6 +41,10 @@
 
 .cart-icon{
     position: relative;
+
+
+    width: 90%;
+
 }
 .cart-icon-container{
     width: 40px;
@@ -50,25 +56,48 @@
 
 
 .icon-image{
+
     width: 35px;
+
+    width: 100%;
+    transition: 0.5s;
+}
+.icon-image:hover{
+    transform: translateY(3px);
+/* >>>>>>> 1f2da67fbe55cb4b42ae24f4e03988add65edb72 */
 }
 
 .bak-cart-count{
     position: absolute;
+
     top: 68%;
     right: -13px;
     background-color: #000;
     color: #fff;
     width: 23px;
     height: 23px;
+
+    top: 40%;
+    right: 33px;
+    background-color: #000;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 50%;
+
+    transition: 0.5s;
+
 }
 
 .bak-cart-count:hover{
     background-color: rgb(17, 76, 95);
+
+    transform: translateY(3px);
+
 }
 
 .cart-count{
@@ -80,7 +109,11 @@
     position: absolute;
     top: 50px;
     right: 0;
+
+    background-color: rgb(242, 229, 229);
+
     background-color: #fff;
+
     width: 400px;
     z-index: 1;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -101,13 +134,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     padding: 20px 0;
+
+    padding: 5px;
+
     gap: 20px;
 }
 
+
 .empty-cart-button{
     border: none;
+    background-color: rgb(23, 10, 10);
+    color: #fff;
+    padding: 10px;
+    display: block;
     background-color: #000;
+    margin-right: 2%;
+    margin-left: 2%;
+    width: 100%;
+    height: 4rem;
+    border-radius: 5px;
+    font-family: inherit;
+    font-weight: bold;
+    transition: all .3s ease;
+    margin-top: 15px;
+}
+
+.empty{
+
+}
+
+.buy{
+    border: none;
+    background-color: green;
     color: #fff;
     padding: 10px;
     display: block;
@@ -117,4 +177,25 @@
     font-size: 16px;
     transition: all .3s ease;
     margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+.buy:hover {
+    background-color: #088034; /* Cambio de color en el hover */
+    transform: scale(1.1); /* Agrandamiento en el hover */
+  }
+
+  .alert{
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+    /* margin-right: 2%;
+    margin-left: 2%;
+} */
+
+.maxDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
 }

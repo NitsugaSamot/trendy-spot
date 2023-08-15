@@ -2,7 +2,7 @@ const {Router}=require('express')
 
 const router = Router()
 
-const  {createUser, authenticateUser, getUserByName, getAllUsers, confirmAccount, profile} = require('../controllers/usersControllers/userController')
+const  {users, createUser, authenticateUser, getUserByName, getAllUsers, confirmAccount, profile} = require('../controllers/usersControllers/userController')
 
 const {checkAuth} = require('../middleware/checkAuth')
 

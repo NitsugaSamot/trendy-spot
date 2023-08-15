@@ -1,75 +1,102 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Alerta from "../Alerta/Alerta";
-import axiosClient from "../config/axiosClient";
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import Alerta from '../Alerta/Alerta'
+import axiosClient from '../../config/axiosClient'
 // import useAuth from '../hooks/useAuth'
-import useAuth from "../hooks/useAuth";
-import "./styles.css";
-import imageLogo from "../../assets/trendy-spot-logo.png";
+import useAuth from '../../hooks/useAuth'
+import './styles.css'
+import imageLogo from './trendy-spot-logo.png'
 
 export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [alerta, setAlerta] = useState({});
 
-  const { setAuth } = useAuth();
-  const navigate = useNavigate();
+  const[email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [alerta, setAlerta] = useState({})
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {setAuth} = useAuth()
+  const navigate = useNavigate()
 
-    if ([email, password].includes("")) {
+  const handleSubmit = async e => {
+    e.preventDefault()
+
+    if([email, password].includes('')) {
       setAlerta({
-        msg: "Todos los campos son obligatorios",
-        error: true,
-      });
-      return;
+        msg: 'Todos los campos son obligatorios',
+        error: true
+      })
+      return
     }
 
     try {
       //Informacion requerida: email y password
-      const { data } = await axiosClient.post("/users/login", {
-        email,
-        password,
-      });
-      setAlerta({});
+      const {data} = await axiosClient.post('/users/login', {email, password})
+      setAlerta({})
       //
-      localStorage.setItem("token", data.token);
-      setAuth(data);
+      localStorage.setItem('token', data.token)
+      setAuth(data)
       // navigate('/')
-      navigate("/logged_in");
-    } catch (error) {
-      setAlerta({
-        msg: error.response.data.msg,
-        error: true,
-      });
-    }
-  };
+      navigate('/logged_in')
 
-  const { msg } = alerta;
+    } catch (error) {
+        setAlerta({
+          msg: error.response.data.msg,
+          error: true
+        })
+    }
+  }
+
+  const { msg } = alerta
 
   return (
     <>
-      <div className="mainRegister">
-        <h3 className="titleLogin">Inicia Sesión Y haz tus compras</h3>
+    <div className='mainRegister'>
+        <h3 className="titleLogin">
+          Inicia Sesión Y haz tus  compras
+        </h3>
 
-        {msg && <Alerta alerta={alerta} />}
+        {msg && <Alerta alerta={alerta}/>}
 
-        <form className="formLogin" onSubmit={handleSubmit}>
-          <div className="columnaLogin">
+        <form 
+            className="formLogin"
+            onSubmit={handleSubmit}
+            
+            >
+            <div className='columnaLogin'>
             <div className="divInput">
-              <label className="label" htmlFor="email">
-                Email
-              </label>
+                <label 
+                  className="label"
+                  htmlFor="email">
+                      Email
+                  </label>
+                
+                  <input 
+                      id="email"
+                      type="email"
+                      placeholder="Email de Registro"
+                      className="inputLogin"
+                      value={email}
+                      onChange={ e=> setEmail(e.target.value)}
+                  />
 
-              <input
-                id="email"
-                type="email"
-                placeholder="Email de Registro"
-                className="inputLogin"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            </div>
+
+            <div className="divInput">
+                <label 
+                  className="label"
+                  htmlFor="password">
+                      Password
+                  </label>
+                
+                  <input 
+                      id="password"
+                      type="password"
+                      placeholder="Password"
+                      className="inputLogin"
+                      value={password}
+                      onChange={ e=> setPassword(e.target.value)}
+                 />
+
+
             </div>
             </div>
 
@@ -78,38 +105,30 @@ export const Login = () => {
              </div> 
             
 
-            <div className="divInput">
-              <label className="label" htmlFor="password">
-                Password
-              </label>
+            <input 
+                type="submit" 
+                value="Iniciar Sesión"
+                className="btnLogin"    
+            />
 
-              <input
-                id="password"
-                type="password"
-                placeholder="Password"
-                className="inputLogin"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
-          </div>
 
-          <div className="columna">
-            <img src={imageLogo} alt="logo-home" className="logoRegister" />
-          </div>
-
-          <input type="submit" value="Iniciar Sesión" className="btnLogin" />
         </form>
 
         <nav className="navRegister">
-          <Link className="linksRegister" to="register">
-            ¿No tienes una cuenta? Registrate
-          </Link>
-          <Link className="linksRegister" to="register">
-            Olvide mi Password
-          </Link>
+              <Link
+                className='linksRegister'
+                to="register"
+              >
+                ¿No tienes una cuenta? Registrate
+              </Link>
+              <Link
+                className='linksRegister'
+                to="register"
+              >
+                Olvide mi Password
+              </Link>
         </nav>
-      </div>
+        </div>
     </>
-  );
-};
+  )
+}

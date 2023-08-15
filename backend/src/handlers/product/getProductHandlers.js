@@ -5,14 +5,11 @@ const {
 } = require("../../controllers/productsControllers/getProductsControllers");
 
 // http://localhost:3004/products
-const getAllOrByNameProducts = async (req, res) => {
-  const { name } = req.query;
-  const results = name ? await searchProductsByName(name) : await getDBinfo();
-  if (results === `No se encontró producto con el nombre: ${name}`)
-    return res
-      .status(404)
-      .json({ error: `No se encontró producto con el nombre: ${name}` });
-  res.status(200).json(results);
+const getAllOrByNameProducts = async(req, res) => {
+    const { name } = req.query;
+    const results = name ? await searchProductsByName(name) : await getDBinfo();
+    if(results === `No se encontró producto con el nombre: ${name}`) return res.status(404).json({error: `No se encontró producto con el nombre: ${name}`})
+    res.status(200).json(results);
 };
 
 const getProductById = async (req, res) => {

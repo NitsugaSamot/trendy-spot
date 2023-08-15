@@ -116,14 +116,14 @@ const filterByBrands = async (req, res) => {
   const filterProducts = async (req, res) => {
 
     //Desestruturamos estos valores
-    const { brandName, minPrice, maxPrice } = req.query;
+    const { brand, minPrice, maxPrice } = req.query;
   
     //Crea este objeto vacio que se utilizara para construir las condiciones de filtrado para la consulta a la base de datos
     let whereCondition = {};
   
     //Si brandname esta en los parámetros de de consulta agrega la condicion a wherecondition para filtrar por marca
-    if (brandName) {
-      whereCondition = { ...whereCondition, productbrand: brandName };
+    if (brand) {
+      whereCondition = { ...whereCondition, productbrand: brand };
     }
   
     //Verifica si minPrice y maxPrice estan en los parametros de busqueda

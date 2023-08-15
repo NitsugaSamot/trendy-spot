@@ -5,6 +5,7 @@ const { Router } = require('express');
 const userRoutes = require('./userRoutes')
 const productRoutes = require('./productRouter')
 
+
 // const userRoutes = require('./userRoutes')
 // const productRoutes = require('./productRouter');
 const paymentRouter = require('../MercadoPago/src/routes/payment');
@@ -18,8 +19,10 @@ const router = Router();
 router.use('/users', userRoutes)
 router.use('/products', productRoutes)
 
+
 //Ruta para mercado pago
 router.use("/mercadopago", paymentRouter)
+
 
 
 module.exports = router;
