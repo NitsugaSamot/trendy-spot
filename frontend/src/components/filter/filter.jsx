@@ -69,7 +69,7 @@ const Filter = ({ onPageChange }) => {
        
         onChange={handleFilterBrandSelect}
       >
-        <option value="refresh">
+        <option disabled>
           Select brand
         </option>
         {filterBrands.map((brand, index) => (

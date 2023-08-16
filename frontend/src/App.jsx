@@ -1,24 +1,22 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import AuthLayout from "./contextlogin/layouts/AuthLayout";
 import ProtectedRoutes from "./components/Layouts/ProtectedRoutes";
-
 import Home from "./views/home/home";
 import Detail from "./views/detail/detail";
 import CreateProduct from "./views/createProduct/createProduct";
-
 import Nav from "./components/nav/nav";
 import { Login } from "./components/Login/Login";
 import Register from "./components/Login/Register";
 import ConfirmAccount from "./components/Login/ConfirmAccount";
+import ForgetPassword from "./components/Login/ForgetPassword";
+import { NewPassword } from "./components/Login/NewPassword";
 import { AuthProvider } from "./contextlogin/context/AuthProvider";
 import ContextUser from "./components/carrito/ContextUser";
-
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getAllClothes } from "./redux/actions";
 import { initializeCart } from "../src/redux/actions";
 import ConfirmationPage from "./MercadoPago/confirmationPage";
-import Product from "./MercadoPago/Product";
 import "./App.css";
 
 function App() {
@@ -53,11 +51,11 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="login/register" element={<Register />} />
             <Route path="confirm/:id" element={<ConfirmAccount />} />
-            <Route path="mercado" element={<Product />} />
+            <Route path="reset-password" element={<ForgetPassword />} />
+            <Route path="new-password/:token" element={<NewPassword />} />
             <Route path="/confirmation" element={<ConfirmationPage />} />
 
             <Route />
-
             <Route path="/logged_in" element={<ProtectedRoutes />}>
               <Route index element={<ContextUser />} />
             </Route>

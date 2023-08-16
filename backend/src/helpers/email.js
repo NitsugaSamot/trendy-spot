@@ -37,6 +37,33 @@ const emailRegister = async (data) => {
       })
 }
 
+const emailForgetPassword = async (data) => {
+  const { email, name, token } = data;
+
+  const transport = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: process.env.EMAIL_PORT,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
+  const info = await transport.sendMail({
+    from: '"Trendy.Spot - Tienda de ropa" <cuentas@trendy-spot.com>',
+    to: email,
+    subject: "Trendy Spot - Recupera tu cuenta",
+    text: "Recupera tu cuenta en Trendy-Spot",
+    html: `<p>Hola: ${name}, recupera tu cuenta en Trendy Spot</p>
+
+              <a href="${process.env.FRONTEND_URL}/new-password/${token}">Ingresa aqui para reestablecer tu password</a>
+
+              <p>Si no solicitaste esta petición ignora este mensaje</p>
+          `,
+  });
+};
+
 module.exports = {
-    emailRegister
-}
+  emailRegister,
+  emailForgetPassword,
+};

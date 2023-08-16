@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Alerta from "../alerta/Alerta";
 import axiosClient from "../../contextlogin/config/axiosClient";
 // import useAuth from '../hooks/useAuth'
@@ -89,19 +89,21 @@ export const Login = () => {
           </div>
 
           <div className="columna">
-            <img src={imageLogo} alt="logo-home" className="logoRegister" />
+            <NavLink to="/">
+              <img src={imageLogo} alt="logo-home" className="logoRegister" />
+            </NavLink>
           </div>
 
           <input type="submit" value="Iniciar Sesión" className="btnLogin" />
         </form>
 
         <nav className="navRegister">
-          <Link className="linksRegister" to="register">
+          <NavLink className="linksRegister" to="register">
             ¿No tienes una cuenta? Registrate
-          </Link>
-          <Link className="linksRegister" to="register">
+          </NavLink>
+          <NavLink className="linksRegister" to="/reset-password">
             Olvide mi Password
-          </Link>
+          </NavLink>
         </nav>
       </div>
     </>
