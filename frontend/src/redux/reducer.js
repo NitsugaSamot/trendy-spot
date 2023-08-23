@@ -1,46 +1,34 @@
 import {
-  FILTER_BY_BRAND,
-  ORDER_BY_NAME,
   GET_ALL,
-  FILTER_BY_PRICE,
+  ORDER_BY_NAME,
   SEARCH_NAME,
   REFRESH,
-
-  GET_ALL_BRANDS,
-  SET_SELECTED_BRAND,
-  FILTER_BRAND_AND_PRICE,
   FILTER_PRODUCTS,
-      
   ADD_TO_CART,
   REMOVE_FROM_CART,
   INITIALIZE_CART,
   INCREASE_QUANTITY,
-  DECREASE_QUANTITY
-
+  DECREASE_QUANTITY,
 } from "./action-types";
 
 const initialState = {
   allClothes1: [],
   allClothes2: [],
-  
-  productsByPrice: [],
-  allBrands: [],
-  products: [],
-  selectedBrand: null,
   filteredByPrice: [],
   cart: [],
-
+  products: [],
 };
 
-const reducer = (state = initialState, {action, type, payload }) => {
+const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
+    //OK
     case GET_ALL:
       return {
         ...state,
         allClothes1: payload,
         allClothes2: payload,
       };
-
+    //OK
     case ORDER_BY_NAME: {
       const sortedArr =
         payload === "1"
@@ -67,151 +55,90 @@ const reducer = (state = initialState, {action, type, payload }) => {
         allClothes1: sortedArr,
       };
     }
-    case FILTER_PRODUCTS:
-      return {
-        ...state,
-        allClothes1: payload,
-      }
+    //OK
 
-      case SET_SELECTED_BRAND:
-        return {
-          ...state,
-          selectedBrand: payload,
-        };
-
-      case FILTER_BY_PRICE:
-        return {
-          ...state,
-          allClothes1: payload,
-          selectedBrand: payload
-        }
-
-        case FILTER_BRAND_AND_PRICE:
-      return {
-        ...state,
-        allClothes1: payload,
-      };
-
+    //OK
     case SEARCH_NAME:
       return {
         ...state,
         allClothes1: payload,
       };
-    case GET_ALL_BRANDS:
-      return {
-        ...state,
-        allBrands: payload
-      }
-
-      case FILTER_BY_BRAND:
-        return {
-          ...state,
-          allClothes1: payload,
-          filteredByPrice: [], // Restablecer el filtrado por precio cuando cambia la marca
-        };
-
-    // case SEARCH_NAME:
-    //   return {
-    //     ...state,
-    //     allClothes1: payload,
-    //   };
 
 
-    case REFRESH: { 
+    //OK
+    case REFRESH: {
       const perrito = state.allClothes2;
       return {
         ...state,
         allClothes1: perrito,
       };
     }
-
-    // case ADD_TO_CART:{
-
-    //   console.log(payload);
-
-
-    case ADD_TO_CART:{
-
+    case FILTER_PRODUCTS:
       return {
-      ...state,
-        cart: [...state.cart, payload]
+        ...state,
+        allClothes1: payload,
+      }
+    //.......para hacer todos los filtros juntos..........
+
+
+
+    //..............carrito OK.......................
+
+    case ADD_TO_CART: {
+      return {
+        ...state,
+        cart: [...state.cart, payload],
       };
     }
-    case INITIALIZE_CART:{ 
+
+    case INITIALIZE_CART: {
       return {
         ...state,
         cart: payload,
       };
     }
+
     case REMOVE_FROM_CART: {
-      const updatedCart = state.cart.filter(item => item.id !== payload);
-      localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
+      const { itemId, color, size } = payload;
+      const updatedCart = state.cart.filter(
+        (item) =>
+          item.id !== itemId || item.color !== color || item.size !== size
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedCart)); // Actualizar el localStorage
       return {
         ...state,
         cart: updatedCart,
       };
     }
 
-    case INCREASE_QUANTITY:{ 
+    case INCREASE_QUANTITY: {
+      const { itemId, color, size } = payload;
       return {
         ...state,
-        cart: state.cart.map(item =>
-          item.id === payload
+        cart: state.cart.map((item) =>
+          item.id == itemId && item.color == color && item.size == size
             ? { ...item, quantity: item.quantity + 1 }
             : item
         ),
-      }
+      };
     }
 
     case DECREASE_QUANTITY: {
+      const { itemId, color, size } = payload;
       return {
         ...state,
-        cart: state.cart.map(item =>
-          item.id === payload
+        cart: state.cart.map((item) =>
+          item.id == itemId && item.color == color && item.size == size
             ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
             : item
         ),
       };
     }
-    
-
-    // case INCREASE_QUANTITY: {
-    //   const updatedCart = state.cart.map(item =>
-    //     item.id === payload && item.quantity < item.stock
-    //       ? { ...item, quantity: item.quantity + 1 }
-    //       : item
-    //   );
-
-    //   localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
-
-    //   return {
-    //     ...state,
-    //     cart: updatedCart,
-    //   };
-    // }
-
-    // case DECREASE_QUANTITY: {
-    //   const updatedCart = state.cart.map(item =>
-    //     item.id === payload
-    //       ? { ...item, quantity: Math.max(item.quantity - 1, 1) }
-    //       : item
-    //   );
-
-    //   localStorage.setItem('cart', JSON.stringify(updatedCart)); // Actualizar el localStorage
-
-    //   return {
-    //     ...state,
-    //     cart: updatedCart,
-    //   };
-    // }
-
+    //.........................................................
 
     default:
       return { ...state };
   }
-
 };
 
 export default reducer;
-
-
