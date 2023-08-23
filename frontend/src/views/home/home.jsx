@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
-import CardsContainer from '../../components/cardsContainer/cardsContainer'
-import Filter from "../../components/filter/filter";
-import Paginate from '../../components/paginate/paginate';
-import banner from '../../assets/Home.png'
 import "./home.css";
-import { NavLink } from 'react-router-dom';
+import CardsContainer from '../../components/cardsContainer/container'
+import banner from '../../assets/Home.png'
+import Filter from "../../components/filter/filter";
+import { useSelector } from "react-redux";
+import Paginate from '../../components/paginate/Paginate';
 
 const Home = () => {
   const allClothes1 = useSelector((state) => state.allClothes1);
-console.log(allClothes1);
+
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
@@ -37,10 +36,10 @@ console.log(allClothes1);
   }
 
   return (
-  <div>
+  <div className='containerHome'>
     <img src={banner} className="background-image" />
-    <div className="container py-3">
-      <Filter onPageChange={(page) => setCurrentPage(page)}/>
+    <div className="">
+      {/* <Filter onPageChange={(page) => setCurrentPage(page)}/> */}
       <CardsContainer currentProduct={currentProduct} />
       <Paginate currentPage={currentPage} totalPages={totalPages} handlePageChange={handlePageChange}/>
     </div>

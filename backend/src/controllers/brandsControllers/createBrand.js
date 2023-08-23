@@ -25,6 +25,10 @@ const getAllBrands = async (req, res) => {
   };
   
 
-module.exports ={ createBrand, getAllBrands };
+module.exports = { createBrand, getAllBrands };
+
+
+
+//............................................................................
 
 

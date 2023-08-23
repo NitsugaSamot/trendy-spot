@@ -4,7 +4,7 @@ const {
   getDBinfo,
 } = require("../../controllers/productsControllers/getProductsControllers");
 
-// http://localhost:3004/products
+// http://localhost:3005/products
 const getAllOrByNameProducts = async(req, res) => {
     const { name } = req.query;
     const results = name ? await searchProductsByName(name) : await getDBinfo();

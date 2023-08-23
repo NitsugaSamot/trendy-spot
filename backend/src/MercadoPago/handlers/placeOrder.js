@@ -1,6 +1,7 @@
 const mercadopago = require('mercadopago')
 require('dotenv').config()
 const { ACCESS_TOKEN } = process.env
+const {User} = require('../../db')
 
 //Configuración de las credenciales de acceso a la API de Mercado Pago
 mercadopago.configure({
@@ -29,7 +30,7 @@ const placeOrder = async (req, res) => {
       back_urls: {
         success: 'http://localhost:5173/confirmation', // URL en caso de éxito
         failure: 'http://localhost:5173', // URL en caso de fallo
-        pending: 'http://localhost:3004' // URL en caso de pendiente
+        pending: 'http://localhost:3005' // URL en caso de pendiente
       }
       //*Forma que aparece en la api de mercado pago
       // auto_return "approved"
@@ -37,6 +38,10 @@ const placeOrder = async (req, res) => {
 
     // Creación de la preferencia de pago en Mercado Pago
     const response = await mercadopago.preferences.create(preference)
+
+    if (req.user) { // Asumiendo que tienes un middleware para autenticar usuarios y colocarlos en req.user
+      await req.user.addBuy(id, name, price, quantity, description);
+    }
 
     //* Forma que esta en la api de mercado pago 
     // mercadopago.preferences.create(preference)

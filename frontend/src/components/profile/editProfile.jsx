@@ -1,11 +1,11 @@
+
 import { useEffect, useState } from "react";
-import ProfileNav from "./profileNav";
-import Alert from "../alert/alert";
-import useAuth from "../../contextClient/hooks/useAuth";
+import useAuth from "../../hooks/useAuth"
+import Alerta from "../Alerta/Alerta";
 
 const EditProfile = () => {
 
-  const {auth, updateProfile} = useAuth()
+  const {auth} = useAuth()
   const [profile, setProfile] = useState({})
   const [alerta, setAlerta] = useState({})
 
@@ -17,7 +17,7 @@ const EditProfile = () => {
 
   // console.log(profile)
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
 
     const {name, email} = profile
@@ -30,14 +30,6 @@ const EditProfile = () => {
       return
     }
 
-    const result = await updateProfile(profile)
-
-    setAlerta(result)
-
-
-
-    // updateProfile(profile)
-
   }
 
   const { msg } = alerta
@@ -45,11 +37,7 @@ const EditProfile = () => {
   return (
     <>
       <div>
-
-
-      <ProfileNav/>
-
-        {msg && <Alert alerta={alerta} />}
+        {msg && <Alerta alerta={alerta} />}
         <form onSubmit={handleSubmit}>
           <div>
                 <label htmlFor="name">Name</label>

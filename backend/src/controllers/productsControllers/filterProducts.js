@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 const {Product} = require('../../db');
 const {Brand } = require('../../db')
 
-// http://localhost:3004/products/search?minPrice=5800&maxPrice=8000
+// http://localhost:3005/products/search?minPrice=5800&maxPrice=8000
 
 const filterByBrands = async (req, res) => {
     const brandName = req.params.brandName;
@@ -106,10 +106,10 @@ const filterByBrands = async (req, res) => {
 
 
   /* ESTE ES EL SUPER CONTROLLER QUE COMBINA FILTRADOS, QUEDA PENDIENTE LOGRAR IMPLEMENTARLO EN EL FRONT 
-  http://localhost:3004/products/filter?brandName=Nike&minPrice=7000&maxPrice=
+  http://localhost:3005/products/filter?brandName=Nike&minPrice=7000&maxPrice=
   
   Lo pueden usar tanto con marca como sin marca y filtra igual
-  http://localhost:3004/products/filter?brandName=&minPrice=7000&maxPrice=9000
+  http://localhost:3005/products/filter?brandName=&minPrice=7000&maxPrice=9000
   
   */
 
@@ -160,7 +160,7 @@ module.exports = {
   filterProducts
 };
 
-// http://localhost:3004/products/filter?brandName=Nike&minPrice=6000&maxPrice=8000
+// http://localhost:3005/products/filter?brandName=Nike&minPrice=6000&maxPrice=8000
 
 
 

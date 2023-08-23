@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import Alerta from '../alert/alert'
-import axiosClient from '../../contextClient/config/axiosClient'
+import Alerta from '../Alerta/Alerta';
+import axiosClient from '../../config/axiosClient';
 import './styles.css';
-import imageLogo from "../../assets/trendy-spot-logo.png";
+import imageLogo from '../../assets/trendy-spot-logo.png';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -69,9 +69,9 @@ const Register = () => {
     setState(value);
   };
 
-  setTimeout(() => {
-    setAlerta({})
-}, 10000);
+//   setTimeout(() => {
+//     setAlerta({})
+// }, 10000);
 
   const { msg } = alerta;
 
@@ -163,182 +163,204 @@ const Register = () => {
 
 export default Register;
 
-
-
-
-// import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import Alert from "../alert/alert";
-// import axios from "axios";
-// // import axiosClient from "../../contextClient/config/axiosClient";
-// import imageLogo from "../../assets/trendy-spot-logo.png";
-// import "./styles.css";
+// import {useState} from 'react'
+// import { Link } from "react-router-dom"
+// import Alerta from '../Alerta/Alerta'
+// // import axios from 'axios'
+// import axiosClient from '../../config/axiosClient'
+// import './styles.css'
+// import imageLogo from './trendy-spot-logo.png'
 
 // const Register = () => {
-//   const [name, setName] = useState("");
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [repetirPassword, setRepetirPassword] = useState("");
-//   const [alert, setAlert] = useState({});
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
+//   const [ name, setName ] = useState('')
+//   const [ email, setEmail ] = useState('')
+//   const [ password, setPassword ] = useState('')
+//   const [ repetirPassword, setRepetirPassword ] = useState('')
+//   const [ alerta, setAlerta ] = useState({})
 
-//     if ([name, email, password, repetirPassword].includes("")) {
-//       setAlert({
-//         msg: "Todos los campos son obligatorios",
-//         error: true,
-//       });
-//       return;
-//     }
+//   const handleSubmit = async e => {
+//     e.preventDefault()
 
-//     if (password !== repetirPassword) {
-//       setAlert({
-//         msg: "Los Passwords no coinciden",
-//         error: true,
-//       });
-//       return;
-//     }
+//     if([name, email, password, repetirPassword].includes('')) {
+//       setAlerta({
+//       msg: 'Todos los campos son obligatorios',
+//       error: true
+//     })
+//      return
+//     }  
 
-//     if (password.length < 6) {
-//       setAlert({
-//         msg: "El Password debe tener al menos 6 caracteres",
-//         error: true,
-//       });
-//       return;
-//     }
+//     name
 
-//     setAlert({});
+//     if(password !== repetirPassword) {
+//       setAlerta({        
+//         msg: 'Los Passwords no coinciden',
+//         error: true
+//       })
+//       return
+//   }
 
-//     // Crear usuario de la api
+//   if(password.length < 6) {
+//     setAlerta({
+//       msg: 'El Password debe tener al menos 6 caracteres',
+//       error: true
+//     })
+//      return
+//   }
+
+//     setAlerta({})
+
+//     //Crear usuario de la api
 
 //     try {
-//       const { data } = await axios.post(
-//        "https://back-trendy-app.up.railway.app/users",
-//         {
-//           name,
-//           email,
-//           password,
-//         }
-//       );
+//       const {data} = await axiosClient.post(`/users`, {name, email, password})
 
-//       setAlert({
+//       setAlerta({
 //         msg: data.msg,
-//         error: false,
-//       });
+//         error: false
+//       })
 
-//       setName("");
-//       setEmail("");
-//       setPassword("");
-//       setRepetirPassword("");
+//       setName('')
+//       setEmail('')
+//       setPassword('')
+//       setRepetirPassword('')
+
 //     } catch (error) {
-//       setAlert({
+//        setAlerta({
 //         msg: error.response.data.error,
-//         error: true,
-//       });
+//         error: true
+//        })
 //     }
-//   };
+//   }
 
-//   const handleInputChange = (e, setState) => {
-//     // Eliminar espacios en blanco al principio y al final del valor
-//     const value = e.target.value.trim();
-//     setState(value);
-//   };
-
-//   setTimeout(() => {
-//     setAlert({});
-//   }, 6000);
-
-//   const { msg } = alert;
+//   const {msg} = alerta
 
 //   return (
 //     <>
-//       <div className="mainRegister">
-//         <h3 className="titleLogin">Crea una cuenta para hacer tu compra</h3>
+//     <div className='mainRegister'>
 
-//         {msg && <Alert alerta={alert} />}
 
-//         <form action="" className="formRegister" onSubmit={handleSubmit}>
-//           <div className="columna">
-//             <div className="divInput">
-//               <label className="label" htmlFor="name">
-//                 Name
+//     <h3 className="titleLogin">
+//       Crea una cuenta para hacer tu compra
+//     </h3>
+
+//     {msg && <Alerta alerta={alerta} />}
+
+//     <form 
+//           action=""
+//           className="formRegister"
+//           onSubmit={handleSubmit}
+//           >
+//     <div className="columna">
+//     <div className="divInput">
+//             <label 
+//               className="label"
+//               htmlFor="name"
+//               >
+//                   Name
 //               </label>
-//               <input
-//                 id="name"
-//                 type="text"
-//                 placeholder="Tu name"
-//                 className="input"
-//                 value={name}
-//                 onChange={(e) => handleInputChange(e, setName)}
+            
+//               <input 
+//                   id="name"
+//                   type="text"
+//                   placeholder="Tu name"
+//                   className="input"
+//                   value={name}
+//                   onChange={e => setName(e.target.value)}
 //               />
-//             </div>
 
-//             <div className="divInput">
-//               <label className="label" htmlFor="email">
-//                 Email
+//         </div>
+
+//         <div className="divInput">
+//             <label 
+//               className="label"
+//               htmlFor="email">
+//                   Email
 //               </label>
-//               <input
-//                 id="email"
-//                 type="email"
-//                 placeholder="Email de Registro"
-//                 className="input"
-//                 value={email}
-//                 onChange={(e) => handleInputChange(e, setEmail)}
+            
+//               <input 
+//                   id="email"
+//                   type="email"
+//                   placeholder="Email de Registro"
+//                   className="input"
+//                   value={email}
+//                   onChange={e => setEmail(e.target.value)}
 //               />
-//             </div>
 
-//             <div className="divInput">
-//               <label className="label" htmlFor="password">
-//                 Password
+//       </div>
+
+//         <div className="divInput">
+//             <label 
+//               className="label"
+//               htmlFor="password">
+//                   Password
 //               </label>
-//               <input
-//                 id="password"
-//                 type="password"
-//                 placeholder="Password"
-//                 className="input"
-//                 value={password}
-//                 onChange={(e) => handleInputChange(e, setPassword)}
+            
+//               <input 
+//                   id="password"
+//                   type="password"
+//                   placeholder="Password"
+//                   className="input"
+//                   value={password}
+//                   onChange={e => setPassword(e.target.value)}
 //               />
-//             </div>
 
-//             <div className="divInput">
-//               <label className="label" htmlFor="password">
-//                 Repetir Password
+
+//       </div>
+
+//         <div className="divInput">
+//             <label 
+//               className="label"
+//               htmlFor="password">
+//                 Repetir  Password
 //               </label>
-//               <input
-//                 id="password2"
-//                 type="password"
-//                 placeholder="Repetir tu Password"
-//                 className="input"
-//                 value={repetirPassword}
-//                 onChange={(e) => handleInputChange(e, setRepetirPassword)}
+            
+//               <input 
+//                   id="password2"
+//                   type="password"
+//                   placeholder="Repetir tu Password"
+//                   className="input"
+//                   value={repetirPassword }
+//                   onChange={e => setRepetirPassword(e.target.value)}
 //               />
-//             </div>
-//           </div>
 
-//           <div className="columna">
-//             <img src={imageLogo} alt="logo-home" className="logoRegister" />
-//           </div>
 
-//           <input
-//             type="submit"
+//         </div>
+
+
+//     </div>
+
+//     <div className="columna">
+//         <img src={imageLogo} alt="logo-home" className='logoRegister' />
+//     </div>
+   
+
+//         <input 
+//             type="submit" 
 //             value="Crear Cuenta"
-//             className="btnCreateAccount"
-//           />
-//         </form>
+//             className="btnCreateAccount"    
+//         />
 
-//         <nav className="navRegister">
-//           <Link className="linksRegister" to="/login">
+
+//     </form>
+
+//     <nav className="navRegister">
+//           <Link
+//             className='linksRegister'
+//             to="/login"
+//           >
 //             ¿Tienes una cuenta? Inicia Sesión
 //           </Link>
-//           <Link className="linksRegister" to="/olvide-password">
-//             Olvidé Mi Password
+//           <Link
+//             className='linksRegister'
+//             to="/olvide-password"
+//           >
+//             Olvide Mi Password
 //           </Link>
-//         </nav>
-//       </div>
-//     </>
-//   );
-// };
+//     </nav>
+//     </div>
+// </>
+//   )
+// }
 
-// export default Register;
+// export default Register
